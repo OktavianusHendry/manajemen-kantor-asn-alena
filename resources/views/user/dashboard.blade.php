@@ -4,7 +4,7 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
             <div class="col-lg-13 mb-4">
-                <div class="card" style="background: url('assets/img/illustrations/Header.png') center/cover no-repeat;">
+                <div class="card" style="background: url('public/assets/img/illustrations/Header.png') center/cover no-repeat;">
                     <div class="d-flex align-items-end row">
                         <div class="col-sm-7">
                             <div class="card-body">
@@ -18,7 +18,7 @@
                         </div>
                         <div class="col-sm-5 text-center text-sm-left">
                             <div class="card-body pb-0 px-0 px-md-4">
-                                <img src="../assets/img/illustrations/man-with-laptop-light.png" height="140"
+                                <img src="public/assets/img/illustrations/man-with-laptop-light.png" height="140"
                                     alt="View Badge User" data-app-dark-img="illustrations/man-with-laptop-dark.png"
                                     data-app-light-img="illustrations/man-with-laptop-light.png" />
                             </div>
@@ -111,7 +111,7 @@
                         <!-- JavaScript untuk merender cover PDF -->
                         <script>
                             document.addEventListener('DOMContentLoaded', function() {
-                                const pdfUrl = "{{ asset('storage/' . $arsip->file_satu) }}"; // Pastikan path PDF sudah benar
+                                const pdfUrl = "{{ asset('public/storage/' . $arsip->file_satu) }}"; // Pastikan path PDF sudah benar
                                 const canvasId = "pdf-canvas-{{ $arsip->id_arsip_pembelajaran }}";
                                 const canvas = document.getElementById(canvasId);
                                 const ctx = canvas.getContext('2d');
