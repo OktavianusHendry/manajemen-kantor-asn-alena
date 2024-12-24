@@ -20,7 +20,7 @@
         <link rel="icon" type="image/x-icon" sizes="32x32" href="asset/img/favicons/favicon.ico">
         <link rel="icon" type="image/x-icon" sizes="16x16" href="asset/img/favicons/favicon.ico">
         <link rel="shortcut icon" type="image/x-icon" href="asset/img/favicons/favicon.ico">
-        <link rel="manifest" href="asset/img/favicons/manifest.json">
+        <link rel="manifest" href="public/asset/img/favicons/manifest.json">
         <meta name="msapplication-TileImage" content="asset/img/favicons/favicon.ico">
         <meta name="theme-color" content="#ffffff">
 
