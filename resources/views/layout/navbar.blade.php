@@ -416,7 +416,7 @@
             iEgCVOgiIiIJUKGLiIgkQIUuIiKSABW6iIhIAlToIiIiCVChi4iIJECFLiIikgAVuoiISAJU6CIi
             IglQoYuIiCTg/wFUtdJ3d7smcQAAAABJRU5ErkJggg=="
                         transform="matrix(1.198 0 0 1.202 -3 0.2756)">
-                    </image><img src="asset/img/logo.svg" height="34" alt="logo" />
+                    </image><img src="public/asset/img/logo.svg" height="34" alt="logo" />
             </a><button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
