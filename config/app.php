@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://manajemen.oktavianus.xyz/public'),
+    'url' => env('APP_URL', 'https://manajemen.oktavianus.xyz'),
 
     'asset_url' => env('ASSET_URL', null),
 
