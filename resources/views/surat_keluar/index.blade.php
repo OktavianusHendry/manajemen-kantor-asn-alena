@@ -94,7 +94,7 @@
 
                                                 <td>
                                                     @if ($surat_keluar->file_surat)
-                                                        <a href="{{ asset('storage/' . $surat_keluar->file_surat) }}"
+                                                        <a href="{{ asset('public/storage/' . $surat_keluar->file_surat) }}"
                                                             target="_blank"
                                                             class="btn btn-success btn-sm">Unduh</a>&nbsp;&nbsp;
                                                     @else
