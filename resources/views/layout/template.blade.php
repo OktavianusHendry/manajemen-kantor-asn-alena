@@ -59,7 +59,14 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/is_js@0.9.0/is.min.js"></script>
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+        <script>
+            if (!('scrollBehavior' in document.documentElement.style)) {
+                // Load a smooth scroll polyfill dynamically
+                var script = document.createElement("script");
+                script.src = "https://cdnjs.cloudflare.com/ajax/libs/smoothscroll-polyfill/0.4.4/smoothscroll.min.js";
+                document.head.appendChild(script);
+            }
+        </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
         <script src="public/asset/js/theme.js"></script>
 
