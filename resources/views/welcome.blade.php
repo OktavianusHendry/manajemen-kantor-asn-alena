@@ -31,7 +31,7 @@
 
     <main class="main" id="top">
         <section style="padding-top: 7rem;">
-            <div class="bg-holder" style="background-image:url(public/asset/img/hero/hero-bg.svg);"></div>
+            <div class="bg-holder" style="background-image:url(public/assets/img/hero/hero-bg.svg);"></div>
 
             <div class="container">
                 <div class="row align-items-center">
