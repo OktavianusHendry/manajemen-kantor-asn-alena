@@ -18,7 +18,7 @@
                         </div>
                         <div class="col-sm-5 text-center text-sm-left">
                             <div class="card-body pb-0 px-0 px-md-4">
-                                <img src="../assets/img/illustrations/man-with-laptop-light.png" height="140"
+                                <img src="../public/assets/img/illustrations/man-with-laptop-light.png" height="140"
                                     alt="View Badge User" data-app-dark-img="illustrations/man-with-laptop-dark.png"
                                     data-app-light-img="illustrations/man-with-laptop-light.png" />
                             </div>
@@ -73,7 +73,7 @@
                     <div class="card-body">
                         <div class="card-title d-flex align-items-start justify-content-between">
                             <div class="avatar flex-shrink-0">
-                                <img src="../assets/img/icons/unicons/chart-success2.png" alt="Credit Card"
+                                <img src="../public/assets/img/icons/unicons/chart-success2.png" alt="Credit Card"
                                     class="rounded" />
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                     <div class="card-body">
                         <div class="card-title d-flex align-items-start justify-content-between">
                             <div class="avatar flex-shrink-0">
-                                <img src="../assets/img/icons/unicons/chart-success1.png" alt="chart success"
+                                <img src="../public/assets/img/icons/unicons/chart-success1.png" alt="chart success"
                                     class="rounded" />
                             </div>
                         </div>
@@ -113,7 +113,7 @@
                     <div class="card-body">
                         <div class="card-title d-flex align-items-start justify-content-between">
                             <div class="avatar flex-shrink-0">
-                                <img src="../assets/img/icons/unicons/chart-success1.png" alt="Credit Card"
+                                <img src="../public/assets/img/icons/unicons/chart-success1.png" alt="Credit Card"
                                     class="rounded" />
                             </div>
                         </div>
@@ -133,7 +133,7 @@
                     <div class="card-body">
                         <div class="card-title d-flex align-items-start justify-content-between">
                             <div class="avatar flex-shrink-0">
-                                <img src="../assets/img/icons/unicons/chart-success1.png" alt="Credit Card"
+                                <img src="../public/assets/img/icons/unicons/chart-success1.png" alt="Credit Card"
                                     class="rounded" />
                             </div>
                         </div>
