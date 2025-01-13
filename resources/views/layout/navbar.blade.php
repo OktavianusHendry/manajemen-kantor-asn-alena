@@ -452,4 +452,4 @@
         </div>
     </nav>
     <section style="padding-top: 7rem;">
-        <div class="bg-holder" style="background-image:url(assets/img/hero/hero-bg.svg);"></div>
+        <div class="bg-holder" style="background-image:url(public/assets/img/hero/hero-bg.svg);"></div>
