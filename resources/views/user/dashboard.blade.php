@@ -111,7 +111,7 @@
                         <!-- JavaScript untuk merender cover PDF -->
                         <script>
                             document.addEventListener('DOMContentLoaded', function() {
-                                const pdfUrl = "{{ asset('public/storage/' . $arsip->file_satu) }}"; // Pastikan path PDF sudah benar
+                                const pdfUrl = "{{ asset('storage/app/public/' . $arsip->file_satu) }}"; // Pastikan path PDF sudah benar
                                 const canvasId = "pdf-canvas-{{ $arsip->id_arsip_pembelajaran }}";
                                 const canvas = document.getElementById(canvasId);
                                 const ctx = canvas.getContext('2d');
