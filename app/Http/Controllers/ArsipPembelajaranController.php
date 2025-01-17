@@ -93,7 +93,7 @@ if ($search) {
             'catatan'            => 'nullable|string',
         ]);
 
-        $file_dokumen_satu_path = $request->file('file_satu') ? $request->file('file_satu')->store('public/data_file_dokumen_satu') : null;
+        $file_dokumen_satu_path = $request->file('file_satu') ? $request->file('file_satu')->store('data_file_dokumen_satu', 'public') : null;
         $file_dokumen_dua_path = $request->file('file_dua') ? $request->file('file_dua')->store('data_file_dokumen_dua', 'public') : null;
         $file_dokumen_tiga_path = $request->file('file_tiga') ? $request->file('file_tiga')->store('data_file_dokumen_tiga', 'public') : null;
         $file_dokumen_empat_path = $request->file('file_empat') ? $request->file('file_empat')->store('data_file_dokumen_empat', 'public') : null;

@@ -77,7 +77,7 @@
                                                 <div class="col-sm-12 mb-3">
                                                     <label class="form-label"><strong>File
                                                             Satu&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;</strong></label>
-                                                    <a href="{{ asset('public/storage/' . $arsip->file_satu) }}" target="_blank"
+                                                    <a href="{{ asset('storage/app/public/' . $arsip->file_satu) }}" target="_blank"
                                                         class="btn btn-success btn-sm">Unduh</a>
                                                 </div>
                                                 </p>
@@ -89,7 +89,7 @@
                                                 <div class="col-sm-12 mb-3">
                                                     <label class="form-label"><strong>File
                                                             Dua&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;</strong></label>
-                                                    <a href="{{ asset('public/storage/' . $arsip->file_dua) }}" target="_blank"
+                                                    <a href="{{ asset('storage/app/public/' . $arsip->file_dua) }}" target="_blank"
                                                         class="btn btn-success btn-sm">Unduh</a>
                                                 </div>
                                                 </p>
@@ -101,7 +101,7 @@
                                                 <div class="col-sm-12 mb-3">
                                                     <label class="form-label"><strong>File
                                                             Tiga&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;</strong></label>
-                                                    <a href="{{ asset('public/storage/' . $arsip->file_tiga) }}" target="_blank"
+                                                    <a href="{{ asset('storage/app/public/' . $arsip->file_tiga) }}" target="_blank"
                                                         class="btn btn-success btn-sm">Unduh</a>
                                                 </div>
                                                 </p>
@@ -113,7 +113,7 @@
                                                 <div class="col-sm-12 mb-3">
                                                     <label class="form-label"><strong>File
                                                             Empat&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;</strong></label>
-                                                    <a href="{{ asset('public/storage/' . $arsip->file_empat) }}" target="_blank"
+                                                    <a href="{{ asset('storage/app/public/' . $arsip->file_empat) }}" target="_blank"
                                                         class="btn btn-success btn-sm">Unduh</a>
                                                 </div>
                                                 </p>
@@ -125,7 +125,7 @@
                                                 <div class="col-sm-12 mb-3">
                                                     <label class="form-label"><strong>File
                                                             Lima&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;</strong></label>
-                                                    <a href="{{ asset('public/storage/' . $arsip->file_lima) }}" target="_blank"
+                                                    <a href="{{ asset('storage/app/public/' . $arsip->file_lima) }}" target="_blank"
                                                         class="btn btn-success btn-sm">Unduh</a>
                                                 </div>
                                                 </p>

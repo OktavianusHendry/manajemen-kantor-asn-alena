@@ -68,7 +68,7 @@
                                                 <td>
                                                     @if ($suratMasuk->file_surat)
                                                         <!-- Correcting the file link path -->
-                                                        <a href="{{ asset('public/storage/' . $suratMasuk->file_surat) }}"
+                                                        <a href="{{ asset('storage/app/public/' . $suratMasuk->file_surat) }}"
                                                             target="_blank"
                                                             class="btn btn-success btn-sm">Unduh</a>&nbsp;&nbsp;
                                                     @else
