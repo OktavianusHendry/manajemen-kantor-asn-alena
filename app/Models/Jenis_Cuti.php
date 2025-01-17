@@ -19,6 +19,6 @@ class Jenis_Cuti extends Model
 
     public function jenis_cuti()
     {
-        return $this->hasMany(jenis_cuti::class, 'id_jenis_cuti', 'id_jenis_cuti');
+        return $this->hasMany(Jenis_Cuti::class, 'id_jenis_cuti', 'id_jenis_cuti');
     }
 }

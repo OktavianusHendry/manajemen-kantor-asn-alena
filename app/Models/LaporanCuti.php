@@ -39,6 +39,6 @@ class LaporanCuti extends Model
 
     public function jenis_cuti()
     {
-        return $this->belongsTo(jenis_cuti::class, 'id_jenis_cuti', 'id_jenis_cuti');
+        return $this->belongsTo(Jenis_Cuti::class, 'id_jenis_cuti', 'id_jenis_cuti');
     }
 }
