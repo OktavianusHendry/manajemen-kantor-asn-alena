@@ -31,6 +31,11 @@
                                     value="{{ $arsip->judul_pembelajaran }}" required>
                             </div>
 
+                            <div class="col-sm-4">
+                                    <label class="form-label" for="pertemuan_ke">Pertemuan Ke-</label>
+                                    <input type="text" name="pertemuan_ke" class="form-control" value="{{ $arsip->pertemuan_ke }}" required>
+                                </div>
+
                             <div class="row mb-3">
                                 <div class="col-sm-6">
                                     <label class="form-label" for="id_jenjang">Jenjang</label>
