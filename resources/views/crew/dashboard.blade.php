@@ -3,7 +3,7 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
             <div class="col-lg-13 mb-4">
-                <div class="card" style="background: url('assets/img/illustrations/Header.png') center/cover no-repeat;">
+                <div class="card" style="background: url('public/assets/img/illustrations/Header.png') center/cover no-repeat;">
                     <div class="d-flex align-items-end row">
                         <div class="col-sm-7">
                             <div class="card-body">
