@@ -37,7 +37,7 @@
         <div class="row">
             <div class="col-lg-3 mb-4">
                 <div class="card"
-                    style="background: url('assets/img/illustrations/content1.jpg') center/cover no-repeat;">
+                    style="background: url('public/assets/img/illustrations/content1.jpg') center/cover no-repeat;">
                     <div class="card-body">
                         <div class="card-title d-flex align-items-start justify-content-between">
                             <div class="avatar flex-shrink-0">
@@ -57,7 +57,7 @@
             </div>
             <div class="col-lg-3 mb-4">
                 <div class="card"
-                    style="background: url('assets/img/illustrations/content1.jpg') center/cover no-repeat;">
+                    style="background: url('public/assets/img/illustrations/content1.jpg') center/cover no-repeat;">
                     <div class="card-body">
                         <div class="card-title d-flex align-items-start justify-content-between">
                             <div class="avatar flex-shrink-0">
@@ -77,7 +77,7 @@
             </div>
             <div class="col-lg-3 mb-4">
                 <div class="card"
-                    style="background: url('assets/img/illustrations/content1.jpg') center/cover no-repeat;">
+                    style="background: url('public/assets/img/illustrations/content1.jpg') center/cover no-repeat;">
                     <div class="card-body">
                         <div class="card-title d-flex align-items-start justify-content-between">
                             <div class="avatar flex-shrink-0">
@@ -97,7 +97,7 @@
             </div>
             <div class="col-lg-3 mb-4">
                 <div class="card"
-                    style="background: url('assets/img/illustrations/content1.jpg') center/cover no-repeat;">
+                    style="background: url('public/assets/img/illustrations/content1.jpg') center/cover no-repeat;">
                     <div class="card-body">
                         <div class="card-title d-flex align-items-start justify-content-between">
                             <div class="avatar flex-shrink-0">
