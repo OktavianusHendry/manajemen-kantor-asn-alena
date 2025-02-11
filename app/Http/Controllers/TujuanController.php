@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tujuan;
+use App\Models\Tujuan;
 use Illuminate\Http\Request;
 
 class TujuanController extends Controller
