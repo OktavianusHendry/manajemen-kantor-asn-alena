@@ -57,7 +57,7 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td class="text-truncate" style="max-width: auto;">
-                                                    {{ $unitPenempatan->user->name }}
+                                                    {{ $unitPenempatan->user->nama }}
                                                 </td>
                                                 <td class="text-truncate" style="max-width: auto;">
                                                     {{ $unitPenempatan->sekolah->nama_sekolah }}

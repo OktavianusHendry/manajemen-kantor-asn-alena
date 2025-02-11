@@ -17,7 +17,7 @@
                                     <div class="row mb-3">
                                         <div class="col-sm-6">
                                             <label class="form-label"><strong>Nama Mentor:</strong></label>
-                                            <p>{{ $unitPenempatan->user->name }}</p>
+                                            <p>{{ $unitPenempatan->user->nama }}</p>
                                         </div>
                                         <div class="col-sm-6">
                                             <label class="form-label"><strong>Mentoring di Sekolah:</strong></label>
@@ -108,7 +108,7 @@
                             <div class="card-body text-center mt-3">
                                 <img class="img-fluid mb-3"
                                     src="{{ asset('storage/' . $unitPenempatan->user->foto_diri) }}" alt="Foto Diri">
-                                <p>{{ $unitPenempatan->user->name }}</p>
+                                <p>{{ $unitPenempatan->user->nama }}</p>
                             </div>
                         </div>
                     </div>
