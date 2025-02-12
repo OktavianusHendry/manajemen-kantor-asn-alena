@@ -12,7 +12,7 @@ class SuratKeluarNewController extends Controller
         $search = $request->input('search');
         $surat_keluars = SuratKeluar::when($search, function ($query) use ($search) {
             return $query->where('perihal', 'like', "%{$search}%")
-                        ->orWhere('tujuan_surat', 'like', "%{$search}%");
+                         ->orWhere('tujuan_surat', 'like', "%{$search}%");
         })->paginate(10); // Adjust pagination as needed
 
         return view('surat-keluar.index', compact('surat_keluars'));
