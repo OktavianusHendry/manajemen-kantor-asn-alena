@@ -69,10 +69,10 @@
                                                         <i class="menu-icon tf-icons bx bx-trash"></i>
                                                     </a>
                                                     <a href="{{ route('surat-keluar.validasi', $surat->id_surat) }}" class="btn btn-success btn-sm">
-                                                        <i class="menu-icon tf-icons bx  bx-check-square"></i>
+                                                        Validasi
                                                     </a>
                                                     <a href="{{ route('surat-keluar.exportPDF', $surat->id_surat) }}" class="btn btn-success btn-sm">
-                                                        <i class="menu-icon tf-icons bx  bx-download"></i>
+                                                        Unduh
                                                     </a>
                                                 </div>
                                             </td>
