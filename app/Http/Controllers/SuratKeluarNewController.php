@@ -21,7 +21,11 @@ class SuratKeluarNewController extends Controller
     // Menampilkan form untuk membuat surat keluar
     public function create()
     {
-        return view('surat-keluar.create');
+        // Ambil data instansi dan tujuan jika diperlukan
+        $instansi = []; // Ganti dengan query untuk mengambil data instansi
+        $tujuan = []; // Ganti dengan query untuk mengambil data tujuan
+
+        return view('surat-keluar.create', compact('instansi', 'tujuan'));
     }
 
     // Menyimpan surat keluar baru
@@ -32,6 +36,9 @@ class SuratKeluarNewController extends Controller
             'tanggal_surat' => 'required|date',
             'perihal' => 'required|string|max:255',
             'tujuan_surat' => 'required|string|max:255',
+            'disahkan_oleh' => 'nullable|string|max:100',
+            'jabatan_pengesah' => 'nullable|string|max:100',
+            'tembusan' => 'nullable|string',
             'lampiran' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
             'foto_surat' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'isi_surat' => 'required|string',
@@ -46,10 +53,13 @@ class SuratKeluarNewController extends Controller
             'tanggal_surat' => $request->tanggal_surat,
             'perihal' => $request->perihal,
             'tujuan_surat' => $request->tujuan_surat,
-            'status_validasi' => 'Pending', // Set default status
+            'disahkan_oleh' => $request->disahkan_oleh,
+            'jabatan_pengesah' => $request->jabatan_pengesah,
+            'tembusan' => $request->tembusan,
             'lampiran' => $lampiranPath,
             'foto_surat' => $fotoPath,
             'isi_surat' => $request->isi_surat,
+            'status_validasi' => 'Pending', // Set default status
             'created_by' => auth()->id(), // Menyimpan ID pengguna yang membuat
         ]);
 

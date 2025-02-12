@@ -30,7 +30,7 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('surat-keluar.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('surat_keluar.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="card-body">
@@ -59,6 +59,27 @@
                                 <label for="tujuan_surat" class="form-label">Tujuan Surat</label>
                                 <input type="text" class="form-control @error('tujuan_surat') is-invalid @enderror" id="tujuan_surat" name="tujuan_surat" value="{{ old('tujuan_surat') }}" required>
                                 @error('tujuan_surat')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="disahkan_oleh" class="form-label">Disahkan Oleh</label>
+                                <input type="text" class="form-control @error('disahkan_oleh') is-invalid @enderror" id="disahkan_oleh" name="disahkan_oleh" value="{{ old('disahkan_oleh') }}">
+                                @error('disahkan_oleh')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="jabatan_pengesah" class="form-label">Jabatan Pengesah</label>
+                                <input type="text" class="form-control @error('jabatan_pengesah') is-invalid @enderror" id="jabatan_pengesah" name="jabatan_pengesah" value="{{ old('jabatan_pengesah') }}">
+                                @error('jabatan_pengesah')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="tembusan" class="form-label">Tembusan</label>
+                                <textarea class="form-control @error('tembusan') is-invalid @enderror" id="tembusan" name="tembusan" rows="3">{{ old('tembusan') }}</textarea>
+                                @error('tembusan')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
