@@ -18,6 +18,11 @@ class SuratKeluarNewController extends Controller
         return view('surat-keluar.index', compact('surat_keluar'));
     }
 
+    public function create()
+    {
+        
+    }
+
     public function exportPDF($id)
     {
         // Logika untuk mengunduh surat dalam format PDF
