@@ -65,6 +65,9 @@
                                                     <a href="{{ route('surat-keluar.edit', $surat->id_surat) }}" class="btn btn-warning btn-sm">
                                                         <i class="menu-icon tf-icons bx bx-edit"></i>
                                                     </a>
+                                                    <a href="{{ route('surat-keluar.delete', $surat->id_surat) }}" class="btn btn-danger btn-sm">
+                                                        <i class="menu-icon tf-icons bx bx-trash"></i>
+                                                    </a>
 
                                                     @if ($surat->status_validasi == 'Disetujui')
                                                         <!-- Tombol Unduh Surat -->
@@ -79,15 +82,6 @@
                                                             </button>
                                                         </form>
                                                     @else
-                                                        <!-- Tombol Hapus -->
-                                                        <form method="POST" action="{{ route('surat-keluar.delete', $surat->id_surat) }}" style="display:inline;">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded" onclick="return confirm('Apakah Anda yakin ingin menghapus surat ini?')">
-                                                                Hapus
-                                                            </button>
-                                                        </form>
-
                                                         <!-- Tombol Validasi -->
                                                         <form method="POST" action="{{ route('surat-keluar.validasi', $surat->id_surat) }}" style="display:inline;">
                                                             @csrf
