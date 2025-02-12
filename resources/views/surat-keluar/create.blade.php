@@ -1,4 +1,5 @@
 @extends(Auth::user()->role_as == '1' ? 'layouts.template' : 'layoutss.template')
+
 @section('content')
     <div id="app">
         <div class="container-xxl flex-grow-1 container-p-y">
@@ -41,13 +42,6 @@
                                 <label for="tujuan_surat" class="form-label">Tujuan Surat</label>
                                 <input type="text" class="form-control @error('tujuan_surat') is-invalid @enderror" id="tujuan_surat" name="tujuan_surat" value="{{ old('tujuan_surat') }}" required>
                                 @error('tujuan_surat')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label for="status_validasi" class="form-label">Status Validasi</label>
-                                <input type="text" class="form-control @error('status_validasi') is-invalid @enderror" id="status_validasi" name="status_validasi" value="{{ old('status_validasi') }}" required>
-                                @error('status_validasi')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>

@@ -28,11 +28,10 @@ class SuratKeluarNewController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nomor_surat' => 'required|string|max:255',
+            'nomor_surat' => 'required|string|max:50',
             'tanggal_surat' => 'required|date',
             'perihal' => 'required|string|max:255',
             'tujuan_surat' => 'required|string|max:255',
-            'status_validasi' => 'required|string|max:255',
             'lampiran' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
             'foto_surat' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'isi_surat' => 'required|string',
@@ -47,7 +46,7 @@ class SuratKeluarNewController extends Controller
             'tanggal_surat' => $request->tanggal_surat,
             'perihal' => $request->perihal,
             'tujuan_surat' => $request->tujuan_surat,
-            'status_validasi' => $request->status_validasi,
+            'status_validasi' => 'Pending', // Set default status
             'lampiran' => $lampiranPath,
             'foto_surat' => $fotoPath,
             'isi_surat' => $request->isi_surat,
