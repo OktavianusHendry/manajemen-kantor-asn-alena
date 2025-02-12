@@ -68,29 +68,12 @@
                                                     <a href="{{ route('surat-keluar.delete', $surat->id_surat) }}" class="btn btn-danger btn-sm">
                                                         <i class="menu-icon tf-icons bx bx-trash"></i>
                                                     </a>
-
-                                                    @if ($surat->status_validasi == 'Disetujui')
-                                                        <!-- Tombol Unduh Surat -->
-                                                        <a href="{{ route('surat-keluar.exportPDF', $surat->id_surat) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">Unduh Surat</a>
-                                                        
-                                                        <!-- Tombol Batalkan Validasi -->
-                                                        <form method="POST" action="{{ route('surat-keluar.validasi', $surat->id_surat) }}" style="display:inline;">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded" onclick="return confirm('Apakah Anda yakin ingin membatalkan validasi surat ini?')">
-                                                                Batalkan Validasi
-                                                            </button>
-                                                        </form>
-                                                    @else
-                                                        <!-- Tombol Validasi -->
-                                                        <form method="POST" action="{{ route('surat-keluar.validasi', $surat->id_surat) }}" style="display:inline;">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded" onclick="return confirm('Apakah Anda yakin ingin memvalidasi surat ini?')">
-                                                                Validasi
-                                                            </button>
-                                                        </form>
-                                                    @endif
+                                                    <a href="{{ route('surat-keluar.validasi', $surat->id_surat) }}" class="btn btn-success btn-sm">
+                                                        <i class="menu-icon tf-icons bx  bx-check-square"></i>
+                                                    </a>
+                                                    <a href="{{ route('surat-keluar.exportPDF', $surat->id_surat) }}" class="btn btn-success btn-sm">
+                                                        <i class="menu-icon tf-icons bx  bx-download"></i>
+                                                    </a>
                                                 </div>
                                             </td>
                                         </tr>
