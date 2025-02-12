@@ -9,7 +9,7 @@ class SuratKeluar extends Model
 {
     use HasFactory;
 
-    protected $table = 'surat_keluar_new';
+    protected $table = 'surat_keluar_new'; // Specify the correct table name
 
     protected $fillable = [
         'tanggal_surat',
