@@ -248,6 +248,21 @@ Route::delete('surat_keluar/{surat_keluar}', [SuratKeluarController::class, 'des
 Route::resource('surat-keluar', SuratKeluarNewController::class);
 Route::get('surat-keluar/{id}/view', [SuratKeluarNewController::class, 'show'])->name('surat-keluar.view');
 
+// Rute untuk resource Surat Keluar
+Route::resource('surat-keluar', SuratKeluarNewController::class);
+
+// Rute tambahan untuk melihat detail surat keluar
+Route::get('surat-keluar/{id}/view', [SuratKeluarNewController::class, 'show'])->name('surat-keluar.view');
+
+// Rute untuk mengunduh surat dalam format PDF
+Route::get('surat-keluar/{id}/export-pdf', [SuratKeluarNewController::class, 'exportPDF'])->name('surat-keluar.exportPDF');
+
+// Rute untuk validasi surat
+Route::put('surat-keluar/{id}/validasi', [SuratKeluarNewController::class, 'validasi'])->name('surat-keluar.validasi');
+
+// Rute untuk menghapus surat
+Route::delete('surat-keluar/{id}', [SuratKeluarNewController::class, 'destroy'])->name('surat-keluar.delete');
+
 // Arsip Pembelajaran routes
 Route::get('arsip_pembelajaran', [ArsipPembelajaranController::class, 'index'])->name('arsip_pembelajaran.index');
 Route::get('arsip_pembelajaran/create', [ArsipPembelajaranController::class, 'create'])->name('arsip_pembelajaran.create');

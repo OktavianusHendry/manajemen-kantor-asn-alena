@@ -17,4 +17,31 @@ class SuratKeluarNewController extends Controller
 
         return view('surat-keluar.index', compact('surat_keluar'));
     }
+
+    public function exportPDF($id)
+    {
+        // Logika untuk mengunduh surat dalam format PDF
+        $surat = SuratKeluar::findOrFail($id);
+        // Buat PDF menggunakan library seperti DomPDF atau Snappy
+        // Kode untuk mengunduh PDF
+    }
+
+    public function validasi(Request $request, $id)
+    {
+        // Logika untuk memvalidasi surat
+        $surat = SuratKeluar::findOrFail($id);
+        $surat->status_validasi = 'Disetujui'; // Atau logika lain sesuai kebutuhan
+        $surat->save();
+
+        return redirect()->route('surat-keluar.index')->with('success', 'Surat berhasil divalidasi.');
+    }
+
+    public function destroy($id)
+    {
+        // Logika untuk menghapus surat
+        $surat = SuratKeluar::findOrFail($id);
+        $surat->delete();
+
+        return redirect()->route('surat-keluar.index')->with('success', 'Surat berhasil dihapus.');
+    }
 }
