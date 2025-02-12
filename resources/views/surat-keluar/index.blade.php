@@ -54,11 +54,11 @@
                                     @foreach ($surat_keluars as $surat_keluar)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $surat_keluar->nomor_surat }}</td>
-                                            <td>{{ $surat_keluar->tanggal_surat }}</td>
-                                            <td>{{ $surat_keluar->perihal }}</td>
-                                            <td>{{ $surat_keluar->tujuan_surat }}</td>
-                                            <td>{{ $surat_keluar->status_validasi }}</td>
+                                            <td>{{ $surat_keluar_new->nomor_surat }}</td>
+                                            <td>{{ $surat_keluar_new->tanggal_surat }}</td>
+                                            <td>{{ $surat_keluar_new->perihal }}</td>
+                                            <td>{{ $surat_keluar_new->tujuan_surat }}</td>
+                                            <td>{{ $surat_keluar_new->status_validasi }}</td>
                                             <td>
                                                 <div class="action-buttons">
                                                     <a href="{{ route('surat_keluar.view', $surat_keluar->id_surat) }}" class="btn btn-success btn-sm">Lihat</a>
