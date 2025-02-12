@@ -18,9 +18,43 @@ class SuratKeluarNewController extends Controller
         return view('surat-keluar.index', compact('surat_keluar'));
     }
 
+    // Menampilkan form untuk membuat surat keluar
     public function create()
     {
-        
+        return view('surat-keluar.create');
+    }
+
+    // Menyimpan surat keluar baru
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nomor_surat' => 'required|string|max:255',
+            'tanggal_surat' => 'required|date',
+            'perihal' => 'required|string|max:255',
+            'tujuan_surat' => 'required|string|max:255',
+            'status_validasi' => 'required|string|max:255',
+            'lampiran' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'foto_surat' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'isi_surat' => 'required|string',
+        ]);
+
+        // Menyimpan lampiran jika ada
+        $lampiranPath = $request->file('lampiran') ? $request->file('lampiran')->store('lampiran') : null;
+        $fotoPath = $request->file('foto_surat') ? $request->file('foto_surat')->store('foto_surat') : null;
+
+        SuratKeluar::create([
+            'nomor_surat' => $request->nomor_surat,
+            'tanggal_surat' => $request->tanggal_surat,
+            'perihal' => $request->perihal,
+            'tujuan_surat' => $request->tujuan_surat,
+            'status_validasi' => $request->status_validasi,
+            'lampiran' => $lampiranPath,
+            'foto_surat' => $fotoPath,
+            'isi_surat' => $request->isi_surat,
+            'created_by' => auth()->id(), // Menyimpan ID pengguna yang membuat
+        ]);
+
+        return redirect()->route('surat-keluar.index')->with('success', 'Surat keluar berhasil ditambahkan.');
     }
 
     public function exportPDF($id)
