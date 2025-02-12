@@ -14,7 +14,7 @@
                     <div class="container">
                         @if (Auth::user()->role_as == '2')
                             <div class="d-flex justify-content-between mb-3">
-                                <a href="{{ route('surat_keluar.create') }}">
+                                <a href="{{ route('surat-keluar.create') }}">
                                     <button type="button" class="btn rounded-pill btn-primary mt-3 align-content-center">
                                         <i class="menu-icon tf-icons bx bxs-plus-circle"></i>Tambah
                                     </button>
@@ -27,7 +27,7 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('surat_keluar.index') }}" method="GET" class="mb-3">
+                        <form action="{{ route('surat-keluar.index') }}" method="GET" class="mb-3">
                             <div class="form-group d-flex">
                                 <input type="text" name="search" value="{{ request()->input('search') }}"
                                     class="form-control" placeholder="Cari asal surat keluar...">
@@ -35,7 +35,7 @@
                             </div>
                         </form>
 
-                        @if ($surat_keluars ?? false)
+                        @if ($surat_keluar ?? false)
                         <div class="table-responsive text-nowrap">
                             <br>
                             <table class="table table-hover align-content-center">
@@ -51,30 +51,30 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0 align-content-center">
-                                @foreach ($surat_keluars as $surat_keluar)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $surat_keluar->nomor_surat }}</td>
-                                        <td>{{ $surat_keluar->tanggal_surat }}</td>
-                                        <td>{{ $surat_keluar->perihal }}</td>
-                                        <td>{{ $surat_keluar->tujuan_surat }}</td>
-                                        <td>{{ $surat_keluar->status_validasi }}</td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <a href="{{ route('surat_keluar.view', $surat_keluar->id_surat) }}" class="btn btn-success btn-sm">Lihat</a>
-                                                <a href="{{ route('surat_keluar.edit', $surat_keluar->id_surat) }}" class="btn btn-warning btn-sm">
-                                                    <i class="menu-icon tf-icons bx bx-edit"></i>
-                                                </a>
-                                                <!-- Additional action buttons here -->
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                    @foreach ($surat_keluar as $surat)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $surat->nomor_surat }}</td>
+                                            <td>{{ $surat->tanggal_surat }}</td>
+                                            <td>{{ $surat->perihal }}</td>
+                                            <td>{{ $surat->tujuan_surat }}</td>
+                                            <td>{{ $surat->status_validasi }}</td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <a href="{{ route('surat-keluar.view', $surat->id_surat) }}" class="btn btn-success btn-sm">Lihat</a>
+                                                    <a href="{{ route('surat-keluar.edit', $surat->id_surat) }}" class="btn btn-warning btn-sm">
+                                                        <i class="menu-icon tf-icons bx bx-edit"></i>
+                                                    </a>
+                                                    <!-- Additional action buttons here -->
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
                         <div class="d-flex justify-content-center my-4 pagination-wrapper">
-                            {{ $surat_keluars->appends(['search' => request()->input('search')])->links('pagination::bootstrap-4') }}
+                            {{ $surat_keluar->appends(['search' => request()->input('search')])->links('pagination::bootstrap-4') }}
                         </div>
                     @else
                         <div class="alert alert-info">
