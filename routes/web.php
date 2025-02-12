@@ -247,6 +247,7 @@ Route::delete('surat_keluar/{surat_keluar}', [SuratKeluarController::class, 'des
 // Surat Keluar New routes
 Route::resource('surat-keluar', SuratKeluarNewController::class);
 Route::get('surat-keluar/{id}/view', [SuratKeluarNewController::class, 'show'])->name('surat-keluar.view');
+Route::get('surat-keluar/create', [SuratKeluarController::class, 'create'])->name('surat-keluar.create');
 
 // Rute untuk resource Surat Keluar
 Route::resource('surat-keluar', SuratKeluarNewController::class);
