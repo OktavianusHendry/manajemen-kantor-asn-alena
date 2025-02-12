@@ -24,6 +24,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\JenisCutiController;
 use App\Http\Controllers\SuratMasukController;
 use App\Http\Controllers\SuratKeluarController;
+use App\Http\Controllers\SuratKeluarNewController;
 use App\Http\Controllers\ArsipPembelajaranController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -242,6 +243,15 @@ Route::get('surat_keluar/{surat_keluar}', [SuratKeluarController::class, 'show']
 Route::get('surat_keluar/{surat_keluar}/edit', [SuratKeluarController::class, 'edit'])->name('surat_keluar.edit');
 Route::put('surat_keluar/{surat_keluar}', [SuratKeluarController::class, 'update'])->name('surat_keluar.update');
 Route::delete('surat_keluar/{surat_keluar}', [SuratKeluarController::class, 'destroy'])->name('surat_keluar.destroy');
+
+// Surat Keluar New routes
+Route::get('surat_keluar', [SuratKeluarNewController::class, 'index'])->name('surat_keluar.index');
+Route::get('surat_keluar/create', [SuratKeluarNewController::class, 'create'])->name('surat_keluar.create');
+Route::post('surat_keluar', [SuratKeluarNewController::class, 'store'])->name('surat_keluar.store');
+Route::get('surat_keluar/{surat_keluar}', [SuratKeluarNewController::class, 'show'])->name('surat_keluar.show');
+Route::get('surat_keluar/{surat_keluar}/edit', [SuratKeluarNewController::class, 'edit'])->name('surat_keluar.edit');
+Route::put('surat_keluar/{surat_keluar}', [SuratKeluarNewController::class, 'update'])->name('surat_keluar.update');
+Route::delete('surat_keluar/{surat_keluar}', [SuratKeluarNewController::class, 'destroy'])->name('surat_keluar.destroy');
 
 // Arsip Pembelajaran routes
 Route::get('arsip_pembelajaran', [ArsipPembelajaranController::class, 'index'])->name('arsip_pembelajaran.index');
