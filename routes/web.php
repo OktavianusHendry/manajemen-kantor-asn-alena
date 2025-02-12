@@ -246,6 +246,7 @@ Route::delete('surat_keluar/{surat_keluar}', [SuratKeluarController::class, 'des
 
 // Surat Keluar New routes
 Route::get('surat-keluar', [SuratKeluarNewController::class, 'index'])->name('surat_keluar.index');
+Route::view('/surat-keluar', 'surat-keluar.index')->name('surat_keluar.view');
 Route::get('surat-keluar/create', [SuratKeluarNewController::class, 'create'])->name('surat_keluar.create');
 Route::post('surat-keluar', [SuratKeluarNewController::class, 'store'])->name('surat_keluar.store');
 Route::get('surat-keluar/{surat_keluar}', [SuratKeluarNewController::class, 'show'])->name('surat_keluar.show');
