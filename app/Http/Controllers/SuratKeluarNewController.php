@@ -66,6 +66,87 @@ class SuratKeluarNewController extends Controller
         return redirect()->route('surat-keluar.index')->with('success', 'Surat keluar berhasil ditambahkan.');
     }
 
+    // Menampilkan form untuk mengedit surat keluar
+    public function edit($id)
+    {
+        $suratKeluar = SuratKeluar::findOrFail($id);
+        return view('surat-keluar.edit', compact('suratKeluar'));
+    }
+
+    // Memperbarui surat keluar
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nomor_surat' => 'required|string|max:50',
+            'tanggal_surat' => 'required|date',
+            'perihal' => 'required|string|max:255',
+            'tujuan_surat' => 'required|string|max:255',
+            'disahkan_oleh' => 'nullable|string|max:100',
+            'jabatan_pengesah' => 'nullable|string|max:100',
+            'tembusan' => 'nullable|string',
+            'lampiran' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'foto_surat' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'isi_surat' => 'required|string',
+        ]);
+
+        $suratKeluar = SuratKeluar::findOrFail($id);
+
+        // Menyimpan lampiran jika ada
+        if ($request->hasFile('lampiran')) {
+            // Hapus file lama jika ada
+            if ($suratKeluar->lampiran) {
+                Storage::delete($suratKeluar->lampiran);
+            }
+            $lampiranPath = $request->file('lampiran')->store('lampiran');
+        } else {
+            $lampiranPath = $suratKeluar->lampiran; // Tetap menggunakan file lama
+        }
+
+        // Menyimpan foto surat jika ada
+        if ($request->hasFile('foto_surat')) {
+            // Hapus file lama jika ada
+            if ($suratKeluar->foto_surat) {
+                Storage::delete($suratKeluar->foto_surat);
+            }
+            $fotoPath = $request->file('foto_surat')->store('foto_surat');
+        } else {
+            $fotoPath = $suratKeluar->foto_surat; // Tetap menggunakan file lama
+        }
+
+        $suratKeluar->update([
+            'nomor_surat' => $request->nomor_surat,
+            'tanggal_surat' => $request->tanggal_surat,
+            'perihal' => $request->perihal,
+            'tujuan_surat' => $request->tujuan_surat,
+            'disahkan_oleh' => $request->disahkan_oleh,
+            'jabatan_pengesah' => $request->jabatan_pengesah,
+            'tembusan' => $request->tembusan,
+            'lampiran' => $lampiranPath,
+            'foto_surat' => $fotoPath,
+            'isi_surat' => $request->isi_surat,
+        ]);
+
+        return redirect()->route('surat-keluar.index')->with('success', 'Surat keluar berhasil diperbarui.');
+    }
+
+    // Menghapus surat keluar
+    public function destroy($id)
+    {
+        $suratKeluar = SuratKeluar::findOrFail($id);
+
+        // Hapus file jika ada
+        if ($suratKeluar->lampiran) {
+            Storage::delete($suratKeluar->lampiran);
+        }
+        if ($suratKeluar->foto_surat) {
+            Storage::delete($suratKeluar->foto_surat);
+        }
+
+        $suratKeluar->delete();
+
+        return redirect()->route('surat-keluar.index')->with('success', 'Surat keluar berhasil dihapus.');
+    }
+
     public function exportPDF($id)
     {
         // Logika untuk mengunduh surat dalam format PDF
@@ -82,14 +163,5 @@ class SuratKeluarNewController extends Controller
         $surat->save();
 
         return redirect()->route('surat-keluar.index')->with('success', 'Surat berhasil divalidasi.');
-    }
-
-    public function destroy($id)
-    {
-        // Logika untuk menghapus surat
-        $surat = SuratKeluar::findOrFail($id);
-        $surat->delete();
-
-        return redirect()->route('surat-keluar.index')->with('success', 'Surat berhasil dihapus.');
     }
 }
