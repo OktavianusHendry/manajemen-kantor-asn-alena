@@ -237,7 +237,7 @@ Route::delete('surat_masuk/{surat_masuk}', [SuratMasukController::class, 'destro
 
 // Surat Keluar routes
 Route::get('surat_keluar', [SuratKeluarController::class, 'index'])->name('surat_keluar.index');
-Route::get('surat-keluar/create', [SuratKeluarController::class, 'create'])->name('surat-keluar.create');
+Route::get('surat_keluar/create', [SuratKeluarController::class, 'create'])->name('surat_keluar.create');
 Route::post('surat_keluar', [SuratKeluarController::class, 'store'])->name('surat_keluar.store');
 Route::get('surat_keluar/{surat_keluar}', [SuratKeluarController::class, 'show'])->name('surat_keluar.show');
 Route::get('surat_keluar/{surat_keluar}/edit', [SuratKeluarController::class, 'edit'])->name('surat_keluar.edit');
@@ -249,8 +249,11 @@ Route::resource('surat-keluar', SuratKeluarNewController::class);
 Route::get('surat-keluar/{id}/view', [SuratKeluarNewController::class, 'show'])->name('surat-keluar.view');
 Route::get('surat-keluar/create', [SuratKeluarController::class, 'create'])->name('surat-keluar.create');
 Route::get('surat-keluar/edit', [SuratKeluarController::class, 'create'])->name('surat-keluar.edit');
-Route::get('surat-keluar/{id_surat}/edit', [SuratKeluarController::class, 'edit'])->name('surat-keluar.edit');
-Route::put('surat-keluar/{id_surat}', [SuratKeluarController::class, 'update'])->name('surat-keluar.update');
+Route::get('surat-keluar/{surat-keluar}/edit', [SuratKeluarController::class, 'edit'])->name('surat-keluar.edit');
+Route::put('surat-keluar/{surat-keluar}', [SuratKeluarController::class, 'update'])->name('surat-keluar.update');
+
+// Rute untuk resource Surat Keluar
+Route::resource('surat-keluar', SuratKeluarNewController::class);
 
 // Rute tambahan untuk melihat detail surat keluar
 Route::get('surat-keluar/{id}/view', [SuratKeluarNewController::class, 'show'])->name('surat-keluar.view');
