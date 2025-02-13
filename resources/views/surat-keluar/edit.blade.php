@@ -116,14 +116,17 @@
             </div>
         </div>
     </div>
+
+    <!-- Include CKEditor 5 -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#isi_surat'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 </body>
 
 </html>
-
-@section('scripts')
-    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace('isi_surat');
-    </script>
-@endsection
 @endsection
