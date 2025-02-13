@@ -10,7 +10,7 @@ class SuratKeluar extends Model
     use HasFactory;
 
     protected $table = 'surat_keluar_new'; // Specify the correct table name
-    protected $primaryKey = 'id'; // Ganti dengan nama kolom primary key jika berbeda
+    protected $primaryKey = 'id_surat'; // Ganti dengan nama kolom primary key jika berbeda
     public $timestamps = true; // Jika Anda menggunakan timestamps
 
     protected $fillable = [
