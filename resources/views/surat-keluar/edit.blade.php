@@ -30,7 +30,7 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('surat_keluar.update', $suratKeluar->id_surat) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('surat-keluar.update', $suratKeluar->id_surat) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -121,7 +121,7 @@
 </html>
 
 @section('scripts')
-    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
     <script>
         CKEDITOR.replace('isi_surat');
     </script>
