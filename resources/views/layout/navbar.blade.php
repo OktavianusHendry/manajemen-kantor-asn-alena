@@ -10,11 +10,11 @@
         <div class="container"><a class="navbar-brand" href="#">
 
                 <!-- Generator: Adobe Illustrator 24.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-                <img src="public/assets/img/icons/logo-asn.png" width="100" alt="logo" />
-                <img src="public/assets/img/icons/logo-codingmu.png" width="100" alt="logo" />
-                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                <img src="public/assets/img/icons/logo-asn.png" width="150" alt="logo" />
+                <img src="public/assets/img/icons/logo-codingmu.png" width="150" alt="logo" />
+                <!-- <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 595.3 595.3"
-                    style="enable-background:new 0 0 595.3 595.3;" xml:space="preserve">
+                    style="enable-background:new 0 0 595.3 595.3;" xml:space="preserve"> -->
                     
                     <!-- <image style="overflow:visible;" width="400" height="400" alt="logo"
                         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAE
@@ -420,7 +420,7 @@
             IglQoYuIiCTg/wFUtdJ3d7smcQAAAABJRU5ErkJggg=="
                         transform="matrix(1.198 0 0 1.202 -3 0.2756)">
                     </image><img src="public/asset/img/logo.svg" height="34" alt="logo" /> -->
-</svg>
+<!-- </svg> -->
             </a><button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
