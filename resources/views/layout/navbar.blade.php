@@ -12,6 +12,7 @@
                 <!-- Generator: Adobe Illustrator 24.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
                 <img src="public/assets/img/icons/logo-asn.png" width="150" alt="logo" />
                 <img src="public/assets/img/icons/logo-codingmu.png" width="150" alt="logo" />
+                <img src="public/assets/img/icons/logo-anagata-academy.png" width="150" alt="logo" />
                 <!-- <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 595.3 595.3"
                     style="enable-background:new 0 0 595.3 595.3;" xml:space="preserve"> -->
