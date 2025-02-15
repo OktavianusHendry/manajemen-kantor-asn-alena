@@ -162,4 +162,14 @@ class SuratKeluarNewController extends Controller
 
         return redirect()->route('surat-keluar.index')->with('success', 'Surat berhasil divalidasi.');
     }
+
+    public function view($id)
+    {
+        // Ambil data surat keluar berdasarkan ID
+        $surat = SuratKeluar::findOrFail($id);
+
+        // Kembalikan view dengan data surat
+        return view('surat_keluar.view', compact('surat'));
+    }
+
 }
