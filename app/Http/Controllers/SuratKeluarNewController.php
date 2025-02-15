@@ -84,7 +84,7 @@ class SuratKeluarNewController extends Controller
             'tembusan' => 'nullable|string',
             'lampiran' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
             'foto_surat' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'isi_surat' => 'required|string',
+            'isi_surat' => 'nullable|string',
         ]);
 
         $suratKeluar = SuratKeluar::findOrFail($id_surat);

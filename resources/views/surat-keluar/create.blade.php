@@ -99,7 +99,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="isi_surat" class="form-label">Isi Surat</label>
-                                <textarea class="form-control @error('isi_surat') is-invalid @enderror" id="isi_surat" name="isi_surat" rows="5" required>{{ old('isi_surat') }}</textarea>
+                                <textarea class="form-control @error('isi_surat') is-invalid @enderror" id="isi_surat" name="isi_surat" rows="5" >{{ old('isi_surat') }}</textarea>
                                 @error('isi_surat')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
