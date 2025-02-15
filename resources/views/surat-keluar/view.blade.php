@@ -1,78 +1,92 @@
-@extends('layouts.template') <!-- Ganti dengan layout yang sesuai -->
+@extends(Auth::user()->role_as == '1' ? 'layouts.template' : 'layoutss.template')
 
 @section('content')
-<div class="container mt-5">
-    <h2 class="mb-4 text-center">Detail Surat Keluar</h2>
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Nomor Surat: <span class="text-primary">{{ $surat->nomor_surat }}</span></h5>
-            
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <p class="card-text"><strong>Tanggal Surat:</strong> {{ \Carbon\Carbon::parse($surat->tanggal_surat)->format('d-m-Y') }}</p>
-                </div>
-                <div class="col-md-6 text-end">
-                    <p class="card-text"><strong>Status Validasi:</strong> {{ $surat->status_validasi }}</p>
-                </div>
+<div id="app">
+    <main class="py-4">
+        <div class="container">
+            <div class="d-flex justify-content-between mb-2">
+                <h2 class="fw-bold py-3 mb-1">
+                    <b>Detail Surat Keluar</b>
+                    <span class="text-muted fw-light">/ Info Surat Keluar</span>
+                </h2>
             </div>
 
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <p class="card-text"><strong>Perihal:</strong> {{ $surat->perihal }}</p>
-                </div>
-                <div class="col-md-6 text-end">
-                    <p class="card-text"><strong>Tujuan Surat:</strong> {{ $surat->tujuan_surat }}</p>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <p class="card-text"><strong>Disahkan Oleh:</strong> {{ $surat->disahkan_oleh ?? 'Belum ada' }}</p>
-                </div>
-                <div class="col-md-6 text-end">
-                    <p class="card-text"><strong>Jabatan Pengesah:</strong> {{ $surat->jabatan_pengesah ?? 'Belum ada' }}</p>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <p class="card-text"><strong>Tembusan:</strong> {{ $surat->tembusan ?? 'Tidak ada tembusan' }}</p>
-                </div>
-                <div class="col-md-6 text-end">
-                    @if($surat->lampiran)
-                        <p class="card-text"><strong>Lampiran:</strong> 
-                            <a href="{{ asset('path/to/lampiran/' . $surat->lampiran) }}" target="_blank" class="btn btn-info btn-sm">Lihat Lampiran</a>
-                        </p>
-                    @else
-                        <p class="card-text"><strong>Lampiran:</strong> Tidak ada lampiran</p>
-                    @endif
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col-md-12">
-                    <p class="card-text"><strong>Isi Surat:</strong></p>
-                    <div class="border p-3 mb-3" style="background-color: #f8f9fa;">
-                        {!! $surat->isi_surat !!}
+            <div class="col-md">
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <p class="text-large">Tanggal Surat:</p>
+                                <b>{{ \Carbon\Carbon::parse($surat->tanggal_surat)->format('d-m-Y') }}</b>
+                                <hr />
+                                <p class="text-large">Nomor Surat:</p>
+                                <b>{{ $surat->nomor_surat }}</b>
+                                <hr />
+                                <p class="text-large">Tujuan Surat:</p>
+                                <b>{{ $surat->tujuan_surat }}</b>
+                                <hr />
+                                <p class="text-large">Perihal:</p>
+                                <b>{{ $surat->perihal }}</b>
+                                <hr />
+                                <p class="text-large">Isi Surat:</p>
+                                <b>{!! $surat->isi_surat !!}</b>
+                                <hr />
+                                <p class="text-large">Lampiran:</p>
+                                <b>
+                                    @if ($surat->lampiran)
+                                        <a href="{{ asset('storage/' . $surat->lampiran) }}" target="_blank" class="btn btn-success btn-sm">Lihat</a>
+                                    @else
+                                        Tidak ada dokumen
+                                    @endif
+                                </b>
+                                <hr />
+                                <p class="text-large">Status Validasi:</p>
+                                <b>{{ $surat->status_validasi }}</b>
+                                <hr />
+                                <p class="text-large">Disahkan Oleh:</p>
+                                <b>{{ $surat->disahkan_oleh ?? 'Belum ada' }}</b>
+                                <hr />
+                                <p class="text-large">Jabatan Pengesah:</p>
+                                <b>{{ $surat->jabatan_pengesah ?? 'Belum ada' }}</b>
+                                <hr />
+                                <p class="text-large">Tembusan:</p>
+                                <b>{{ $surat->tembusan ?? 'Tidak ada tembusan' }}</b>
+                                <hr />
+                                <p class="card-text text-muted spacing">Ditambahkan pada {{ $surat->created_at->setTimezone('Asia/Jakarta')->format('d M Y H:i') }}</p>
+                                <p class="card-text text-muted spacing">Terakhir diperbarui {{ $surat->updated_at->setTimezone('Asia/Jakarta')->format('d M Y H:i') }}</p>
+                                <p>
+                                    <a href="{{ route('surat-keluar.index') }}" class="btn btn-warning">Kembali</a>
+                                    <a href="{{ route('surat-keluar.edit', $surat->id_surat) }}" class="btn btn-info">Edit</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <img class="card-img card-img-right" src="../assets/img/elements/component-1.png" alt="Card image" />
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    @if($surat->foto_surat)
-                        <p class="card-text"><strong>Foto Surat:</strong> 
-                            <a href="{{ asset('path/to/foto_surat/' . $surat->foto_surat) }}" target="_blank" class="btn btn-info btn-sm">Lihat Foto Surat</a>
-                        </p>
-                    @else
-                        <p class="card-text"><strong>Foto Surat:</strong> Tidak ada foto surat</p>
-                    @endif
-                </div>
-                <div class="col-md-6 text-end">
-                    <a href="{{ route('surat-keluar.index') }}" class="btn btn-secondary">Kembali</a>
-                </div>
-            </div>
         </div>
-    </div>
+    </main>
 </div>
 @endsection
+
+<style>
+    .table th,
+    .table td {
+        border-top: none;
+    }
+
+    .card-header {
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+
+    .card-body p {
+        margin-bottom: 0.5rem;
+    }
+
+    .spacing {
+        margin-top: 10px;
+    }
+</style>
