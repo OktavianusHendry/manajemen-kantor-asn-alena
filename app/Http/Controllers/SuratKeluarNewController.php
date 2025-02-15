@@ -21,13 +21,9 @@ class SuratKeluarNewController extends Controller
     // Menampilkan form untuk membuat surat keluar
     public function create()
     {
-        // Ambil data instansi dan tujuan jika diperlukan
-        $instansi = []; // Ganti dengan query untuk mengambil data instansi
-        $tujuan = []; // Ganti dengan query untuk mengambil data tujuan
-
-        return view('surat-keluar.create', compact('instansi', 'tujuan'));
+        return view('surat_keluar.create');
     }
-
+    
     // Menyimpan surat keluar baru
     public function store(Request $request)
     {

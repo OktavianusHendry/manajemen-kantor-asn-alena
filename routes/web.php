@@ -248,7 +248,7 @@ Route::delete('surat_keluar/{surat_keluar}', [SuratKeluarController::class, 'des
 Route::resource('surat-keluar', SuratKeluarNewController::class);
 Route::get('surat-keluar/{id}/view', [SuratKeluarNewController::class, 'show'])->name('surat-keluar.view');
 Route::get('surat-keluar/create', [SuratKeluarController::class, 'create'])->name('surat-keluar.create');
-Route::post('surat-keluar', [SuratKeluarNewController::class, 'store'])->name('surat-keluar.store');
+Route::post('surat-keluar/store', [SuratKeluarNewController::class, 'store'])->name('surat-keluar.store');
 Route::get('surat-keluar/{surat-keluar}/edit', [SuratKeluarController::class, 'edit'])->name('surat-keluar.edit');
 Route::put('surat-keluar/{surat-keluar}', [SuratKeluarController::class, 'update'])->name('surat-keluar.update');
 Route::get('surat-keluar/{id}/view', [SuratKeluarNewController::class, 'view'])->name('surat-keluar.view'); // Rute tambahan untuk melihat detail surat keluar
