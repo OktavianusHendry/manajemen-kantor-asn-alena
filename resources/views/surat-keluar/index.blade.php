@@ -65,9 +65,13 @@
                                                     <a href="{{ route('surat-keluar.edit', $surat->id_surat) }}" class="btn btn-warning btn-sm">
                                                         <i class="menu-icon tf-icons bx bx-edit"></i>
                                                     </a>
-                                                    <a href="{{ route('surat-keluar.delete', $surat->id_surat) }}" class="btn btn-danger btn-sm">
-                                                        <i class="menu-icon tf-icons bx bx-trash"></i>
-                                                    </a>
+                                                    <form action="{{ route('surat-keluar.delete', $surat->id_surat) }}" method="POST" style="display:inline;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus surat ini?');">
+                                                            <i class="menu-icon tf-icons bx bx-trash"></i>
+                                                        </button>
+                                                    </form>
                                                     <a href="{{ route('surat-keluar.validasi', $surat->id_surat) }}" class="btn btn-success btn-sm">
                                                         Validasi
                                                     </a>
