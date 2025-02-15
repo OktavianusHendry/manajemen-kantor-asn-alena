@@ -126,6 +126,15 @@ class SuratKeluarNewController extends Controller
 
         return redirect()->route('surat-keluar.index')->with('success', 'Surat keluar berhasil diperbarui.');
     }
+    
+    public function view($id)
+    {
+        // Ambil data surat keluar berdasarkan ID
+        $surat = SuratKeluar::findOrFail($id);
+
+        // Kembalikan view dengan data surat
+        return view('surat-keluar.view', compact('surat'));
+    }
 
     public function destroy($id_surat)
     {
@@ -163,13 +172,5 @@ class SuratKeluarNewController extends Controller
         return redirect()->route('surat-keluar.index')->with('success', 'Surat berhasil divalidasi.');
     }
 
-    public function view($id)
-    {
-        // Ambil data surat keluar berdasarkan ID
-        $surat = SuratKeluar::findOrFail($id);
-
-        // Kembalikan view dengan data surat
-        return view('surat-keluar.view', compact('surat'));
-    }
 
 }
