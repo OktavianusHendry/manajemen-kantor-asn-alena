@@ -56,8 +56,8 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $surat->nomor_surat }}</td>
                                             <td>{{ $surat->tanggal_surat }}</td>
-                                            <td>{{ $surat->perihal }}</td>
-                                            <td>{{ $surat->tujuan_surat }}</td>
+                                            <td>{{ implode(' ', array_slice(explode(' ', $surat->perihal), 0, 5)) }}{{ strlen($surat->perihal) > 5 ? '...' : '' }}</td>
+                                            <td>{{ implode(' ', array_slice(explode(' ', $surat->tujuan_surat), 0, 5)) }}{{ strlen($surat->tujuan_surat) > 5 ? '...' : '' }}</td>
                                             <td>{{ $surat->status_validasi }}</td>
                                             <td>
                                                 <div class="action-buttons">
