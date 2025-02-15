@@ -257,7 +257,7 @@ Route::get('/surat-keluar/view/{id}', [SuratKeluarController::class, 'view'])->n
 Route::resource('surat-keluar', SuratKeluarNewController::class);
 
 // Rute tambahan untuk melihat detail surat keluar
-Route::get('surat-keluar/{id}/view', [SuratKeluarNewController::class, 'show'])->name('surat-keluar.view');
+Route::get('surat-keluar/{id}/view', [SuratKeluarNewController::class, 'view'])->name('surat-keluar.view');
 
 // Rute untuk mengunduh surat dalam format PDF
 Route::get('surat-keluar/{id}/export-pdf', [SuratKeluarNewController::class, 'exportPDF'])->name('surat-keluar.exportPDF');
