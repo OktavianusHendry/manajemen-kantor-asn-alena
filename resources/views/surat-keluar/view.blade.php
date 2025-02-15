@@ -79,7 +79,6 @@
 
     .card-header {
         font-size: 1.25rem;
-        font-weight: bold;
     }
 
     .card-body p {
