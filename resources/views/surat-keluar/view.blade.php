@@ -14,7 +14,7 @@
             <p class="card-text"><strong>Tembusan:</strong> {{ $surat->tembusan }}</p>
             <p class="card-text"><strong>Status Validasi:</strong> {{ $surat->status_validasi }}</p>
             <p class="card-text"><strong>Isi Surat:</strong></p>
-            <p>{{ var_dump($surat->isi_surat) }}</p>
+            <div>{!! $surat->isi_surat !!}</div> <!-- Ensure using {!! !!} for raw HTML -->
             @if($surat->lampiran)
                 <p class="card-text"><strong>Lampiran:</strong> <a href="{{ asset('path/to/lampiran/' . $surat->lampiran) }}" target="_blank">Lihat Lampiran</a></p>
             @endif
