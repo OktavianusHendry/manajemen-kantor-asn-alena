@@ -72,12 +72,20 @@
                                                             <i class="menu-icon tf-icons bx bx-trash"></i>
                                                         </button>
                                                     </form>
-                                                    <a href="{{ route('surat-keluar.validasi', $surat->id_surat) }}" class="btn btn-success btn-sm">
-                                                        Validasi
-                                                    </a>
-                                                    <a href="{{ route('surat-keluar.exportPDF', $surat->id_surat) }}" class="btn btn-success btn-sm">
-                                                        Unduh
-                                                    </a>
+
+                                                    @if (Auth::user()->role_as == '1')
+                                                        <a href="{{ route('surat-keluar.validasi', $surat->id_surat) }}" class="btn btn-success btn-sm">
+                                                            Validasi
+                                                        </a>
+                                                    @endif
+
+                                                    @if (Auth::user()->role_as == '1' || Auth::user()->role_as == '2')
+                                                        @if ($surat->status_validasi == 'disetujui') <!-- Ganti dengan status yang sesuai -->
+                                                            <a href="{{ route('surat-keluar.exportPDF', $surat->id_surat) }}" class="btn btn-success btn-sm">
+                                                                Unduh
+                                                            </a>
+                                                        @endif
+                                                    @endif
                                                 </div>
                                             </td>
                                         </tr>
