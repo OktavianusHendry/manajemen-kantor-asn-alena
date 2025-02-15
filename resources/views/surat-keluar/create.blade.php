@@ -119,12 +119,21 @@
     <!-- Include CKEditor 5 -->
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
     <script>
+        let editor;
         ClassicEditor
             .create(document.querySelector('#isi_surat'))
+            .then(newEditor => {
+                editor = newEditor;
+            })
             .catch(error => {
                 console.error(error);
             });
+
+        document.querySelector('form').addEventListener('submit', (event) => {
+            document.querySelector('#isi_surat').value = editor.getData();
+        });
     </script>
+
 </body>
 
 </html>
