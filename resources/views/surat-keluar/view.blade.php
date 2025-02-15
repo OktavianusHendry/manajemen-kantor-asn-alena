@@ -17,40 +17,40 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <p class="text-large">Tanggal Surat:</p>
-                                <b>{{ \Carbon\Carbon::parse($surat->tanggal_surat)->format('d-m-Y') }}</b>
+                                <p>{{ \Carbon\Carbon::parse($surat->tanggal_surat)->format('d-m-Y') }}</p>
                                 <hr />
                                 <p class="text-large">Nomor Surat:</p>
-                                <b>{{ $surat->nomor_surat }}</b>
+                                <p>{{ $surat->nomor_surat }}</p>
                                 <hr />
                                 <p class="text-large">Tujuan Surat:</p>
-                                <b>{{ $surat->tujuan_surat }}</b>
+                                <p>{{ $surat->tujuan_surat }}</p>
                                 <hr />
                                 <p class="text-large">Perihal:</p>
-                                <b>{{ $surat->perihal }}</b>
+                                <p>{{ $surat->perihal }}</p>
                                 <hr />
                                 <p class="text-large">Isi Surat:</p>
-                                <b>{!! $surat->isi_surat !!}</b>
+                                <p>{!! $surat->isi_surat !!}</p>
                                 <hr />
                                 <p class="text-large">Lampiran:</p>
-                                <b>
+                                <p>
                                     @if ($surat->lampiran)
                                         <a href="{{ asset('storage/' . $surat->lampiran) }}" target="_blank" class="btn btn-success btn-sm">Lihat</a>
                                     @else
                                         Tidak ada dokumen
                                     @endif
-                                </b>
+                                </p>
                                 <hr />
                                 <p class="text-large">Status Validasi:</p>
-                                <b>{{ $surat->status_validasi }}</b>
+                                <p>{{ $surat->status_validasi }}</p>
                                 <hr />
                                 <p class="text-large">Disahkan Oleh:</p>
-                                <b>{{ $surat->disahkan_oleh ?? 'Belum ada' }}</b>
+                                <p>{{ $surat->disahkan_oleh ?? 'Belum ada' }}</p>
                                 <hr />
                                 <p class="text-large">Jabatan Pengesah:</p>
-                                <b>{{ $surat->jabatan_pengesah ?? 'Belum ada' }}</b>
+                                <p>{{ $surat->jabatan_pengesah ?? 'Belum ada' }}</p>
                                 <hr />
                                 <p class="text-large">Tembusan:</p>
-                                <b>{{ $surat->tembusan ?? 'Tidak ada tembusan' }}</b>
+                                <p>{{ $surat->tembusan ?? 'Tidak ada tembusan' }}</p>
                                 <hr />
                                 <p class="card-text text-muted spacing">Ditambahkan pada {{ $surat->created_at->setTimezone('Asia/Jakarta')->format('d M Y H:i') }}</p>
                                 <p class="card-text text-muted spacing">Terakhir diperbarui {{ $surat->updated_at->setTimezone('Asia/Jakarta')->format('d M Y H:i') }}</p>
@@ -59,9 +59,6 @@
                                     <a href="{{ route('surat-keluar.edit', $surat->id_surat) }}" class="btn btn-info">Edit</a>
                                 </p>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <img class="card-img card-img-right" src="../assets/img/elements/component-1.png" alt="Card image" />
                         </div>
                     </div>
                 </div>
@@ -79,6 +76,7 @@
 
     .card-header {
         font-size: 1.25rem;
+        font-weight: bold;
     }
 
     .card-body p {
