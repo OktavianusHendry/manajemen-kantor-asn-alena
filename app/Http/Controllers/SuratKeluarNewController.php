@@ -169,7 +169,7 @@ class SuratKeluarNewController extends Controller
         $surat = SuratKeluar::findOrFail($id);
 
         // Kembalikan view dengan data surat
-        return view('surat_keluar.view', compact('surat'));
+        return view('surat-keluar.view', compact('surat'));
     }
 
 }

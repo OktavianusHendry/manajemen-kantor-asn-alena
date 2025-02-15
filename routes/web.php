@@ -251,7 +251,7 @@ Route::get('surat-keluar/create', [SuratKeluarController::class, 'create'])->nam
 Route::get('surat-keluar/edit', [SuratKeluarController::class, 'create'])->name('surat-keluar.edit');
 Route::get('surat-keluar/{surat-keluar}/edit', [SuratKeluarController::class, 'edit'])->name('surat-keluar.edit');
 Route::put('surat-keluar/{surat-keluar}', [SuratKeluarController::class, 'update'])->name('surat-keluar.update');
-Route::get('/surat-keluar/view/{id}', [SuratKeluarController::class, 'view'])->name('surat-keluar.view');
+Route::get('/surat-keluar/view/{id}', [SuratKeluarController::class, 'show'])->name('surat-keluar.view');
 
 // Rute untuk resource Surat Keluar
 Route::resource('surat-keluar', SuratKeluarNewController::class);
