@@ -262,7 +262,8 @@ Route::get('surat-keluar/{id}/export-pdf', [SuratKeluarNewController::class, 'ex
 // Rute untuk validasi surat
 Route::put('surat-keluar/{id}/validasi', [SuratKeluarNewController::class, 'validasi'])->name('surat-keluar.validasi');
 Route::get('surat-keluar/validasi/{id}', [SuratKeluarNewController::class, 'validasi'])->name('surat-keluar.validasi');
-
+// Rute untuk Tolak surat
+Route::get('surat-keluar/tolak/{id}', [SuratController::class, 'tolak'])->name('surat-keluar.tolak');
 // Rute untuk menghapus surat
 Route::delete('surat-keluar/{id}', [SuratKeluarNewController::class, 'destroy'])->name('surat-keluar.delete');
 

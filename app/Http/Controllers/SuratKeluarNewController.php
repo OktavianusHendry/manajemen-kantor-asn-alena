@@ -173,5 +173,20 @@ class SuratKeluarNewController extends Controller
         return redirect()->route('surat-keluar.index')->with('success', 'Surat berhasil divalidasi.');
     }
 
+    public function tolak(Request $request, $id)
+    {
+        // Mencari surat berdasarkan ID
+        $surat = SuratKeluar::findOrFail($id);
+        
+        // Mengubah status validasi surat menjadi 'Ditolak'
+        $surat->status_validasi = 'Ditolak'; // Atau logika lain sesuai kebutuhan
+        
+        // Menyimpan perubahan ke database
+        $surat->save();
+
+        // Mengalihkan kembali ke halaman index dengan pesan sukses
+        return redirect()->route('surat-keluar.index')->with('success', 'Surat berhasil ditolak.');
+    }
+
 
 }

@@ -77,6 +77,9 @@
                                                         <a href="{{ route('surat-keluar.validasi', $surat->id_surat) }}" class="btn btn-success btn-sm">
                                                             Validasi
                                                         </a>
+                                                        <a href="{{ route('surat-keluar.tolak', $surat->id_surat) }}" class="btn btn-danger btn-sm">
+                                                            Tolak
+                                                        </a>
                                                     @endif
 
                                                     @if (Auth::user()->role_as == '1' || Auth::user()->role_as == '2')
