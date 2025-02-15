@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.template') <!-- Ganti dengan layout yang sesuai -->
 
 @section('content')
 <div class="container mt-5">
@@ -14,7 +14,7 @@
             <p class="card-text"><strong>Tembusan:</strong> {{ $surat->tembusan }}</p>
             <p class="card-text"><strong>Status Validasi:</strong> {{ $surat->status_validasi }}</p>
             <p class="card-text"><strong>Isi Surat:</strong></p>
-            <div>{{ $surat->isi_surat }}</div> <!-- Coba gunakan {{ }} untuk menampilkan HTML -->
+            <div>{{!! $surat->isi_surat !!}}</div> <!-- Menggunakan {!! !!} untuk menampilkan HTML -->
             @if($surat->lampiran)
                 <p class="card-text"><strong>Lampiran:</strong> <a href="{{ asset('path/to/lampiran/' . $surat->lampiran) }}" target="_blank">Lihat Lampiran</a></p>
             @endif
