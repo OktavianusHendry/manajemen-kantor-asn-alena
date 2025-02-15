@@ -251,13 +251,10 @@ Route::get('surat-keluar/create', [SuratKeluarController::class, 'create'])->nam
 Route::get('surat-keluar/edit', [SuratKeluarController::class, 'create'])->name('surat-keluar.edit');
 Route::get('surat-keluar/{surat-keluar}/edit', [SuratKeluarController::class, 'edit'])->name('surat-keluar.edit');
 Route::put('surat-keluar/{surat-keluar}', [SuratKeluarController::class, 'update'])->name('surat-keluar.update');
-Route::get('surat-keluar/view/{id}', [SuratKeluarController::class, 'view'])->name('surat-keluar.view');
+Route::get('surat-keluar/{id}/view', [SuratKeluarNewController::class, 'view'])->name('surat-keluar.view'); // Rute tambahan untuk melihat detail surat keluar
 
 // Rute untuk resource Surat Keluar
 Route::resource('surat-keluar', SuratKeluarNewController::class);
-
-// Rute tambahan untuk melihat detail surat keluar
-Route::get('surat-keluar/{id}/view', [SuratKeluarNewController::class, 'view'])->name('surat-keluar.view');
 
 // Rute untuk mengunduh surat dalam format PDF
 Route::get('surat-keluar/{id}/export-pdf', [SuratKeluarNewController::class, 'exportPDF'])->name('surat-keluar.exportPDF');
