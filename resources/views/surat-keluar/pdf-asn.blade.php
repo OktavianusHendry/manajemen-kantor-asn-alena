@@ -66,14 +66,14 @@
     </div>
     <!-- Isi Surat -->
     <div class="content">
-        <p>Nomor: <strong>{{ nomor_surat }}</strong></p>
-        <p>Tanggal: <strong>{{ tanggal_surat }}</strong></p>
+        <p>Nomor: <strong>{{ $surat->nomor_surat }}</strong></p>
+        <p>Tanggal: <strong>{{ $surat->tanggal_surat }}</strong></p>
         <p>Kepada Yth,</p>
-        <p class="bold">{{ tujuan_surat }}</p>
+        <p class="bold">{{ $surat->tujuan_surat }}</p>
         <p>Di Tempat</p>
         <br>
-        <p><strong>Perihal:</strong> {{ perihal }}</p>
-        <p><strong>Lampiran:</strong> {{ lampiran }}</p>
+        <p><strong>Perihal:</strong> <br> {{ $surat->perihal }}</p><br>
+        <p><strong>Lampiran:</strong> <br>{{ $surat->lampiran }}</p>
         <br>
         <p>{!! isi_surat !!}</p> 
         <br>
