@@ -252,8 +252,8 @@ Route::post('surat-keluar/store', [SuratKeluarNewController::class, 'store'])->n
 Route::get('surat-keluar/{surat-keluar}/edit', [SuratKeluarController::class, 'edit'])->name('surat-keluar.edit');
 Route::put('surat-keluar/{surat-keluar}', [SuratKeluarController::class, 'update'])->name('surat-keluar.update');
 Route::get('surat-keluar/{id}/view', [SuratKeluarNewController::class, 'view'])->name('surat-keluar.view'); // Rute tambahan untuk melihat detail surat keluar
-Route::get('surat-keluar/{id}/pdf-asn', [SuratKeluarNewController::class, 'exportPDFASN'])->name('surat-keluar.pdf-asn'); // Rute untuk mengunduh surat dalam format PDF ASN
-Route::get('surat-keluar/{id}/pdf-aa', [SuratKeluarNewController::class, 'exportPDFAA'])->name('surat-keluar.pdf-aa'); // Rute untuk mengunduh surat dalam format PDF AA
+Route::get('surat-keluar/{id}/pdfasn', [SuratKeluarNewController::class, 'exportPDFASN'])->name('surat-keluar.pdfasn'); // Rute untuk mengunduh surat dalam format PDF ASN
+Route::get('surat-keluar/{id}/pdfaa', [SuratKeluarNewController::class, 'exportPDFAA'])->name('surat-keluar.pdfaa'); // Rute untuk mengunduh surat dalam format PDF AA
 
 // Rute untuk resource Surat Keluar
 Route::resource('surat-keluar', SuratKeluarNewController::class);

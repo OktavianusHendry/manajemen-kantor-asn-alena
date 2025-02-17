@@ -157,26 +157,44 @@ class SuratKeluarNewController extends Controller
 
     public function exportPDF($id)
     {
-        // Logika untuk mengunduh surat dalam format PDF
         $surat = SuratKeluar::findOrFail($id);
-        // Buat PDF menggunakan library seperti DomPDF atau Snappy
-        // Kode untuk mengunduh PDF
+
+        // Membersihkan nomor surat dari karakter yang tidak valid
+        $nomorSurat = preg_replace('/[\/\\\\]/', '', $surat->nomor_surat);
+
+        // Load view untuk PDF
+        $pdf = \PDF::loadView('surat_keluar.pdf', compact('surat'));
+
+        // Download PDF
+        return $pdf->download('surat_keluar_' . $nomorSurat . '.pdf');
     }
 
     public function exportPDFASN ($id)
     {
-        // Logika untuk mengunduh surat dalam format PDF
         $surat = SuratKeluar::findOrFail($id);
-        // Buat PDF menggunakan library seperti DomPDF atau Snappy
-        // Kode untuk mengunduh PDF
+
+        // Membersihkan nomor surat dari karakter yang tidak valid
+        $nomorSurat = preg_replace('/[\/\\\\]/', '', $surat->nomor_surat);
+
+        // Load view untuk PDF
+        $pdf = \PDF::loadView('surat_keluar.pdf', compact('surat'));
+
+        // Download PDF
+        return $pdf->download('surat_keluar_' . $nomorSurat . '.pdf');
     }
 
     public function exportPDFAA ($id)
     {
-        // Logika untuk mengunduh surat dalam format PDF
         $surat = SuratKeluar::findOrFail($id);
-        // Buat PDF menggunakan library seperti DomPDF atau Snappy
-        // Kode untuk mengunduh PDF
+
+        // Membersihkan nomor surat dari karakter yang tidak valid
+        $nomorSurat = preg_replace('/[\/\\\\]/', '', $surat->nomor_surat);
+
+        // Load view untuk PDF
+        $pdf = \PDF::loadView('surat_keluar.pdf', compact('surat'));
+
+        // Download PDF
+        return $pdf->download('surat_keluar_' . $nomorSurat . '.pdf');
     }
 
     public function validasi(Request $request, $id)
