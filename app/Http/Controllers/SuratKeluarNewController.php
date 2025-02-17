@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Dompdf\Dompdf;
 use Dompdf\Options;
-use PDF; // Pastikan Anda mengimpor PDF
+use Barryvdh\DomPDF\Facade as PDF;
 
 class SuratKeluarNewController extends Controller
 {
