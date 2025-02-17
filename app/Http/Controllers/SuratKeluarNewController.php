@@ -177,7 +177,7 @@ class SuratKeluarNewController extends Controller
         $nomorSurat = preg_replace('/[\/\\\\]/', '', $surat->nomor_surat);
 
         // Load view untuk PDF
-        $pdf = \PDF::loadView('surat_keluar.pdf', compact('surat'));
+        $pdf = \PDF::loadView('surat-keluar.pdfasn', compact('surat'));
 
         // Download PDF
         return $pdf->download('surat_keluar_' . $nomorSurat . '.pdf');
@@ -191,7 +191,7 @@ class SuratKeluarNewController extends Controller
         $nomorSurat = preg_replace('/[\/\\\\]/', '', $surat->nomor_surat);
 
         // Load view untuk PDF
-        $pdf = \PDF::loadView('surat_keluar.pdf', compact('surat'));
+        $pdf = \PDF::loadView('surat-keluar.pdfaa', compact('surat'));
 
         // Download PDF
         return $pdf->download('surat_keluar_' . $nomorSurat . '.pdf');
