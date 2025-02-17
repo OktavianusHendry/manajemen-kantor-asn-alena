@@ -12,7 +12,7 @@
         .header {
             position: fixed;
             top: -50px; /* Position header */
-            left: -30px;
+            left: -5px;
             width: 45%;
             text-align: left; /* Align header to the left */
         }
