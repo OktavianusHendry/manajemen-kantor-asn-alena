@@ -57,8 +57,11 @@
                                 <p>
                                     <a href="{{ route('surat-keluar.index') }}" class="btn btn-warning">Kembali</a>
                                     <a href="{{ route('surat-keluar.edit', $surat->id_surat) }}" class="btn btn-info">Edit</a>
-                                    <a href="{{ route('surat-keluar.exportPDF-ASN', $surat->id_surat) }}" class="btn btn-success">Format ASN</a>
-                                    <a href="{{ route('surat-keluar.exportPDF-AA', $surat->id_surat) }}" class="btn btn-success">Format AA</a>
+                                    @if (Auth::user()->role_as == '1' || Auth::user()->role_as == '2')
+                                        @if ($surat->status_validasi == 'Disetujui') <!-- Ganti dengan status yang sesuai -->
+                                        <a href="{{ route('surat-keluar.exportPDF-ASN', $surat->id_surat) }}" class="btn btn-success">Format ASN</a>
+                                        <a href="{{ route('surat-keluar.exportPDF-AA', $surat->id_surat) }}" class="btn btn-success">Format AA</a>
+                                    @endif
                                 </p>
                             </div>
                         </div>
