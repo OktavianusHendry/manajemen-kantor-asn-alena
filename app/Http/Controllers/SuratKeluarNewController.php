@@ -163,6 +163,22 @@ class SuratKeluarNewController extends Controller
         // Kode untuk mengunduh PDF
     }
 
+    public function exportPDFASN ($id)
+    {
+        // Logika untuk mengunduh surat dalam format PDF
+        $surat = SuratKeluar::findOrFail($id);
+        // Buat PDF menggunakan library seperti DomPDF atau Snappy
+        // Kode untuk mengunduh PDF
+    }
+
+    public function exportPDFAA ($id)
+    {
+        // Logika untuk mengunduh surat dalam format PDF
+        $surat = SuratKeluar::findOrFail($id);
+        // Buat PDF menggunakan library seperti DomPDF atau Snappy
+        // Kode untuk mengunduh PDF
+    }
+
     public function validasi(Request $request, $id)
     {
         // Logika untuk memvalidasi surat
