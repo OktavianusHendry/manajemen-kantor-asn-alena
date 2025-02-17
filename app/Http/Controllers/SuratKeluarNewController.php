@@ -220,6 +220,14 @@ class SuratKeluarNewController extends Controller
         // Mengalihkan kembali ke halaman index dengan pesan sukses
         return redirect()->route('surat-keluar.index')->with('success', 'Surat berhasil ditolak.');
     }
+    
+    public function createPDF()
+    {
+        \Log::info('Creating PDF...');
+        $data = Member::all();
+        $pdf = PDF::loadView('pdf_view', compact('data'));
+        return $pdf->download('pdf_file.pdf');
+    }
 
 
 }
