@@ -6,7 +6,8 @@
     <title>Surat Keluar</title>
     <style>
         @page {
-            margin: 80px 50px; /* Set margins for the page */
+            size: A4;
+            margin: 120px 50px 100px 50px;
         }
 
         .header {
