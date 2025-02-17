@@ -123,15 +123,15 @@
 
         <p class="no-margin justify-align">{!! $surat->isi_surat !!}</p> <!-- Justified content --> <br>
 
-        <!-- Tanda Tangan -->
+        <!-- Tanda Tangan 
         <div class="signature">
             <p class="no-margin">Hormat kami,</p>
             <p class="no-margin">{{ $surat->jabatan_pengesah }}</p>
             <p class="no-margin">PT. Anagata Sisedu Nusantara</p>
             </br></br></br>
-            <p class="no-margin">____________________</p> <!-- Signature line -->
-            <p class="no-margin">{{ $surat->disahkan_oleh }}</p> <!-- Name of the signer -->
-        </div></br></br></br></br>
+            <p class="no-margin">____________________</p> <!-- Signature line 
+            <p class="no-margin">{{ $surat->disahkan_oleh }}</p> <!-- Name of the signer 
+        </div></br></br></br></br> --->
 
         <p class="no-margin"><strong>Tembusan:</strong></p>
         <p class="no-margin">{{ $surat->tembusan }}</p>
