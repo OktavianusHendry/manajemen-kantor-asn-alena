@@ -81,14 +81,6 @@
                                                             Tolak
                                                         </a>
                                                     @endif
-
-                                                    @if (Auth::user()->role_as == '1' || Auth::user()->role_as == '2')
-                                                        @if ($surat->status_validasi == 'Disetujui') <!-- Ganti dengan status yang sesuai -->
-                                                            <a href="{{ route('surat-keluar.exportPDF', $surat->id_surat) }}" class="btn btn-success btn-sm">
-                                                                Unduh
-                                                            </a>
-                                                        @endif
-                                                    @endif
                                                 </div>
                                             </td>
                                         </tr>
