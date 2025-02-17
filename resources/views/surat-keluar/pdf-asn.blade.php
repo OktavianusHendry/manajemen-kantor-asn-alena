@@ -87,7 +87,7 @@
     <!-- Header -->
     <div class="header">
         @php
-            $headerPath = public_path('assets/pdf/header.png'); // Path to header image
+            $headerPath = public_path('assets/pdf/header-asn.png'); // Path to header image
             $headerData = base64_encode(file_get_contents($headerPath));
             $headerSrc = 'data:image/png;base64,'.$headerData;
         @endphp
@@ -96,7 +96,7 @@
     <!-- Footer -->
     <div class="footer">
         @php
-            $footerPath = public_path('assets/pdf/header-asn.png'); // Path to footer image
+            $footerPath = public_path('assets/pdf/footer-asn.png'); // Path to footer image
             $footerData = base64_encode(file_get_contents($footerPath));
             $footerSrc = 'data:image/png;base64,'.$footerData;
         @endphp
