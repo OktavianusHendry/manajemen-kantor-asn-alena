@@ -123,8 +123,6 @@
             <p class="no-margin">{{ $surat->disahkan_oleh }}</p> <!-- Name of the signer
         </div></br></br></br></br> --->
 
-        <p class="no-margin"><strong>Tembusan:</strong></p>
-        <p class="no-margin">{{ $surat->tembusan }}</p>
     </div>
 </body>
 </html>
