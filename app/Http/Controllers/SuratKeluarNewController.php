@@ -173,48 +173,30 @@ class SuratKeluarNewController extends Controller
 
     public function exportPDFASN ($id)
     {
-        // Ambil data surat dari database
-        $surat = SuratKeluar::find($id); // Ganti dengan model dan logika yang sesuai
+        $surat = SuratKeluar::findOrFail($id);
 
-        // Set opsi Dompdf
-        $options = new Options();
-        $options->set('defaultFont', 'Arial');
-        $dompdf = new Dompdf($options);
+        // Membersihkan nomor surat dari karakter yang tidak valid
+        $nomorSurat = preg_replace('/[\/\\\\]/', '', $surat->nomor_surat);
 
-        // Load view ke dalam Dompdf
-        $dompdf->loadHtml(view('pdfasn', compact('surat'))->render());
+        // Load view untuk PDF
+        $pdf = \PDF::loadView('surat-keluar.pdfasn', compact('surat'));
 
-        // (Opsional) Atur ukuran kertas dan orientasi
-        $dompdf->setPaper('A4', 'portrait');
-
-        // Render PDF
-        $dompdf->render();
-
-        // Output PDF ke browser
-        return $dompdf->stream("surat-keluar.pdfasn", ["Attachment" => false]);
+        // Download PDF
+        return $pdf->download('surat_keluar_' . $nomorSurat . '.pdf');
     }
 
     public function exportPDFAA ($id)
     {
-        // Ambil data surat dari database
-        $surat = SuratKeluar::find($id); // Ganti dengan model dan logika yang sesuai
+        $surat = SuratKeluar::findOrFail($id);
 
-        // Set opsi Dompdf
-        $options = new Options();
-        $options->set('defaultFont', 'Arial');
-        $dompdf = new Dompdf($options);
+        // Membersihkan nomor surat dari karakter yang tidak valid
+        $nomorSurat = preg_replace('/[\/\\\\]/', '', $surat->nomor_surat);
 
-        // Load view ke dalam Dompdf
-        $dompdf->loadHtml(view('pdfaa', compact('surat'))->render());
+        // Load view untuk PDF
+        $pdf = \PDF::loadView('surat-keluar.pdfaa', compact('surat'));
 
-        // (Opsional) Atur ukuran kertas dan orientasi
-        $dompdf->setPaper('A4', 'portrait');
-
-        // Render PDF
-        $dompdf->render();
-
-        // Output PDF ke browser
-        return $dompdf->stream("surat-keluar.pdfaa", ["Attachment" => false]);
+        // Download PDF
+        return $pdf->download('surat_keluar_' . $nomorSurat . '.pdf');
     }
 
     public function validasi(Request $request, $id)
