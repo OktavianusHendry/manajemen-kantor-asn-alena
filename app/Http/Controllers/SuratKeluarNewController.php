@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SuratKeluar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use PDF;
@@ -160,13 +161,14 @@ class SuratKeluarNewController extends Controller
 
     public function exportPDF($id)
     {
+        \Log::info('Generating PDF ASN for ID: ' . $id);
         $surat = SuratKeluar::findOrFail($id);
 
         // Membersihkan nomor surat dari karakter yang tidak valid
         $nomorSurat = preg_replace('/[\/\\\\]/', '', $surat->nomor_surat);
 
         // Load view untuk PDF
-        $pdf = \PDF::loadView('surat-keluar.pdf', compact('surat'));
+        $pdf = PDF::loadView('surat-keluar.pdf', compact('surat'));
 
         // Download PDF
         return $pdf->download('surat_keluar_' . $nomorSurat . '.pdf');
@@ -175,6 +177,7 @@ class SuratKeluarNewController extends Controller
     // Metode untuk generate PDF ASN
     public function generatePdfASN($id)
     {
+        \Log::info('Generating PDF ASN for ID: ' . $id);
         $surat = SuratKeluar::findOrFail($id);
         
         // Load view dan pass data surat
@@ -187,6 +190,7 @@ class SuratKeluarNewController extends Controller
     // Metode untuk generate PDF AA
     public function generatePdfAA($id)
     {
+        \Log::info('Generating PDF ASN for ID: ' . $id);
         $surat = SuratKeluar::findOrFail($id);
         
         // Load view dan pass data surat
