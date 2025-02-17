@@ -174,7 +174,7 @@ class SuratKeluarNewController extends Controller
     public function exportPDFASN ($id)
     {
         // Ambil data surat dari database
-        $surat = Surat::find($id); // Ganti dengan model dan logika yang sesuai
+        $surat = SuratKeluar::find($id); // Ganti dengan model dan logika yang sesuai
 
         // Set opsi Dompdf
         $options = new Options();
@@ -197,7 +197,7 @@ class SuratKeluarNewController extends Controller
     public function exportPDFAA ($id)
     {
         // Ambil data surat dari database
-        $surat = Surat::find($id); // Ganti dengan model dan logika yang sesuai
+        $surat = SuratKeluar::find($id); // Ganti dengan model dan logika yang sesuai
 
         // Set opsi Dompdf
         $options = new Options();
