@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Dompdf\Dompdf;
 use Dompdf\Options;
-use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use PDF; // Pastikan Anda mengimpor PDF
 
 class SuratKeluarNewController extends Controller
 {
@@ -172,32 +172,28 @@ class SuratKeluarNewController extends Controller
         return $pdf->download('surat_keluar_' . $nomorSurat . '.pdf');
     }
 
-    public function exportPDFASN ($id)
+    // Metode untuk generate PDF ASN
+    public function generatePdfASN($id)
     {
         $surat = SuratKeluar::findOrFail($id);
-
-        // Membersihkan nomor surat dari karakter yang tidak valid
-        $nomorSurat = preg_replace('/[\/\\\\]/', '', $surat->nomor_surat);
-
-        // Load view untuk PDF
-        $pdf = \PDF::loadView('surat-keluar.pdfasn', compact('surat'));
-
+        
+        // Load view dan pass data surat
+        $pdf = PDF::loadView('surat-keluar.pdf-asn', compact('surat'));
+        
         // Download PDF
-        return $pdf->download('surat_keluar_' . $nomorSurat . '.pdf');
+        return $pdf->download('surat_keluar_asn_' . $surat->nomor_surat . '.pdf');
     }
 
-    public function exportPDFAA ($id)
+    // Metode untuk generate PDF AA
+    public function generatePdfAA($id)
     {
         $surat = SuratKeluar::findOrFail($id);
-
-        // Membersihkan nomor surat dari karakter yang tidak valid
-        $nomorSurat = preg_replace('/[\/\\\\]/', '', $surat->nomor_surat);
-
-        // Load view untuk PDF
-        $pdf = \PDF::loadView('surat-keluar.pdfaa', compact('surat'));
-
+        
+        // Load view dan pass data surat
+        $pdf = PDF::loadView('surat-keluar.pdf-aa', compact('surat'));
+        
         // Download PDF
-        return $pdf->download('surat_keluar_' . $nomorSurat . '.pdf');
+        return $pdf->download('surat_keluar_aa_' . $surat->nomor_surat . '.pdf');
     }
 
     public function validasi(Request $request, $id)
