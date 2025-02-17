@@ -75,7 +75,7 @@
         <p><strong>Perihal:</strong> <br> {{ $surat->perihal }}</p><br>
         <p><strong>Lampiran:</strong> <br>{{ $surat->lampiran }}</p>
         <br>
-        <p>{!! isi_surat !!}</p> 
+        <p>{!! $surat->isi_surat !!}</p> 
         <br>
 
         <!-- Tanda Tangan 
