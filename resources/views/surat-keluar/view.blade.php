@@ -57,6 +57,8 @@
                                 <p>
                                     <a href="{{ route('surat-keluar.index') }}" class="btn btn-warning">Kembali</a>
                                     <a href="{{ route('surat-keluar.edit', $surat->id_surat) }}" class="btn btn-info">Edit</a>
+                                    <a href="{{ route('surat-keluar.exportPDF-ASN', $surat->id_surat) }}" class="btn btn-success">Format ASN</a>
+                                    <a href="{{ route('surat-keluar.exportPDF-AA', $surat->id_surat) }}" class="btn btn-success">Format AA</a>
                                 </p>
                             </div>
                         </div>
