@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\SuratKeluar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class SuratKeluarNewController extends Controller
 {
@@ -163,7 +165,7 @@ class SuratKeluarNewController extends Controller
         $nomorSurat = preg_replace('/[\/\\\\]/', '', $surat->nomor_surat);
 
         // Load view untuk PDF
-        $pdf = \PDF::loadView('surat_keluar.pdf', compact('surat'));
+        $pdf = \PDF::loadView('surat-keluar.pdf', compact('surat'));
 
         // Download PDF
         return $pdf->download('surat_keluar_' . $nomorSurat . '.pdf');
@@ -171,30 +173,48 @@ class SuratKeluarNewController extends Controller
 
     public function exportPDFASN ($id)
     {
-        $surat = SuratKeluar::findOrFail($id);
+        // Ambil data surat dari database
+        $surat = Surat::find($id); // Ganti dengan model dan logika yang sesuai
 
-        // Membersihkan nomor surat dari karakter yang tidak valid
-        $nomorSurat = preg_replace('/[\/\\\\]/', '', $surat->nomor_surat);
+        // Set opsi Dompdf
+        $options = new Options();
+        $options->set('defaultFont', 'Arial');
+        $dompdf = new Dompdf($options);
 
-        // Load view untuk PDF
-        $pdf = \PDF::loadView('surat-keluar.pdfasn', compact('surat'));
+        // Load view ke dalam Dompdf
+        $dompdf->loadHtml(view('pdfasn', compact('surat'))->render());
 
-        // Download PDF
-        return $pdf->download('surat_keluar_' . $nomorSurat . '.pdf');
+        // (Opsional) Atur ukuran kertas dan orientasi
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render PDF
+        $dompdf->render();
+
+        // Output PDF ke browser
+        return $dompdf->stream("surat-keluar.pdfasn", ["Attachment" => false]);
     }
 
     public function exportPDFAA ($id)
     {
-        $surat = SuratKeluar::findOrFail($id);
+        // Ambil data surat dari database
+        $surat = Surat::find($id); // Ganti dengan model dan logika yang sesuai
 
-        // Membersihkan nomor surat dari karakter yang tidak valid
-        $nomorSurat = preg_replace('/[\/\\\\]/', '', $surat->nomor_surat);
+        // Set opsi Dompdf
+        $options = new Options();
+        $options->set('defaultFont', 'Arial');
+        $dompdf = new Dompdf($options);
 
-        // Load view untuk PDF
-        $pdf = \PDF::loadView('surat-keluar.pdfaa', compact('surat'));
+        // Load view ke dalam Dompdf
+        $dompdf->loadHtml(view('pdfaa', compact('surat'))->render());
 
-        // Download PDF
-        return $pdf->download('surat_keluar_' . $nomorSurat . '.pdf');
+        // (Opsional) Atur ukuran kertas dan orientasi
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render PDF
+        $dompdf->render();
+
+        // Output PDF ke browser
+        return $dompdf->stream("surat-keluar.pdfaa", ["Attachment" => false]);
     }
 
     public function validasi(Request $request, $id)

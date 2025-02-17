@@ -29,6 +29,7 @@ use App\Http\Controllers\ArsipPembelajaranController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use Illuminate\Http\Request;
+use Dompdf\Dompdf
 
 
 /*
