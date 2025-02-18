@@ -114,13 +114,8 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('surat_keluar.index') }}" class="menu-link">
-                        <div data-i18n="Alerts">Surat Keluar</div>
-                    </a>
-                </li>
-                <li class="menu-item">
                     <a href="{{ route('surat-keluar.index') }}" class="menu-link">
-                        <div data-i18n="Alerts">Surat Keluar New</div>
+                        <div data-i18n="Alerts">Surat Keluar</div>
                     </a>
                 </li>
             </ul>
