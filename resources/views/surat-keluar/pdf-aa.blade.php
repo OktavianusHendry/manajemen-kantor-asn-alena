@@ -105,12 +105,22 @@
     </div>
     <!-- Isi Surat -->
     <div class="content">
-        <table>
+        <!-- <table>
             <tr>
                 <td class="left-align">Nomor: <strong>{{ $surat->nomor_surat ?? 'Nomor tidak tersedia' }}</strong></td>
                 <td class="right-align"><strong>{{ \Carbon\Carbon::parse($surat->tanggal_surat)->translatedFormat('d F Y') }}</strong></td>
             </tr>
         </table> </br>
+        <p class="no-margin recipient">Kepada Yth,</p>
+        <p class="no-margin bold">{{ $surat->tujuan_surat }}</p>
+        <p class="no-margin recipient">Di</p>
+        <p class="no-margin">Tempat</p></br>
+
+        <p class="no-margin"><strong>Perihal:</strong></p>
+        <p class="no-margin"><strong>{{ $surat->perihal }}</strong></p></br>
+
+        <p class="no-margin"><strong>Lampiran:</strong></p>
+        <p class="no-margin">{{ $surat->lampiran }}</p> -->
 
         <p class="no-margin justify-align">{!! $surat->isi_surat !!}</p> <!-- Justified content --> <br>
 

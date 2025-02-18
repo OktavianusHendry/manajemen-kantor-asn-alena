@@ -87,7 +87,7 @@
     <!-- Header -->
     <div class="header">
         @php
-            $headerPath = public_path('assets/pdf/header.png'); // Path to header image
+            $headerPath = public_path('assets/pdf/header-asn.png'); // Path to header image
             $headerData = base64_encode(file_get_contents($headerPath));
             $headerSrc = 'data:image/png;base64,'.$headerData;
         @endphp
@@ -96,7 +96,7 @@
     <!-- Footer -->
     <div class="footer">
         @php
-            $footerPath = public_path('assets/pdf/footer.png'); // Path to footer image
+            $footerPath = public_path('assets/pdf/footer-asn.png'); // Path to footer image
             $footerData = base64_encode(file_get_contents($footerPath));
             $footerSrc = 'data:image/png;base64,'.$footerData;
         @endphp
@@ -104,7 +104,7 @@
     </div>
     <!-- Isi Surat -->
     <div class="content">
-        <table>
+        <!-- <table>
             <tr>
                 <td class="left-align">Nomor: <strong>{{ $surat->nomor_surat ?? 'Nomor tidak tersedia' }}</strong></td>
                 <td class="right-align"><strong>{{ \Carbon\Carbon::parse($surat->tanggal_surat)->translatedFormat('d F Y') }}</strong></td>
@@ -119,22 +119,22 @@
         <p class="no-margin"><strong>{{ $surat->perihal }}</strong></p></br>
 
         <p class="no-margin"><strong>Lampiran:</strong></p>
-        <p class="no-margin">{{ $surat->lampiran }}</p>
+        <p class="no-margin">{{ $surat->lampiran }}</p> -->
 
         <p class="no-margin justify-align">{!! $surat->isi_surat !!}</p> <!-- Justified content --> <br>
 
         <!-- Tanda Tangan -->
-        <div class="signature">
+        <!-- <div class="signature">
             <p class="no-margin">Hormat kami,</p>
             <p class="no-margin">{{ $surat->jabatan_pengesah }}</p>
             <p class="no-margin">PT. Anagata Sisedu Nusantara</p>
             </br></br></br>
-            <p class="no-margin">____________________</p> <!-- Signature line -->
-            <p class="no-margin">{{ $surat->disahkan_oleh }}</p> <!-- Name of the signer -->
+            <p class="no-margin">____________________</p> <!-- Signature line 
+            <p class="no-margin">{{ $surat->disahkan_oleh }}</p> <!-- Name of the signer 
         </div></br></br></br></br>
 
         <p class="no-margin"><strong>Tembusan:</strong></p>
-        <p class="no-margin">{{ $surat->tembusan }}</p>
+        <p class="no-margin">{{ $surat->tembusan }}</p> -->
     </div>
 
     <!-- Header -->
