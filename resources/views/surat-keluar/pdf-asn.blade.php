@@ -137,24 +137,5 @@
         <p class="no-margin"><strong>Tembusan:</strong></p>
         <p class="no-margin">{{ $surat->tembusan }}</p> -->
     </div>
-
-    <!-- Header -->
-    <div class="header">
-        @php
-            $headerPath = public_path('assets/pdf/header.png'); // Path to header image
-            $headerData = base64_encode(file_get_contents($headerPath));
-            $headerSrc = 'data:image/png;base64,'.$headerData;
-        @endphp
-        <img src="{{ $headerSrc }}" width="100%" style="max-width: 100%; height: auto;"> <!-- Header image -->
-    </div>
-    <!-- Footer -->
-    <div class="footer">
-        @php
-            $footerPath = public_path('assets/pdf/footer.png'); // Path to footer image
-            $footerData = base64_encode(file_get_contents($footerPath));
-            $footerSrc = 'data:image/png;base64,'.$footerData;
-        @endphp
-        <img src="{{ $footerSrc }}" width="100%" style="max-width: 100%; height: auto;">
-    </div>
 </body>
 </html>
