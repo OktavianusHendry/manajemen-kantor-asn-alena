@@ -28,7 +28,11 @@ class ConfirmablePasswordController extends Controller
      */
     public function store(Request $request)
     {
-        if (! Auth::validate([
+        // Determine which guard to use based on the authenticated user
+        $guard = Auth::guard('karyawan')->check() ? 'karyawan' : 'web';
+
+        // Validate the password for the appropriate guard
+        if (! Auth::guard($guard)->validate([
             'email' => $request->user()->email,
             'password' => $request->password,
         ])) {
