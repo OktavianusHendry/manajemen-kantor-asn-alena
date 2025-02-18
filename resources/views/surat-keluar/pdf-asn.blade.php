@@ -6,13 +6,14 @@
     <title>Surat Keluar</title>
     <style>
         @page {
-            margin: 80px 50px; /* Set margins for the page */
+            size: A4;
+            margin: 120px 50px 100px 50px;
         }
 
         .header {
             position: fixed;
-            top: -80px; /* Position header */
-            left: -20px;
+            top: -50px; /* Position header */
+            left: -5px;
             width: 45%;
             text-align: left; /* Align header to the left */
         }
