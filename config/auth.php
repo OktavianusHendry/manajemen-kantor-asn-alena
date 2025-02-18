@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'karyawan' => [ // Tambahan guard untuk karyawan
+            'driver' => 'session',
+            'provider' => 'karyawans',
+        ],
     ],
 
     /*
@@ -69,6 +74,11 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        'karyawans' => [ // Tambahan provider untuk karyawan
+            'driver' => 'eloquent',
+            'model' => App\Models\Karyawan::class,
+        ],
     ],
 
     /*
@@ -89,6 +99,13 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'karyawans' => [
+            'provider' => 'karyawans',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
