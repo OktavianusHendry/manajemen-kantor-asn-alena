@@ -12,7 +12,7 @@
                 </div>
                 <div class="card mb-4">
                     <div class="container">
-                        @if (Auth::user()->role_as == '2')
+                        @if (Auth::user()->role_as == '2' || Auth::user()->role_as == '1')
                             <div class="d-flex justify-content-between mb-3">
                                 <a href="{{ route('surat-keluar.create') }}">
                                     <button type="button" class="btn rounded-pill btn-primary mt-3 align-content-center">
