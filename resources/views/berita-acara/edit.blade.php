@@ -3,6 +3,8 @@
 @section('content')
 <div class="container">
     <h2>Edit Berita Acara</h2>
+    <a href="{{ route('berita-acara.index') }}" class="btn btn-secondary mb-3">Kembali</a>
+    
     <form action="{{ route('berita-acara.update', $beritaAcara->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
