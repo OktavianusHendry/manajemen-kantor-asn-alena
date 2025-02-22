@@ -49,24 +49,26 @@ class CutiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_jenis_cuti' => '',
-            'tanggal_mulai' => 'required|date',
-            'tanggal_selesai' => 'required|date|after_or_equal:tanggal_mulai',
-            'alasan' => 'required|min:10',
+            'id_jenis_cuti' => 'required|exists:jenis_cuti,id',
+            'tanggal_mulai' => 'required|date|after_or_equal:today',
+            'tanggal_selesai' => 'required|date|after:tanggal_mulai',
+            'alasan' => 'required|string|max:255',
         ]);
 
         Cuti::create([
-            'id_user' => Auth::id(),
+            'id_user' => auth()->id(),
             'id_jenis_cuti' => $request->id_jenis_cuti,
             'tanggal_mulai' => $request->tanggal_mulai,
             'tanggal_selesai' => $request->tanggal_selesai,
+            'tanggal_pengajuan' => now(), // Tambahkan ini
             'alasan' => $request->alasan,
             'approved_by_director' => 'pending',
             'approved_by_head_acdemy' => 'pending',
         ]);
 
-        return redirect()->route('data_cuti.index')->with('success', 'Pengajuan cuti berhasil dikirim.');
+        return redirect()->route('data_cuti.index')->with('success', 'Pengajuan cuti berhasil diajukan.');
     }
+
 
     public function edit($id)
     {
