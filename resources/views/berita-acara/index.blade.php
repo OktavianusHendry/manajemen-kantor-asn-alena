@@ -15,6 +15,12 @@
                 <i class="bx bx-search"></i> Cari
             </button>
         </div>
+        <div>
+            <a href="{{ route('berita-acara.create') }}" class="btn btn-primary">
+                <i class="bx bx-plus"></i> Buat Berita Acara
+            </a>
+        </div>
+        
     </form>
 
     <!-- Tabel Data Berita Acara -->
