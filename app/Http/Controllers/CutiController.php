@@ -53,7 +53,7 @@ class CutiController extends Controller
         \Log::info('Data Cuti Masuk:', $request->all());
 
         $request->validate([
-            'id_jenis_cuti' => 'exists:jenis_cuti,id',
+            'id_jenis_cuti' => 'exists:jenis_cuti,id_jenis_cuti',
             'tanggal_mulai' => 'required|date|after_or_equal:today',
             'tanggal_selesai' => 'required|date|after:tanggal_mulai',
             'alasan' => 'required|string|max:255',
