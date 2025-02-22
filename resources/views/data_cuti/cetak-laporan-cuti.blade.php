@@ -176,7 +176,7 @@
 
         <div class="footer-signature">
             <div style="text-align: left">
-                <p>Jakarta, {{ date('d M Y', strtotime($cuti->created_at)) }} <br>Pemohon,</p>
+                <p>Jakarta, {{ date('dd mmmm yyyy', strtotime($cuti->created_at)) }} <br>Pemohon,</p>
                 <br><br>
                 <p>(&nbsp;&nbsp;<u>{{ $cuti->user->name }}</u>&nbsp;&nbsp;)</p>
             </div>
@@ -205,6 +205,7 @@
         <!-- Barcode -->
         <div class="barcode-container">
             <p><strong>Scan untuk verifikasi keabsahan</strong></p>
+            <p style="font-size: 14px; color: #555;">Barcode ini digunakan untuk mengidentifikasi keaslian dokumen ini. Silakan scan untuk memastikan bahwa dokumen ini sah.</p>
             {!! $barcode !!}
         </div>
     </div>
