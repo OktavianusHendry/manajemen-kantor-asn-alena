@@ -23,7 +23,7 @@ class Cuti extends Model
     }
 
     // Relasi ke Jenis Cuti
-    public function jenisCuti()
+    public function jenis_cuti()
     {
         return $this->belongsTo(Jenis_Cuti::class, 'id_jenis_cuti');
     }
