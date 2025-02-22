@@ -45,8 +45,8 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $k->name }}</td>
-                                                <td>{{ $k->jabatan->nama ?? '-' }}</td>
-                                                <td>{{ $k->divisi->nama ?? '-' }}</td>
+                                                <td>{{ $k->jabatan->nama_jabatan ?? '-' }}</td>
+                                                <td>{{ $k->divisi->nama_divisi ?? '-' }}</td>
                                                 <td>
                                                     <a href="{{ route('karyawan.show', $k->id) }}"
                                                         class="btn btn-info btn-sm">
