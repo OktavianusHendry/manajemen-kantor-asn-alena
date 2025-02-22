@@ -95,7 +95,7 @@
         <br><br>
         <div class="header" style="display: flex;">
             <img class="card-img" src="{{ asset('../public/assets/img/icons/logo-asn.png') }}" alt="Logo Perusahaan"
-                style="height: 100px; width: auto; margin-right: 15px;" />
+                style="height: 80px; width: auto; margin-right: 15px;" />
             <div>
                 <p style="text-align: left; margin: 0; font-weight: bold;">PT. Anagata Sisedu Nusantara</p>
                 <p style="text-align: left; margin: 0;">Revenue Tower Lt. 15, SCBD Lot 13, District 8</p>
