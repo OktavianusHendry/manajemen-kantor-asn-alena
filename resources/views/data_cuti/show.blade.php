@@ -41,22 +41,23 @@
                             <tr>
                                 <th>Status Direktur</th>
                                 <td>
-                                    <span class="badge bg-{{ $cuti->approved_by_director == 'approved' ? 'success' : ($cuti->approved_by_director == 'rejected' ? 'danger' : 'warning') }}">
+                                    <button class="btn btn-{{ $cuti->approved_by_director == 'approved' ? 'success' : ($cuti->approved_by_director == 'rejected' ? 'danger' : 'warning') }}btn-sm" disabled>
                                         {{ ucfirst($cuti->approved_by_director) }}
-                                    </span>
+                                    </button>
                                 </td>
                             </tr>
                             <tr>
                                 <th>Status Kepala Academy</th>
                                 <td>
-                                    <span class="badge bg-{{ $cuti->approved_by_head_acdemy == 'approved' ? 'success' : ($cuti->approved_by_head_acdemy == 'rejected' ? 'danger' : 'warning') }}">
+                                    <button class="btn btn-{{ $cuti->approved_by_head_acdemy == 'approved' ? 'success' : ($cuti->approved_by_head_acdemy == 'rejected' ? 'danger' : 'warning') }}btn-sm" disabled>
                                         {{ ucfirst($cuti->approved_by_head_acdemy) }}
-                                    </span>
+                                    </button>
                                 </td>
                             </tr>
+                            <tr>
+                                <a href="{{ route('data_cuti.index') }}" class="btn btn-secondary">Kembali</a>
+                            </tr>
                         </table>
-
-                        <a href="{{ route('data_cuti.index') }}" class="btn btn-secondary">Kembali</a>
                     </div>
                 </div>
             </main>
