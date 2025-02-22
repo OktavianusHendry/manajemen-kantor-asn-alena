@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BeritaAcaraNew;
 use App\Models\PesertaBeritaAcara;
 use Illuminate\Support\Facades\Auth; // Tambahkan ini!
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -209,5 +210,5 @@ class BeritaAcaraNewController extends Controller
 
         return redirect()->route('berita-acara.index')->with('success', 'Validasi berhasil diperbarui.');
     }
-    
+
 }
