@@ -176,7 +176,7 @@
 
         <div class="footer-signature">
             <div style="text-align: left">
-                <p>Jakarta, {{ date('dd mmmm yyyy', strtotime($cuti->created_at)) }} <br>Pemohon,</p>
+                <p>Jakarta, {{ date('d F Y', strtotime($cuti->created_at)) }} <br>Pemohon,</p>
                 <br><br>
                 <p>(&nbsp;&nbsp;<u>{{ $cuti->user->name }}</u>&nbsp;&nbsp;)</p>
             </div>
