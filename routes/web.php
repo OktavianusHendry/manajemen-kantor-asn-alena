@@ -285,7 +285,9 @@ Route::delete('arsip_pembelajaran/{arsip_pembelajaran}', [ArsipPembelajaranContr
 Route::get('/data-karyawan', [KaryawanNewController::class, 'index'])->name('data.karyawan');
 Route::get('/data-karyawan', [KaryawanNewController::class, 'index'])->name('karyawan.index');
 Route::get('/data-karyawan/{id}', [KaryawanNewController::class, 'show'])->name('karyawan.show');
-
+Route::get('/data-karyawan/{id}/edit', [KaryawanNewController::class, 'edit'])->name('karyawan.edit');
+Route::put('/data-karyawan/{id}', [KaryawanNewController::class, 'update'])->name('karyawan.update');
+Route::delete('/data-karyawan/{id}', [KaryawanNewController::class, 'destroy'])->name('karyawan.destroy');
 
 //Data Mentor
 Route::get('/data-mentor', [MentorNewController::class, 'index'])->name('data.mentor');
