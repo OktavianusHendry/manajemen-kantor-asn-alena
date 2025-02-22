@@ -323,7 +323,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/berita-acara/{id}/edit', [BeritaAcaraNewController::class, 'edit'])->name('berita-acara.edit');
     Route::put('/berita-acara/{id}/update', [BeritaAcaraNewController::class, 'update'])->name('berita-acara.update');
     Route::delete('/berita-acara/{id}/destroy', [BeritaAcaraNewController::class, 'destroy'])->name('berita-acara.destroy');
-    Route::post('/berita-acara/{id}/approve', [BeritaAcaraNewController::class, 'approve'])->name('berita-acara.approve');
+    Route::put('/berita-acara/{id}/validate', [BeritaAcaraNewController::class, 'validateBeritaAcara'])->name('berita-acara.validate');
 });
 
 // Notification routes
