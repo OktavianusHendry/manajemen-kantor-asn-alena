@@ -92,7 +92,7 @@
                                                                 </button>
                                                             </form>
                                                         @endif
-                                                        @if (Auth::user()->role_as == '2' && $cuti->status == 'approved')
+                                                        @if (Auth::user()->role_as == '2' && $c->approved_by_director == 'approved' && $c->approved_by_head_acdemy == 'approved')
                                                             <button class="btn btn-primary btn-sm"
                                                                 onclick="printCuti('{{ $c->id }}')">
                                                                 <i class="menu-icon tf-icons bx bx-printer"></i>
