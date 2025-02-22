@@ -13,7 +13,7 @@
 
         <div class="mb-3">
             <label class="form-label">Deskripsi</label>
-            <textarea name="deskripsi" class="form-control" rows="3"></textarea>
+            <textarea id="deskripsi" name="deskripsi" class="form-control" rows="3"></textarea>
         </div>
 
         <div class="mb-3">
@@ -170,4 +170,9 @@
                 }
             });
         </script>
+        <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+        <script>
+            CKEDITOR.replace('deskripsi');
+        </script>
+
 @endsection
