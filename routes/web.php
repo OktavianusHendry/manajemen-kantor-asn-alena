@@ -9,7 +9,7 @@ use App\Http\Controllers\CrewDashboardController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\DivisiController;
 use App\Http\Controllers\instansiController;
-use App\Http\Controllers\jabatanController;
+use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\JenjangController;
 use App\Http\Controllers\BeritaAcaraController;
 use App\Http\Controllers\ReleaseController;
