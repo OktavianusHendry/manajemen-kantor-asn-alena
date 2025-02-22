@@ -49,7 +49,7 @@ class CutiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'jenis_cuti_id' => 'required',
+            'id_jenis_cuti' => '',
             'tanggal_mulai' => 'required|date',
             'tanggal_selesai' => 'required|date|after_or_equal:tanggal_mulai',
             'alasan' => 'required|min:10',
@@ -57,7 +57,7 @@ class CutiController extends Controller
 
         Cuti::create([
             'id_user' => Auth::id(),
-            'jenis_cuti_id' => $request->jenis_cuti_id,
+            'id_jenis_cuti' => $request->id_jenis_cuti,
             'tanggal_mulai' => $request->tanggal_mulai,
             'tanggal_selesai' => $request->tanggal_selesai,
             'alasan' => $request->alasan,
@@ -81,14 +81,14 @@ class CutiController extends Controller
         $cuti = Cuti::where('id', $id)->where('id_user', Auth::id())->firstOrFail();
 
         $request->validate([
-            'jenis_cuti_id' => 'required',
+            'id_jenis_cuti' => '',
             'tanggal_mulai' => 'required|date',
             'tanggal_selesai' => 'required|date|after_or_equal:tanggal_mulai',
             'alasan' => 'required|min:10',
         ]);
 
         $cuti->update([
-            'jenis_cuti_id' => $request->jenis_cuti_id,
+            'id_jenis_cuti' => $request->id_jenis_cuti,
             'tanggal_mulai' => $request->tanggal_mulai,
             'tanggal_selesai' => $request->tanggal_selesai,
             'alasan' => $request->alasan,
