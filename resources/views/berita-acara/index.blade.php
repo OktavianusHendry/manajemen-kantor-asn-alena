@@ -66,11 +66,13 @@
                                 @endif
 
                                 @if (Auth::user()->id_jabatan == 1)
-                                    <a href="{{ route('berita-acara.validate', $ba->id) }}" class="btn btn-success btn-sm">
-                                        <i class="bx bx-check-circle"></i> Validasi
-                                    </a>
+                                <form action="{{ route('berita-acara.validate', $ba->id) }}" method="POST" style="display:inline;">
                                     @csrf
-                                    @method('PUT') <!-- Wajib ada agar request menjadi PUT -->
+                                    @method('PUT') 
+                                    <button type="submit" class="btn btn-success btn-sm">
+                                        <i class="bx bx-check-circle"></i> Validasi
+                                    </button>
+                                </form>
                                 @endif
                             </td>
                         </tr>
