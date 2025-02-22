@@ -69,6 +69,8 @@
                                     <a href="{{ route('berita-acara.validate', $ba->id) }}" class="btn btn-success btn-sm">
                                         <i class="bx bx-check-circle"></i> Validasi
                                     </a>
+                                    @csrf
+                                    @method('PUT') <!-- Wajib ada agar request menjadi PUT -->
                                 @endif
                             </td>
                         </tr>
