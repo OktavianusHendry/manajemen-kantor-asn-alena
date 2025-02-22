@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BeritaAcaraNew;
 use App\Models\PesertaBeritaAcara;
+use Illuminate\Support\Facades\Auth; // Tambahkan ini!
 use Illuminate\Http\Request;
 use App\Models\User;
 
