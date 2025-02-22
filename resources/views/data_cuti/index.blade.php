@@ -92,6 +92,13 @@
                                                                 </button>
                                                             </form>
                                                         @endif
+                                                        @if (Auth::user()->role_as == '2' && $cuti->status == 'approved')
+                                                            <button class="btn btn-primary btn-sm"
+                                                                onclick="printCuti('{{ $c->id }}')">
+                                                                <i class="menu-icon tf-icons bx bx-printer"></i>
+                                                            </button>&nbsp;&nbsp;
+                                                        @else
+                                                        @endif
 
                                                         <!-- Tombol Validasi untuk Direktur dan Kepala Academy -->
                                                         @if (Auth::user()->role_as == '1' || Auth::user()->id_jabatan == 1 || Auth::user()->id_jabatan == 2)
