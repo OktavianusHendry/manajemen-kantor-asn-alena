@@ -81,4 +81,22 @@ class CutiController extends Controller
 
         return redirect()->route('data_cuti.index')->with('success', 'Validasi cuti berhasil.');
     }
+    
+    public function validasi(Request $request, $id)
+    {
+        $cuti = Cuti::findOrFail($id);
+        $user = Auth::user();
+
+        if ($user->id_jabatan == 1) { // Direktur
+            $cuti->approved_by_director = $request->approval;
+        } elseif ($user->id_jabatan == 2) { // Kepala Academy
+            $cuti->approved_by_head_acdemy = $request->approval;
+        } else {
+            return redirect()->route('data_cuti.index')->with('error', 'Anda tidak memiliki akses untuk validasi cuti.');
+        }
+
+        $cuti->save();
+
+        return redirect()->route('data_cuti.index')->with('success', 'Status cuti berhasil diperbarui.');
+    }
 }

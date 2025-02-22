@@ -65,17 +65,21 @@
                                                     <a href="{{ route('data_cuti.show', $c->id) }}" class="btn btn-info btn-sm">
                                                         <i class="menu-icon tf-icons bx bxs-detail"></i>
                                                     </a>
-                                                    <a href="{{ route('data_cuti.edit', $c->id) }}" class="btn btn-warning btn-sm">
-                                                        <i class="menu-icon tf-icons bx bx-edit"></i>
-                                                    </a>
-                                                    <form action="{{ route('data_cuti.destroy', $c->id) }}" method="POST"
-                                                        style="display:inline;" onsubmit="return confirm('Yakin ingin menghapus?');">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm">
-                                                            <i class="menu-icon tf-icons bx bx-trash"></i>
-                                                        </button>
-                                                    </form>
+                                                    <td>
+                                                        @if (Auth::id() == $c->id_user && $c->approved_by_director == 'pending' && $c->approved_by_head_acdemy == 'pending')
+                                                            <a href="{{ route('data_cuti.edit', $c->id) }}" class="btn btn-warning btn-sm">
+                                                                <i class="menu-icon tf-icons bx bx-edit"></i>
+                                                            </a>
+                                                            <form action="{{ route('data_cuti.destroy', $c->id) }}" method="POST" style="display:inline;" 
+                                                                onsubmit="return confirm('Yakin ingin menghapus?');">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                                    <i class="menu-icon tf-icons bx bx-trash"></i>
+                                                                </button>
+                                                            </form>
+                                                        @endif
+                                                    </td>
                                                 </td>
                                             </tr>
                                         @endforeach

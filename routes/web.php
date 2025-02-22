@@ -302,10 +302,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('data_cuti/{cuti}/validate', [CutiController::class, 'validateCuti'])
         ->name('data_cuti.validate')
         ->middleware('can:validate-cuti');
+    
+        Route::put('/data_cuti/{id}/validasi', [CutiController::class, 'validasi'])->name('data_cuti.validasi');
 });
 
-
-
+// Notification routes
 Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
 Route::delete('/notifications/{id}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
 
