@@ -13,17 +13,27 @@ class CutiController extends Controller
         $user = Auth::user();
         $query = Cuti::query();
 
-        // Jika role bukan Direktur (1) atau Kepala Academy (2), hanya tampilkan cuti miliknya
+        // Jika bukan Direktur atau Kepala Academy, hanya tampilkan cuti miliknya
         if ($user->id_jabatan != 1 && $user->id_jabatan != 2) {
             $query->where('id_user', $user->id);
         }
 
-        // Filter berdasarkan tanggal jika diisi
+        // Filter berdasarkan tanggal
         if ($request->has('tanggal_mulai') && $request->has('tanggal_selesai')) {
             $query->whereBetween('tanggal_mulai', [$request->tanggal_mulai, $request->tanggal_selesai]);
         }
 
-        // Urutkan berdasarkan tanggal terbaru di atas
+        // Pencarian berdasarkan nama atau jenis cuti
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->whereHas('user', function ($q) use ($search) {
+                $q->where('name', 'like', "%$search%");
+            })->orWhereHas('Jenis_Cuti', function ($q) use ($search) {
+                $q->where('nama_jenis_cuti', 'like', "%$search%");
+            });
+        }
+
+        // Urutkan berdasarkan tanggal terbaru
         $cuti = $query->orderBy('tanggal_pengajuan', 'desc')->paginate(10);
 
         return view('data_cuti.index', compact('cuti'));
