@@ -164,23 +164,48 @@ class BeritaAcaraNewController extends Controller
     public function destroy($id)
     {
         $beritaAcara = BeritaAcaraNew::findOrFail($id);
+
+        // Hapus semua peserta yang terkait
+        $beritaAcara->peserta()->delete();
+
+        // Hapus berita acara
         $beritaAcara->delete();
 
         return redirect()->route('berita-acara.index')->with('success', 'Berita Acara berhasil dihapus.');
     }
 
-    public function updateValidation(Request $request, $id)
+    public function validateBeritaAcara(Request $request, $id)
     {
-        $request->validate([
-            'approved_by_director' => 'required|in:pending,approved,rejected',
-            'catatan_direktur' => 'nullable|string',
-        ]);
+        $user = Auth::user();
 
-        $ba = BeritaAcaraNew::findOrFail($id);
-        $ba->approved_by_director = $request->approved_by_director;
-        $ba->catatan_direktur = $request->catatan_direktur;
-        $ba->save();
+        // Hanya Direktur yang bisa validasi
+        if ($user->id_jabatan != 1) {
+            return redirect()->back()->with('error', 'Anda tidak memiliki izin untuk memvalidasi.');
+        }
 
-        return redirect()->route('berita-acara.index')->with('success', 'Status validasi diperbarui.');
+        $beritaAcara = BeritaAcaraNew::findOrFail($id);
+
+        // Jika status sudah "approved", hanya bisa diubah ke "pending"
+        if ($beritaAcara->approved_by_director == 'approved' && $request->approved_by_director == 'pending') {
+            $beritaAcara->update(['approved_by_director' => 'pending']);
+        } 
+        // Jika status diubah menjadi "rejected", harus ada catatan alasan
+        elseif ($request->approved_by_director == 'rejected') {
+            if (!$request->catatan_direktur) {
+                return redirect()->back()->with('error', 'Harap isi alasan penolakan.');
+            }
+
+            $beritaAcara->update([
+                'approved_by_director' => 'rejected',
+                'catatan_direktur' => $request->catatan_direktur
+            ]);
+        } 
+        // Jika status belum "approved", bisa diubah menjadi "approved"
+        else {
+            $beritaAcara->update(['approved_by_director' => $request->approved_by_director]);
+        }
+
+        return redirect()->route('berita-acara.index')->with('success', 'Status berita acara berhasil diperbarui.');
     }
+
 }
