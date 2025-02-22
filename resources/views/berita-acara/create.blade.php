@@ -13,7 +13,7 @@
 
         <div class="mb-3">
             <label class="form-label">Deskripsi</label>
-            <textarea name="deskripsi" class="form-control" rows="3"></textarea>
+            <textarea name="deskripsi" id="editor" class="form-control" rows="3"></textarea>
         </div>
 
         <div class="mb-3">
@@ -93,6 +93,12 @@
         </div>
 
         <script>
+            <!-- CKEditor -->
+            <script src="https://cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script>
+            <script>
+                CKEDITOR.replace('editor');
+            </script>
+            
             let pesertaIndex = 1;
 
             // Tambah Peserta Eksternal

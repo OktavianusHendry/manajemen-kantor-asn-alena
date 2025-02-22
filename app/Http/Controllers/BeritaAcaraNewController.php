@@ -73,8 +73,13 @@ class BeritaAcaraNewController extends Controller
 
     public function show($id)
     {
-        $berita_acara = BeritaAcaraNew::with('peserta')->findOrFail($id);
-        return view('berita_acara.show', compact('berita_acara'));
+        $beritaAcara = BeritaAcaraNew::with('peserta')->findOrFail($id);
+        return view('berita-acara.show', compact('beritaAcara'));
+    }
+
+    public function peserta()
+    {
+        return $this->hasMany(PesertaBeritaAcara::class, 'id_berita_acara');
     }
 
     public function edit($id)
