@@ -3,6 +3,9 @@
 @section('content')
 <div class="container mt-4">
     <h2 class="mb-3">Data Berita Acara</h2>
+    <a href="{{ route('berita-acara.create') }}" class="btn btn-success">
+        <i class="bx bx-plus"></i> Tambah Berita Acara
+    </a>
 
     <!-- Form Pencarian -->
     <form action="{{ route('berita-acara.index') }}" method="GET" class="row g-2 mb-3">
@@ -15,12 +18,6 @@
                 <i class="bx bx-search"></i> Cari
             </button>
         </div>
-        <div class="col-md-2">
-            <a href="{{ route('berita-acara.create') }}" class="btn btn-primary">
-                <i class="bx bx-plus"></i> Buat Berita Acara
-            </a>
-        </div>
-        
     </form>
 
     <!-- Tabel Data Berita Acara -->

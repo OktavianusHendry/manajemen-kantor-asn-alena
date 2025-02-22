@@ -297,6 +297,7 @@ Route::get('/data-mentor', [MentorNewController::class, 'index'])->name('mentor.
 
 
 Route::resource('data_cuti', CutiController::class)->middleware('auth');
+Route::resource('berita-acara', BeritaAcaraNewController::class)->middleware('auth');
 Route::middleware(['auth'])->group(function () {
     //Untuk Data Cuti
     Route::resource('data_cuti', CutiController::class);
