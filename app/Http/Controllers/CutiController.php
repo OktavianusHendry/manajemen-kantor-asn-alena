@@ -8,9 +8,24 @@ use Illuminate\Support\Facades\Auth;
 
 class CutiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $cuti = Cuti::with('user', 'jenis_cuti')->paginate(10);
+        $user = Auth::user();
+        $query = Cuti::query();
+
+        // Jika role bukan Direktur (1) atau Kepala Academy (2), hanya tampilkan cuti miliknya
+        if ($user->id_jabatan != 1 && $user->id_jabatan != 2) {
+            $query->where('id_user', $user->id);
+        }
+
+        // Filter berdasarkan tanggal jika diisi
+        if ($request->has('tanggal_mulai') && $request->has('tanggal_selesai')) {
+            $query->whereBetween('tanggal_mulai', [$request->tanggal_mulai, $request->tanggal_selesai]);
+        }
+
+        // Urutkan berdasarkan tanggal terbaru di atas
+        $cuti = $query->orderBy('tanggal_pengajuan', 'desc')->paginate(10);
+
         return view('data_cuti.index', compact('cuti'));
     }
 

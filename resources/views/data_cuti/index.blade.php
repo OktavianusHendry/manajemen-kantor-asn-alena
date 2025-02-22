@@ -9,9 +9,12 @@
                         <b>Data Cuti</b>
                         <span class="text-muted fw-light">/ Manajemen Cuti</span>
                     </h2>
+                    @if (Auth::user()->id_jabatan != 1 && Auth::user()->id_jabatan != 2)
+                        <a href="{{ route('data_cuti.create') }}" class="btn btn-primary">Buat Pengajuan Cuti</a>
+                    @endif
                 </div>
+
                 <div class="card mb-4">
-                    <br>
                     <div class="container">
                         @if (session('success'))
                             <div class="alert alert-success">
@@ -19,18 +22,24 @@
                             </div>
                         @endif
 
+                        <!-- Filter tanggal -->
                         <form action="{{ route('data_cuti.index') }}" method="GET" class="mb-3">
-                            <div class="form-group d-flex">
-                                <input type="text" name="search" value="{{ request()->input('search') }}"
-                                    class="form-control" placeholder="Cari data cuti...">
-                                <button type="submit" class="btn btn-primary">Cari</button>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <input type="date" name="tanggal_mulai" value="{{ request()->input('tanggal_mulai') }}" class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="date" name="tanggal_selesai" value="{{ request()->input('tanggal_selesai') }}" class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn btn-primary">Filter</button>
+                                </div>
                             </div>
                         </form>
 
                         @if ($cuti->count() > 0)
                             <div class="table-responsive text-nowrap">
-                                <br>
-                                <table class="table table-hover align-content-center">
+                                <table class="table table-hover">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -65,21 +74,28 @@
                                                     <a href="{{ route('data_cuti.show', $c->id) }}" class="btn btn-info btn-sm">
                                                         <i class="menu-icon tf-icons bx bxs-detail"></i>
                                                     </a>
-                                                    <td>
-                                                        @if (Auth::id() == $c->id_user && $c->approved_by_director == 'pending' && $c->approved_by_head_acdemy == 'pending')
-                                                            <a href="{{ route('data_cuti.edit', $c->id) }}" class="btn btn-warning btn-sm">
-                                                                <i class="menu-icon tf-icons bx bx-edit"></i>
+
+                                                    @if (Auth::id() == $c->id_user && $c->approved_by_director == 'pending' && $c->approved_by_head_acdemy == 'pending')
+                                                        <a href="{{ route('data_cuti.edit', $c->id) }}" class="btn btn-warning btn-sm">
+                                                            <i class="menu-icon tf-icons bx bx-edit"></i>
+                                                        </a>
+                                                        <form action="{{ route('data_cuti.destroy', $c->id) }}" method="POST" style="display:inline;" 
+                                                            onsubmit="return confirm('Yakin ingin menghapus?');">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                                <i class="menu-icon tf-icons bx bx-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                    @endif
+
+                                                    @if (Auth::user()->id_jabatan == 1 || Auth::user()->id_jabatan == 2)
+                                                        @if ($c->approved_by_director == 'pending' || $c->approved_by_head_acdemy == 'pending')
+                                                            <a href="{{ route('data_cuti.validasi', $c->id) }}" class="btn btn-success btn-sm">
+                                                                <i class="menu-icon tf-icons bx bx-check-circle"></i> Validasi
                                                             </a>
-                                                            <form action="{{ route('data_cuti.destroy', $c->id) }}" method="POST" style="display:inline;" 
-                                                                onsubmit="return confirm('Yakin ingin menghapus?');">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger btn-sm">
-                                                                    <i class="menu-icon tf-icons bx bx-trash"></i>
-                                                                </button>
-                                                            </form>
                                                         @endif
-                                                    </td>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -87,7 +103,7 @@
                                 </table>
                             </div>
                             <div class="d-flex justify-content-center my-4 pagination-wrapper">
-                                {{ $cuti->appends(['search' => request()->input('search')])->links('pagination::bootstrap-4') }}
+                                {{ $cuti->appends(request()->all())->links('pagination::bootstrap-4') }}
                             </div>
                         @else
                             <div class="alert alert-info">Tidak ada data cuti ditemukan.</div>
