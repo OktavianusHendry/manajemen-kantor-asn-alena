@@ -284,6 +284,8 @@ Route::delete('arsip_pembelajaran/{arsip_pembelajaran}', [ArsipPembelajaranContr
 //Data Karyawan 
 Route::get('/data-karyawan', [KaryawanNewController::class, 'index'])->name('data.karyawan');
 Route::get('/data-karyawan', [KaryawanNewController::class, 'index'])->name('karyawan.index');
+Route::get('/data-karyawan/{id}', [KaryawanNewController::class, 'show'])->name('karyawan.show');
+
 
 //Data Mentor
 Route::get('/data-mentor', [MentorNewController::class, 'index'])->name('data.mentor');

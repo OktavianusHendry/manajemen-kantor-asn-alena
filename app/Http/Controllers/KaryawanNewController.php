@@ -12,4 +12,11 @@ class KaryawanNewController extends Controller
         $karyawan = User::where('role_as', 2)->with('biodata')->get();
         return view('karyawan.index', compact('karyawan'));
     }
+
+    public function show($id)
+    {
+        $karyawan = User::where('role_as', 2)->where('id', $id)->firstOrFail();
+        return view('karyawan.show', compact('karyawan'));
+    }
+
 }

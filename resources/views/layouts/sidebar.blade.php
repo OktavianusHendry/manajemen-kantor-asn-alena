@@ -75,9 +75,15 @@
             </ul>
         </li>
         <li class="menu-item">
-            <a href="{{ route('jenjang.index') }}" class="menu-link">
+            <a href="{{ route('karyawan.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-file"></i>
-                <div data-i18n="Boxicons">Data Jenjang</div>
+                <div data-i18n="Boxicons">Data Master Karyawan</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{ route('mentor.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-file"></i>
+                <div data-i18n="Boxicons">Data Master Mentor</div>
             </a>
         </li>
 
@@ -98,15 +104,9 @@
             </a>
         </li>
         <li class="menu-item">
-            <a href="{{ route('karyawan.index') }}" class="menu-link">
+            <a href="{{ route('sub_kategori.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-file"></i>
-                <div data-i18n="Boxicons">Data Master Karyawan</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="{{ route('mentor.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-file"></i>
-                <div data-i18n="Boxicons">Data Master Mentor</div>
+                <div data-i18n="Boxicons">Data Sub-Kategori</div>
             </a>
         </li>
 
