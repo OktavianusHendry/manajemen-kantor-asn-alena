@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cuti;
 use Illuminate\Http\Request;
+use App\Models\Jenis_Cuti;
 use Illuminate\Support\Facades\Auth;
 
 class CutiController extends Controller
