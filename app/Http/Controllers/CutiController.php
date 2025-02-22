@@ -41,7 +41,7 @@ class CutiController extends Controller
 
     public function create()
     {
-        $jenisCuti = JenisCuti::all();
+        $jenisCuti = Jenis_Cuti::all();
         return view('data_cuti.create', compact('jenisCuti'));
     }
 
@@ -70,7 +70,7 @@ class CutiController extends Controller
     public function edit($id)
     {
         $cuti = Cuti::where('id', $id)->where('id_user', Auth::id())->firstOrFail();
-        $jenisCuti = JenisCuti::all();
+        $jenisCuti = Jenis_Cuti::all();
 
         return view('data_cuti.edit', compact('cuti', 'jenisCuti'));
     }
