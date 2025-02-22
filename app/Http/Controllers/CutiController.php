@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Jenis_Cuti;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log; // Tambahkan di atas
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Illuminate\Support\Str;
 
 class CutiController extends Controller
 {
@@ -178,6 +180,27 @@ class CutiController extends Controller
     {
         $cuti = Cuti::findOrFail($id);
         return view('data_cuti.validasi', compact('cuti'));
+    }
+
+    public function cetakLaporan($id)
+    {
+        $cuti = Cuti::with('user')->findOrFail($id);
+
+        // Buat kode unik
+        $kode_unik = strtoupper(Str::random(10));
+
+        // Data yang akan disimpan dalam barcode
+        $barcode_data = [
+            'Nama' => $cuti->user->name,
+            'Disetujui Oleh' => $cuti->approved_by_director == 'approved' ? 'Direktur' : ($cuti->approved_by_head_acdemy == 'approved' ? 'Kepala Academy' : 'Belum Disetujui'),
+            'Tanggal' => $cuti->updated_at->format('d M Y'),
+            'Kode Unik' => $kode_unik
+        ];
+
+        // Buat barcode dalam bentuk base64
+        $barcode = QrCode::size(150)->generate(json_encode($barcode_data));
+
+        return view('laporan.cetak', compact('cuti', 'barcode'));
     }
 
 }

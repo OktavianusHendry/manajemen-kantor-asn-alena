@@ -97,6 +97,11 @@
                                                                 onclick="printCuti('{{ $c->id }}')">
                                                                 <i class="menu-icon tf-icons bx bx-printer"></i>
                                                             </button>&nbsp;&nbsp;
+                                                            <script>
+                                                                function printCuti(id) {
+                                                                    window.open('/data_cuti/cetak-laporan-cuti/' + id, '_blank');
+                                                                }
+                                                            </script>
                                                         @else
                                                         @endif
 
