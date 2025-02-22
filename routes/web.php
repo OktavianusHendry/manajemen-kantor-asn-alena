@@ -31,6 +31,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\KaryawanNewController;
 use App\Http\Controllers\MentorNewController;
 use App\Http\Controllers\CutiController;
+use App\Http\Controllers\BeritaAcaraNewController;
 use Illuminate\Http\Request;
 use Dompdf\Dompdf;
 
@@ -314,14 +315,14 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/data_cuti/{id}', [CutiController::class, 'destroy'])->name('data_cuti.destroy');
     
     //Berita Acara 
-    Route::get('/berita-acara', [BeritaAcaraController::class, 'index'])->name('berita-acara.index');
-    Route::get('/berita-acara/create', [BeritaAcaraController::class, 'create'])->name('berita-acara.create');
-    Route::post('/berita-acara/store', [BeritaAcaraController::class, 'store'])->name('berita-acara.store');
-    Route::get('/berita-acara/{id}', [BeritaAcaraController::class, 'show'])->name('berita-acara.show');
-    Route::get('/berita-acara/{id}/edit', [BeritaAcaraController::class, 'edit'])->name('berita-acara.edit');
-    Route::put('/berita-acara/{id}/update', [BeritaAcaraController::class, 'update'])->name('berita-acara.update');
-    Route::delete('/berita-acara/{id}/destroy', [BeritaAcaraController::class, 'destroy'])->name('berita-acara.destroy');
-    Route::post('/berita-acara/{id}/approve', [BeritaAcaraController::class, 'approve'])->name('berita-acara.approve');
+    Route::get('/berita-acara', [BeritaAcaraNewController::class, 'index'])->name('berita-acara.index');
+    Route::get('/berita-acara/create', [BeritaAcaraNewController::class, 'create'])->name('berita-acara.create');
+    Route::post('/berita-acara/store', [BeritaAcaraNewController::class, 'store'])->name('berita-acara.store');
+    Route::get('/berita-acara/{id}', [BeritaAcaraNewController::class, 'show'])->name('berita-acara.show');
+    Route::get('/berita-acara/{id}/edit', [BeritaAcaraNewController::class, 'edit'])->name('berita-acara.edit');
+    Route::put('/berita-acara/{id}/update', [BeritaAcaraNewController::class, 'update'])->name('berita-acara.update');
+    Route::delete('/berita-acara/{id}/destroy', [BeritaAcaraNewController::class, 'destroy'])->name('berita-acara.destroy');
+    Route::post('/berita-acara/{id}/approve', [BeritaAcaraNewController::class, 'approve'])->name('berita-acara.approve');
 });
 
 // Notification routes
