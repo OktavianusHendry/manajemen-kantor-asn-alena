@@ -48,6 +48,9 @@ class CutiController extends Controller
 
     public function store(Request $request)
     {
+        // Cek apakah request masuk
+        \Log::info('Data Cuti Masuk:', $request->all());
+
         $request->validate([
             'id_jenis_cuti' => 'required|exists:jenis_cuti,id',
             'tanggal_mulai' => 'required|date|after_or_equal:today',
@@ -55,19 +58,30 @@ class CutiController extends Controller
             'alasan' => 'required|string|max:255',
         ]);
 
-        Cuti::create([
+        // Cek apakah sudah lolos validasi
+        \Log::info('Data Valid:', $request->all());
+
+        $cuti = Cuti::create([
             'id_user' => auth()->id(),
             'id_jenis_cuti' => $request->id_jenis_cuti,
             'tanggal_mulai' => $request->tanggal_mulai,
             'tanggal_selesai' => $request->tanggal_selesai,
-            'tanggal_pengajuan' => now(), // Tambahkan ini
+            'tanggal_pengajuan' => now(),
             'alasan' => $request->alasan,
             'approved_by_director' => 'pending',
             'approved_by_head_acdemy' => 'pending',
         ]);
 
+        // Cek apakah data benar-benar tersimpan
+        if ($cuti) {
+            \Log::info('Data Berhasil Disimpan:', $cuti->toArray());
+        } else {
+            \Log::error('Gagal Menyimpan Data');
+        }
+
         return redirect()->route('data_cuti.index')->with('success', 'Pengajuan cuti berhasil diajukan.');
     }
+
 
 
     public function edit($id)
