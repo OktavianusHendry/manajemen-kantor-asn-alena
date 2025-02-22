@@ -35,12 +35,18 @@
                             </td>
                             <td>
                                 @if ($peserta->jenis_peserta == 'karyawan' && $peserta->user)
-                                    <p>PT. Anagata Sisedu Nusantara</p><!-- Nama dari users -->
+                                    <p>PT. Anagata Sisedu Nusantara</p><!-- PT Karyawan users -->
                                 @else
                                     {{ $peserta->instansi }} <!-- Nama dari input manual -->
                                 @endif
                             </td>
-                            <td>{{ $peserta->jabatan }}</td>
+                            <td>
+                                @if ($peserta->jenis_peserta == 'karyawan' && $peserta->user)
+                                    {{ $peserta->jabatan->nama_jabatan }}<!--  -->
+                                @else
+                                    {{ $peserta->jabatan }} <!-- Nama dari input manual -->
+                                @endif
+                            </td>
                             <td>{{ ucfirst($peserta->jenis_peserta) }}</td>
                         </tr>
                     @endforeach
