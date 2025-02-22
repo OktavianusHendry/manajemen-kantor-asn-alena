@@ -176,7 +176,7 @@
 
         <div class="footer-signature">
             <div style="text-align: left">
-                <p>Jakarta, <br>Pemohon,</p>
+                <p>Jakarta, {{ date('d M Y', strtotime($cuti->create_at)) }} <br>Pemohon,</p>
                 <br><br>
                 <p>(&nbsp;&nbsp;<u>{{ $cuti->user->name }}</u>&nbsp;&nbsp;)</p>
             </div>
@@ -188,6 +188,9 @@
             <div>
                 <p>Disetujui Oleh,</p>
                 <br><br><br>
+                <p>(&nbsp;&nbsp;Sigit Sutrisno&nbsp;&nbsp;)</p>
+                <!-- <p>Disetujui Oleh,</p>
+                <br><br><br>
                 <p>
                     (&nbsp;&nbsp;
                     @if ($cuti->approved_by_director == 'approved') Sigit Sutrisno
@@ -195,7 +198,7 @@
                     @else -
                     @endif
                     &nbsp;&nbsp;)
-                </p>
+                </p> -->
             </div>
         </div>
 
