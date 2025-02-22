@@ -16,22 +16,10 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
-        <li class="menu-item active">
+        <li class="menu-item">
             <a href="{{ route('crew.dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="{{ route('mentor.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-file"></i>
-                <div data-i18n="Boxicons">Data Master Mentor</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="{{ route('data_cuti.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-file"></i>
-                <div data-i18n="Boxicons">Data Ajuan Cuti</div>
             </a>
         </li>
 
@@ -105,7 +93,7 @@
         <!-- Forms & Tables -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">HR</span></li>
         <li class="menu-item">
-            <a href="{{ route('laporan_cuti.index') }}" class="menu-link">
+            <a href="{{ route('data_cuti.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Boxicons">Pengajuan Cuti</div>
             </a>
