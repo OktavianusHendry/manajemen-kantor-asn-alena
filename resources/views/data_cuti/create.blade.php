@@ -16,15 +16,15 @@
 
                     <div class="mb-3">
                         <label class="form-label">Jenis Cuti</label>
-                        <select name="jenis_cuti_id" class="form-control @error('jenis_cuti_id') is-invalid @enderror">
+                        <select name="id_jenis_cuti" class="form-control @error('id_jenis_cuti') is-invalid @enderror">
                             <option value="">-- Pilih Jenis Cuti --</option>
                             @foreach($jenisCuti as $jenis)
-                                <option value="{{ $jenis->id }}" {{ old('jenis_cuti_id') == $jenis->id ? 'selected' : '' }}>
+                                <option value="{{ $jenis->id }}" {{ old('id_jenis_cuti') == $jenis->id ? 'selected' : '' }}>
                                     {{ $jenis->nama_jenis_cuti }}
                                 </option>
                             @endforeach
                         </select>
-                        @error('jenis_cuti_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        @error('id_jenis_cuti') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
 
                     <div class="mb-3">
