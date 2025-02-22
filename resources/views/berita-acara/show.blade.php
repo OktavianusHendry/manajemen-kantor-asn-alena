@@ -33,7 +33,13 @@
                                     {{ $peserta->nama_lengkap }} <!-- Nama dari input manual -->
                                 @endif
                             </td>
-                            <td>{{ $peserta->instansi }}</td>
+                            <td>
+                                @if ($peserta->jenis_peserta == 'karyawan' && $peserta->user)
+                                    <p>PT. Anagata Sisedu Nusantara</p><!-- Nama dari users -->
+                                @else
+                                    {{ $peserta->instansi }} <!-- Nama dari input manual -->
+                                @endif
+                            </td>
                             <td>{{ $peserta->jabatan }}</td>
                             <td>{{ ucfirst($peserta->jenis_peserta) }}</td>
                         </tr>
