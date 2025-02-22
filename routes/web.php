@@ -294,9 +294,10 @@ Route::delete('/data-karyawan/{id}', [KaryawanNewController::class, 'destroy'])-
 Route::get('/data-mentor', [MentorNewController::class, 'index'])->name('data.mentor');
 Route::get('/data-mentor', [MentorNewController::class, 'index'])->name('mentor.index');
 
-//Cuti
+
 Route::resource('data_cuti', CutiController::class)->middleware('auth');
 Route::middleware(['auth'])->group(function () {
+    //Untuk Data Cuti
     Route::resource('data_cuti', CutiController::class);
 
     Route::post('data_cuti/{cuti}/validate', [CutiController::class, 'validateCuti'])
@@ -310,7 +311,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/data_cuti/{id}', [CutiController::class, 'show'])->name('data_cuti.show');
     Route::get('/data_cuti/{id}/edit', [CutiController::class, 'edit'])->name('data_cuti.edit');    
     Route::put('/data_cuti/{id}', [CutiController::class, 'update'])->name('data_cuti.update'); 
-    Route::delete('/data_cuti/{id}', [CutiController::class, 'destroy'])->name('data_cuti.destroy');    
+    Route::delete('/data_cuti/{id}', [CutiController::class, 'destroy'])->name('data_cuti.destroy');
+    
+    //Berita Acara 
+    Route::get('/berita-acara', [BeritaAcaraController::class, 'index'])->name('berita-acara.index');
+    Route::get('/berita-acara/create', [BeritaAcaraController::class, 'create'])->name('berita-acara.create');
+    Route::post('/berita-acara/store', [BeritaAcaraController::class, 'store'])->name('berita-acara.store');
+    Route::get('/berita-acara/{id}', [BeritaAcaraController::class, 'show'])->name('berita-acara.show');
+    Route::get('/berita-acara/{id}/edit', [BeritaAcaraController::class, 'edit'])->name('berita-acara.edit');
+    Route::put('/berita-acara/{id}/update', [BeritaAcaraController::class, 'update'])->name('berita-acara.update');
+    Route::delete('/berita-acara/{id}/destroy', [BeritaAcaraController::class, 'destroy'])->name('berita-acara.destroy');
+    Route::post('/berita-acara/{id}/approve', [BeritaAcaraController::class, 'approve'])->name('berita-acara.approve');
 });
 
 // Notification routes

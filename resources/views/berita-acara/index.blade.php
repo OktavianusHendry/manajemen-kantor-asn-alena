@@ -1,0 +1,67 @@
+@extends(Auth::user()->role_as == '1' ? 'layouts.template' : 'layoutss.template')
+
+@section('content')
+<div class="container mt-4">
+    <h2 class="mb-3">Data Berita Acara</h2>
+
+    <!-- Form Pencarian -->
+    <form action="{{ route('berita-acara.index') }}" method="GET" class="row g-2 mb-3">
+        <div class="col-md-4">
+            <input type="text" name="search" value="{{ request()->input('search') }}" class="form-control"
+                   placeholder="Cari berdasarkan judul, deskripsi, atau tanggal...">
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary">
+                <i class="bx bx-search"></i> Cari
+            </button>
+        </div>
+    </form>
+
+    <!-- Tabel Data Berita Acara -->
+    <div class="card shadow-sm p-3">
+        <div class="table-responsive">
+            <table class="table table-striped text-center">
+                <thead class="table-secondary">
+                    <tr>
+                        <th>No</th>
+                        <th>Judul</th>
+                        <th>Deskripsi</th>
+                        <th>Tanggal</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($beritaAcara as $key => $ba)
+                        <tr>
+                            <td>{{ $beritaAcara->firstItem() + $key }}</td>
+                            <td>{{ $ba->judul }}</td>
+                            <td>{{ Str::limit($ba->deskripsi, 50) }}</td>
+                            <td>{{ date('d M Y', strtotime($ba->tanggal)) }}</td>
+                            <td>
+                                <span class="badge bg-{{ $ba->approved_by_director == 'approved' ? 'success' : ($ba->approved_by_director == 'rejected' ? 'danger' : 'warning') }}">
+                                    {{ ucfirst($ba->approved_by_director) }}
+                                </span>
+                            </td>
+                            <td>
+                                <a href="{{ route('berita-acara.show', $ba->id) }}" class="btn btn-info btn-sm">
+                                    <i class="bx bx-detail"></i> Detail
+                                </a>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center">Tidak ada data ditemukan.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="d-flex justify-content-center mt-3">
+            {{ $beritaAcara->links('pagination::bootstrap-4') }}
+        </div>
+    </div>
+</div>
+@endsection

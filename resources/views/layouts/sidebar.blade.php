@@ -148,6 +148,13 @@
         </li>
 
         <li class="menu-item">
+            <a href="{{ route('berita-acara.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-news"></i>
+                <div data-i18n="Boxicons">Berita Acara New</div>
+            </a>
+        </li>
+
+        <li class="menu-item">
             <a href="{{ route('release.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-bookmark"></i>
                 <div data-i18n="Boxicons">Release</div>
