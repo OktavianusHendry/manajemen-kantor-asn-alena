@@ -304,7 +304,7 @@ Route::middleware(['auth'])->group(function () {
         ->middleware('can:validate-cuti');
     
     Route::get('/data_cuti/{id}/validasi', [CutiController::class, 'showValidasi'])->name('data_cuti.validasi');
-    Route::get('/cetak-laporan/{id}', [CutiController::class, 'cetakLaporan'])->name('cetak.laporan');
+    Route::get('/data_cuti/cetak-laporan-cuti/{id}', [CutiController::class, 'cetakLaporan'])->name('cetak.laporan');
     Route::put('/data_cuti/{id}/validasi', [CutiController::class, 'validasi'])->name('data_cuti.processValidasi');
     Route::put('/data_cuti/{id}/validasi', [CutiController::class, 'validasi'])->name('data_cuti.validasi');
     Route::get('/data_cuti/{id}', [CutiController::class, 'show'])->name('data_cuti.show');
