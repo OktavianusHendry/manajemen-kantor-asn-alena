@@ -198,7 +198,7 @@ class CutiController extends Controller
         ];
 
         // Buat barcode dalam bentuk base64
-        $barcode = QrCode::size(150)->generate(json_encode($barcode_data));
+        $barcode = QrCode::size(100)->generate(json_encode($barcode_data));
 
         return view('data_cuti.cetak-laporan-cuti', compact('cuti', 'barcode'));
     }

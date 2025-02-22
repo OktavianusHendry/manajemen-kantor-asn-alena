@@ -126,14 +126,49 @@
                 <td>{{ date('d M Y', strtotime($cuti->tanggal_selesai)) }}</td>
             </tr>
             <tr>
-                <th>Disetujui Oleh</th>
+                <th>Disetujui Direktur</th>
                 <td>
                     @if ($cuti->approved_by_director == 'approved')
-                        Direktur
-                    @elseif ($cuti->approved_by_head_acdemy == 'approved')
-                        Kepala Academy
+                        <span class="text-success">Disetujui</span>
+                    @elseif ($cuti->approved_by_director == 'rejected')
+                        <span class="text-danger">Ditolak</span>
                     @else
-                        Belum Disetujui
+                        <span class="text-warning">Belum Diproses</span>
+                    @endif
+                </td>
+            </tr>
+
+            <tr>
+                <th>Disetujui Kepala Academy</th>
+                <td>
+                    @if ($cuti->approved_by_head_acdemy == 'approved')
+                        <span class="text-success">Disetujui</span>
+                    @elseif ($cuti->approved_by_head_acdemy == 'rejected')
+                        <span class="text-danger">Ditolak</span>
+                    @else
+                        <span class="text-warning">Belum Diproses</span>
+                    @endif
+                </td>
+            </tr>
+
+            <tr>
+                <th>Catatan Direktur</th>
+                <td>
+                    @if (!empty($cuti->catatan_direktur))
+                        {{ $cuti->catatan_direktur }}
+                    @else
+                        <span class="text-muted">Tidak ada catatan</span>
+                    @endif
+                </td>
+            </tr>
+
+            <tr>
+                <th>Catatan Kepala Academy</th>
+                <td>
+                    @if (!empty($cuti->catatan_kepala_academy))
+                        {{ $cuti->catatan_kepala_academy }}
+                    @else
+                        <span class="text-muted">Tidak ada catatan</span>
                     @endif
                 </td>
             </tr>
