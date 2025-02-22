@@ -84,43 +84,72 @@ class BeritaAcaraNewController extends Controller
 
     public function edit($id)
     {
-        $berita_acara = BeritaAcaraNew::findOrFail($id);
-        return view('berita_acara.edit', compact('berita_acara'));
+        $beritaAcara = BeritaAcaraNew::with('peserta')->findOrFail($id);
+        $karyawan = User::where('role_as', 2)->get(); // Ambil semua karyawan dengan role 2
+
+        return view('berita-acara.edit', compact('beritaAcara', 'karyawan'));
     }
 
     public function update(Request $request, $id)
     {
-        $berita_acara = BeritaAcaraNew::findOrFail($id);
-
         $request->validate([
             'judul' => 'required|string|max:255',
-            'deskripsi' => 'nullable|string',
+            'deskripsi' => 'required|string',
             'tanggal' => 'required|date',
-            'berkas' => 'nullable|file|mimes:pdf,doc,docx',
+            'berkas' => 'nullable|file|mimes:pdf,doc,docx,jpg,png',
             'tautan_website' => 'nullable|url',
         ]);
 
+        $beritaAcara = BeritaAcaraNew::findOrFail($id);
+        
+        // Update data berita acara
+        $beritaAcara->judul = $request->judul;
+        $beritaAcara->deskripsi = $request->deskripsi;
+        $beritaAcara->tanggal = $request->tanggal;
+        $beritaAcara->tautan_website = $request->tautan_website;
+
+        // Jika ada file baru diunggah
         if ($request->hasFile('berkas')) {
-            $filePath = $request->file('berkas')->store('berkas', 'public');
-            $berita_acara->berkas = $filePath;
+            // Hapus file lama jika ada
+            if ($beritaAcara->berkas) {
+                Storage::delete('public/' . $beritaAcara->berkas);
+            }
+            
+            // Simpan file baru
+            $beritaAcara->berkas = $request->file('berkas')->store('berkas', 'public');
         }
 
-        $berita_acara->update([
-            'judul' => $request->judul,
-            'deskripsi' => $request->deskripsi,
-            'tanggal' => $request->tanggal,
-            'tautan_website' => $request->tautan_website,
-        ]);
+        $beritaAcara->save();
 
-        return redirect()->route('berita_acara.index')->with('success', 'Berita Acara berhasil diperbarui!');
+        // Update peserta internal (karyawan)
+        if ($request->has('peserta_internal')) {
+            $pesertaInternal = array_map(function ($id) {
+                return [
+                    'id_user' => $id,
+                    'jenis_peserta' => 'karyawan'
+                ];
+            }, $request->peserta_internal);
+
+            // Hapus peserta internal lama & tambahkan yang baru
+            PesertaBeritaAcara::where('id_berita_acara', $id)->where('jenis_peserta', 'karyawan')->delete();
+            $beritaAcara->peserta()->createMany($pesertaInternal);
+        }
+
+        // Update peserta eksternal (bukan karyawan)
+        if ($request->has('peserta')) {
+            PesertaBeritaAcara::where('id_berita_acara', $id)->where('jenis_peserta', 'luar')->delete();
+            $beritaAcara->peserta()->createMany($request->peserta);
+        }
+
+        return redirect()->route('berita-acara.index')->with('success', 'Berita Acara berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
-        $berita_acara = BeritaAcaraNew::findOrFail($id);
-        $berita_acara->delete();
+        $beritaAcara = BeritaAcaraNew::findOrFail($id);
+        $beritaAcara->delete();
 
-        return redirect()->route('berita_acara.index')->with('success', 'Berita Acara berhasil dihapus!');
+        return redirect()->route('berita-acara.index')->with('success', 'Berita Acara berhasil dihapus.');
     }
 
     public function updateValidation(Request $request, $id)
