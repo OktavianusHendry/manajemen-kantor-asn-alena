@@ -4,10 +4,20 @@
 <head>
     <title>Cetak Laporan Cuti</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
         .form-container {
             width: 80%;
             margin: 0 auto;
-            font-family: Arial, sans-serif;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .header {
@@ -22,12 +32,33 @@
         .form-title {
             text-align: center;
             margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
         }
 
         .footer-signature {
             display: flex;
             justify-content: space-between;
             margin-top: 50px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
         }
 
         .footer-signature div {
@@ -39,6 +70,22 @@
             text-align: center;
             margin-top: 20px;
         }
+
+        .barcode-container p {
+            font-weight: bold;
+            color: #333;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            .form-container {
+                box-shadow: none;
+            }
+        }
     </style>
 </head>
 
@@ -46,11 +93,11 @@
     <div class="form-container">
         <p style="text-align: right; margin: 0;"><u>Approve by apps</u></p>
         <br><br>
-        <div class="header" style="display: flex; align-items: center;">
+        <div class="header" style="display: flex; align-items: center; justify-content: center;">
             <img class="card-img" src="{{ asset('assets/img/elements/logo-asn.png') }}" alt="Logo Perusahaan"
-                style="height: 145px; width: auto; margin-right: 5px;" />
+                style="height: 145px; width: auto; margin-right: 15px;" />
             <div>
-                <p style="text-align: left; margin: 0;">PT. Anagata Sisedu Nusantara</p>
+                <p style="text-align: left; margin: 0; font-weight: bold;">PT. Anagata Sisedu Nusantara</p>
                 <p style="text-align: left; margin: 0;">Revenue Tower Lt. 15, SCBD Lot 13, District 8</p>
                 <p style="text-align: left; margin: 0;">Jl. Jenderal Sudirman, Senayan, Kebayoran Baru</p>
                 <p style="text-align: left; margin: 0;">Jakarta Selatan 12190</p>
@@ -61,38 +108,36 @@
             <h4>FORMULIR PERMOHONAN CUTI KARYAWAN</h4>
         </div>
 
-        <div class="form-section">
-            <label>Nama Karyawan:</label>
-            <div class="input-value">{{ $cuti->user->name }}</div>
-        </div>
-
-        <div class="form-section">
-            <label>Jenis Cuti:</label>
-            <div class="input-value">{{ $cuti->jenis_cuti->nama_jenis_cuti ?? '-' }}</div>
-        </div>
-
-        <div class="form-section">
-            <label>Tanggal Mulai:</label>
-            <div class="input-value">{{ date('d M Y', strtotime($cuti->tanggal_mulai)) }}</div>
-        </div>
-
-        <div class="form-section">
-            <label>Tanggal Selesai:</label>
-            <div class="input-value">{{ date('d M Y', strtotime($cuti->tanggal_selesai)) }}</div>
-        </div>
-
-        <div class="form-section">
-            <label>Disetujui Oleh:</label>
-            <div class="input-value">
-                @if ($cuti->approved_by_director == 'approved')
-                    Direktur
-                @elseif ($cuti->approved_by_head_acdemy == 'approved')
-                    Kepala Academy
-                @else
-                    Belum Disetujui
-                @endif
-            </div>
-        </div>
+        <table>
+            <tr>
+                <th>Nama Karyawan</th>
+                <td>{{ $cuti->user->name }}</td>
+            </tr>
+            <tr>
+                <th>Jenis Cuti</th>
+                <td>{{ $cuti->jenis_cuti->nama_jenis_cuti ?? '-' }}</td>
+            </tr>
+            <tr>
+                <th>Tanggal Mulai</th>
+                <td>{{ date('d M Y', strtotime($cuti->tanggal_mulai)) }}</td>
+            </tr>
+            <tr>
+                <th>Tanggal Selesai</th>
+                <td>{{ date('d M Y', strtotime($cuti->tanggal_selesai)) }}</td>
+            </tr>
+            <tr>
+                <th>Disetujui Oleh</th>
+                <td>
+                    @if ($cuti->approved_by_director == 'approved')
+                        Direktur
+                    @elseif ($cuti->approved_by_head_acdemy == 'approved')
+                        Kepala Academy
+                    @else
+                        Belum Disetujui
+                    @endif
+                </td>
+            </tr>
+        </table>
 
         <div class="footer-signature">
             <div style="text-align: left">
