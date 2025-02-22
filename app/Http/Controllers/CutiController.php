@@ -81,7 +81,13 @@ class CutiController extends Controller
 
         return redirect()->route('data_cuti.index')->with('success', 'Validasi cuti berhasil.');
     }
-    
+
+    public function show($id)
+    {
+        $cuti = Cuti::findOrFail($id);
+        return view('data_cuti.show', compact('cuti'));
+    }
+
     public function validasi(Request $request, $id)
     {
         $cuti = Cuti::findOrFail($id);
