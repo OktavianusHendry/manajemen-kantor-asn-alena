@@ -28,8 +28,9 @@ class BeritaAcaraNewController extends Controller
 
     public function create()
     {
-        $karyawan = User::where('role_as', '2')->get(); // Ambil data user dengan role karyawan
-        return view('berita-acara.create');
+        $karyawan = User::where('role_as', 2)->get(); // Ambil data user dengan role karyawan
+        
+        return view('berita-acara.create', compact('karyawan'));
     }
 
     public function store(Request $request)

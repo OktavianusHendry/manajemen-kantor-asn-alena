@@ -42,8 +42,8 @@
                     <label>Pilih Peserta Internal</label>
                     <select name="peserta_internal[]" class="form-control">
                         <option value="">-- Pilih Peserta --</option>
-                        @foreach ($karyawan as $user)
-                            <option value="{{ $user->id }}">{{ $user->name }} - {{ $user->jabatan }}</option>
+                        @foreach ($karyawan as $k)
+                        <option value="{{ $k->id }}">{{ $k->name }}</option>
                         @endforeach
                     </select>
                 </div>
