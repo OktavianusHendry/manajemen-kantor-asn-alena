@@ -175,38 +175,39 @@ class BeritaAcaraNewController extends Controller
         return redirect()->route('berita-acara.index')->with('success', 'Berita Acara berhasil dihapus.');
     }
 
-    public function validateBeritaAcara(Request $request, $id)
+    public function showValidate($id)
     {
-        $user = Auth::user();
-
-        // Hanya Direktur yang bisa validasi
-        if ($user->id_jabatan != 1) {
-            return redirect()->back()->with('error', 'Anda tidak memiliki izin untuk memvalidasi.');
-        }
-
         $beritaAcara = BeritaAcaraNew::findOrFail($id);
 
-        // Jika status sudah "approved", hanya bisa diubah ke "pending"
-        if ($beritaAcara->approved_by_director == 'approved' && $request->approved_by_director == 'pending') {
-            $beritaAcara->update(['approved_by_director' => 'pending']);
-        } 
-        // Jika status diubah menjadi "rejected", harus ada catatan alasan
-        elseif ($request->approved_by_director == 'rejected') {
-            if (!$request->catatan_direktur) {
-                return redirect()->back()->with('error', 'Harap isi alasan penolakan.');
-            }
-
-            $beritaAcara->update([
-                'approved_by_director' => 'rejected',
-                'catatan_direktur' => $request->catatan_direktur
-            ]);
-        } 
-        // Jika status belum "approved", bisa diubah menjadi "approved"
-        else {
-            $beritaAcara->update(['approved_by_director' => $request->approved_by_director]);
+        // Cek apakah user adalah direktur
+        if (Auth::user()->id_jabatan != 1) {
+            return redirect()->route('berita-acara.index')->with('error', 'Anda tidak memiliki izin untuk validasi.');
         }
 
-        return redirect()->route('berita-acara.index')->with('success', 'Status berita acara berhasil diperbarui.');
+        return view('berita-acara.validate', compact('beritaAcara'));
     }
 
+    public function validateBeritaAcara(Request $request, $id)
+    {
+        $beritaAcara = BeritaAcaraNew::findOrFail($id);
+
+        // Pastikan hanya direktur yang bisa validasi
+        if (Auth::user()->id_jabatan != 1) {
+            return redirect()->route('berita-acara.index')->with('error', 'Anda tidak memiliki izin untuk validasi.');
+        }
+
+        // Validasi input
+        $request->validate([
+            'approved_by_director' => 'required|in:approved,pending,rejected',
+            'catatan_direktur' => $request->approved_by_director == 'rejected' ? 'required|string' : 'nullable'
+        ]);
+
+        // Simpan status validasi
+        $beritaAcara->approved_by_director = $request->approved_by_director;
+        $beritaAcara->catatan_direktur = $request->approved_by_director == 'rejected' ? $request->catatan_direktur : null;
+        $beritaAcara->save();
+
+        return redirect()->route('berita-acara.index')->with('success', 'Validasi berhasil diperbarui.');
+    }
+    
 }

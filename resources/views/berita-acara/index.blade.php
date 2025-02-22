@@ -65,14 +65,10 @@
                                     </form>
                                 @endif
 
-                                @if (Auth::user()->id_jabatan == 1)
-                                <form action="{{ route('berita-acara.validate', $ba->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('PUT') 
-                                    <button type="submit" class="btn btn-success btn-sm">
+                                @if(Auth::user()->id_jabatan == 1)
+                                    <a href="{{ route('berita-acara.showValidate', $ba->id) }}" class="btn btn-success btn-sm">
                                         <i class="bx bx-check-circle"></i> Validasi
-                                    </button>
-                                </form>
+                                    </a>
                                 @endif
                             </td>
                         </tr>
