@@ -43,7 +43,7 @@ class CutiController extends Controller
 
     public function create()
     {
-        $jenisCuti = Jenis_Cuti::all();
+        $jenisCuti = Jenis_Cuti::select('id_jenis_cuti', 'nama_jenis_cuti')->get();
         return view('data_cuti.create', compact('jenisCuti'));
     }
 

@@ -19,7 +19,7 @@
                         <select name="id_jenis_cuti" class="form-control @error('id_jenis_cuti') is-invalid @enderror">
                             <option value="">-- Pilih Jenis Cuti --</option>
                             @foreach($jenisCuti as $jenis)
-                                <option value="{{ $jenis->id }}" {{ old('id_jenis_cuti') == $jenis->id ? 'selected' : '' }}>
+                                <option value="{{ $jenis->id_jenis_cuti }}" {{ old('id_jenis_cuti') == $jenis->id_jenis_cuti ? 'selected' : '' }}>
                                     {{ $jenis->nama_jenis_cuti }}
                                 </option>
                             @endforeach
