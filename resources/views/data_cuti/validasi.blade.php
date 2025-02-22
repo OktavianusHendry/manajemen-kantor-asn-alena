@@ -25,6 +25,11 @@
                                 </select>
                             </div>
 
+                            <div class="mb-3" id="catatan-field" style="display: none;">
+                                <label class="form-label">Catatan (Alasan Penolakan)</label>
+                                <textarea name="catatan" class="form-control" rows="3"></textarea>
+                            </div>
+
                             <button type="submit" class="btn btn-success">Simpan</button>
                             <a href="{{ route('data_cuti.index') }}" class="btn btn-secondary">Kembali</a>
                         </form>
@@ -33,4 +38,14 @@
             </main>
         </div>
     </div>
+    <script>
+        document.getElementById('status').addEventListener('change', function () {
+            let catatanField = document.getElementById('catatan-field');
+            if (this.value === 'rejected') {
+                catatanField.style.display = 'block';
+            } else {
+                catatanField.style.display = 'none';
+            }
+        });
+    </script>
 @endsection
