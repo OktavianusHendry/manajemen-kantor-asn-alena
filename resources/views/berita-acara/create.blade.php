@@ -94,11 +94,23 @@
 
         <script>
             <!-- CKEditor -->
-            <script src="https://cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script>
+            <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
             <script>
-                CKEDITOR.replace('editor');
+                let editor;
+                ClassicEditor
+                    .create(document.querySelector('#editor'))
+                    .then(newEditor => {
+                        editor = newEditor;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+
+                document.querySelector('form').addEventListener('submit', (event) => {
+                    document.querySelector('#editor').value = editor.getData();
+                });
             </script>
-            
+
             let pesertaIndex = 1;
 
             // Tambah Peserta Eksternal

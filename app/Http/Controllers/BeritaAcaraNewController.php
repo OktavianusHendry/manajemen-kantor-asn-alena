@@ -73,7 +73,7 @@ class BeritaAcaraNewController extends Controller
 
     public function show($id)
     {
-        $beritaAcara = BeritaAcaraNew::with('peserta')->findOrFail($id);
+        $beritaAcara = BeritaAcaraNew::with('peserta.user')->findOrFail($id);
         return view('berita-acara.show', compact('beritaAcara'));
     }
 

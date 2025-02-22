@@ -26,7 +26,13 @@
                 <tbody>
                     @foreach ($beritaAcara->peserta as $peserta)
                         <tr>
-                            <td>{{ $peserta->nama_lengkap }}</td>
+                            <td>
+                                @if ($peserta->jenis_peserta == 'karyawan' && $peserta->user)
+                                    {{ $peserta->user->name }} <!-- Nama dari users -->
+                                @else
+                                    {{ $peserta->nama_lengkap }} <!-- Nama dari input manual -->
+                                @endif
+                            </td>
                             <td>{{ $peserta->instansi }}</td>
                             <td>{{ $peserta->jabatan }}</td>
                             <td>{{ ucfirst($peserta->jenis_peserta) }}</td>
