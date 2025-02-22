@@ -61,6 +61,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Divisi::class, 'id_divisi'); // Sesuaikan dengan nama kolom foreign key di tabel users
     }
 
+    public function biodata()
+    {
+        return $this->hasOne(Biodata::class, 'id_user');
+    }
+
+
 
     /**
      * The attributes that should be hidden for serialization.

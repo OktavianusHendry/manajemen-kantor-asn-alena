@@ -7,6 +7,9 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 
+use App\Models\User;
+use App\Models\Biodata;
+
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -25,8 +28,16 @@ class EventServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    
+     public function boot()
     {
-        //
+        parent::boot();
+
+        User::created(function ($user) {
+            Biodata::create([
+                'id_user' => $user->id,
+                'tanggal_bergabung' => now(), // Atau bisa default null
+            ]);
+        });
     }
 }
