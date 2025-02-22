@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BeritaAcaraNew;
 use App\Models\PesertaBeritaAcara;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class BeritaAcaraNewController extends Controller
 {
@@ -27,7 +28,7 @@ class BeritaAcaraNewController extends Controller
 
     public function create()
     {
-        $karyawan = UserController::where('role_as', '2')->get(); // Ambil data user dengan role karyawan
+        $karyawan = User::where('role_as', '2')->get(); // Ambil data user dengan role karyawan
         return view('berita-acara.create');
     }
 
