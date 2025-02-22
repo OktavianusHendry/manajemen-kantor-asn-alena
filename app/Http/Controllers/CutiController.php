@@ -10,7 +10,7 @@ class CutiController extends Controller
 {
     public function index()
     {
-        $cuti = Cuti::with('user', 'jenisCuti')->paginate(10);
+        $cuti = Cuti::with('user', 'jenis_cuti')->paginate(10);
         return view('cuti.index', compact('cuti'));
     }
 

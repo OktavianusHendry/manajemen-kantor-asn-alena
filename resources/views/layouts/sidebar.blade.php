@@ -4,7 +4,7 @@
             <span class="app-brand-logo demo">
                 <div class="sidebar-header">
                     <img src="{{ asset('public/assets/img/illustrations/logo-asn.png') }}" alt="logo-asn" class="logo-image">
-                </div
+                </div>
             </span>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
