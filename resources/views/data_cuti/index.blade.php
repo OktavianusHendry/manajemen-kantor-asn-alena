@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends(Auth::user()->role_as == '1' ? 'layouts.template' : 'layoutss.template')
 
 @section('content')
     <div id="app">

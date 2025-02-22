@@ -22,6 +22,18 @@
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="{{ route('mentor.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-file"></i>
+                <div data-i18n="Boxicons">Data Master Mentor</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{ route('data_cuti.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-file"></i>
+                <div data-i18n="Boxicons">Data Ajuan Cuti</div>
+            </a>
+        </li>
 
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Arsip</span>

@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends(Auth::user()->role_as == '1' ? 'layouts.template' : 'layoutss.template')
 
 @section('content')
     <div id="app">
@@ -55,10 +55,9 @@
                                 </td>
                             </tr>
                         </table>
-
                         <br>
-                        <div>
-                            <a href="{{ route('data_cuti.index') }}" class="btn btn-secondary">Kembali</a>
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ route('data_cuti.index') }}" class="btn btn-warning">Kembali</a>
                         </div>
                     </div>
                 </div>
