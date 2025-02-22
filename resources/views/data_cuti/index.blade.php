@@ -94,7 +94,7 @@
                                                         @endif
 
                                                         <!-- Tombol Validasi untuk Direktur dan Kepala Academy -->
-                                                        @if (Auth::user()->id_jabatan == 1 || Auth::user()->id_jabatan == 2)
+                                                        @if (Auth::user()->role_as == '1' || Auth::user()->id_jabatan == 1 || Auth::user()->id_jabatan == 2)
                                                             <a href="{{ route('data_cuti.validasi', $c->id) }}" class="btn btn-success btn-sm" title="Validasi">
                                                                 <i class="bx bx-check-circle"></i>
                                                             </a>
