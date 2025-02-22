@@ -30,7 +30,6 @@
                     <tr>
                         <th>No</th>
                         <th>Judul</th>
-                        <th>Deskripsi</th>
                         <th>Tanggal</th>
                         <th>Status</th>
                         <th>Aksi</th>
@@ -41,7 +40,6 @@
                         <tr>
                             <td>{{ $beritaAcara->firstItem() + $key }}</td>
                             <td>{{ $ba->judul }}</td>
-                            <td>{{ Str::limit($ba->deskripsi, 50) }}</td>
                             <td>{{ date('d M Y', strtotime($ba->tanggal)) }}</td>
                             <td>
                                 <span class="badge bg-{{ $ba->approved_by_director == 'approved' ? 'success' : ($ba->approved_by_director == 'rejected' ? 'danger' : 'warning') }}">

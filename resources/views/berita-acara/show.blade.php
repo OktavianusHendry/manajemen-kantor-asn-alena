@@ -42,7 +42,7 @@
                             </td>
                             <td>
                                 @if ($peserta->jenis_peserta == 'karyawan' && $peserta->user)
-                                    {{ $peserta->user->nama_jabatan }}<!--  -->
+                                    {{ optional($peserta->user->jabatan)->nama_jabatan ?? '-' }}<!--  -->
                                 @else
                                     {{ $peserta->jabatan }} <!-- Nama dari input manual -->
                                 @endif
