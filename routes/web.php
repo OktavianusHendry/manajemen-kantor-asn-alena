@@ -28,6 +28,8 @@ use App\Http\Controllers\SuratKeluarNewController;
 use App\Http\Controllers\ArsipPembelajaranController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\KaryawanNewController;
+use App\Http\Controllers\MentorNewController;
 use Illuminate\Http\Request;
 use Dompdf\Dompdf;
 
@@ -278,6 +280,13 @@ Route::get('arsip_pembelajaran/{arsip_pembelajaran}', [ArsipPembelajaranControll
 Route::get('arsip_pembelajaran/{arsip_pembelajaran}/edit', [ArsipPembelajaranController::class, 'edit'])->name('arsip_pembelajaran.edit');
 Route::put('arsip_pembelajaran/{arsip_pembelajaran}', [ArsipPembelajaranController::class, 'update'])->name('arsip_pembelajaran.update');
 Route::delete('arsip_pembelajaran/{arsip_pembelajaran}', [ArsipPembelajaranController::class, 'destroy'])->name('arsip_pembelajaran.destroy');
+
+//Data Karyawan 
+Route::get('/data-karyawan', [KaryawanNewController::class, 'index'])->name('data.karyawan');
+
+//Data Mentor
+Route::get('/data-mentor', [MentorNewController::class, 'index'])->name('data.mentor');
+
 
 Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
 Route::delete('/notifications/{id}', [NotificationController::class, 'destroy'])->name('notifications.destroy');

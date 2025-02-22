@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -61,9 +62,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Divisi::class, 'id_divisi'); // Sesuaikan dengan nama kolom foreign key di tabel users
     }
 
-    public function biodata()
+    // Relasi ke biodata
+    public function biodata(): HasOne
     {
-        return $this->hasOne(Biodata::class, 'id_user');
+        return $this->hasOne(Biodata::class, 'id_user', 'id');
     }
 
 
