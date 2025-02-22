@@ -64,13 +64,13 @@
                                                 <td>{{ date('d M Y', strtotime($c->tanggal_mulai)) }}</td>
                                                 <td>{{ date('d M Y', strtotime($c->tanggal_selesai)) }}</td>
                                                 <td>
-                                                    <button class="btn btn-{{ $cuti->approved_by_director == 'approved' ? 'success' : ($cuti->approved_by_director == 'rejected' ? 'danger' : 'warning') }}btn-sm" disabled>
-                                                        {{ ucfirst($cuti->approved_by_director) }}
+                                                    <button class="btn btn-{{ $c->approved_by_director == 'approved' ? 'success' : ($c->approved_by_director == 'rejected' ? 'danger' : 'warning') }} btn-sm" disabled>
+                                                        {{ ucfirst($c->approved_by_director) }}
                                                     </button>
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-{{ $cuti->approved_by_head_acdemy == 'approved' ? 'success' : ($cuti->approved_by_head_acdemy == 'rejected' ? 'danger' : 'warning') }}btn-sm" disabled>
-                                                        {{ ucfirst($cuti->approved_by_head_acdemy) }}
+                                                    <button class="btn btn-{{ $c->approved_by_head_acdemy == 'approved' ? 'success' : ($c->approved_by_head_acdemy == 'rejected' ? 'danger' : 'warning') }} btn-sm" disabled>
+                                                        {{ ucfirst($c->approved_by_head_acdemy) }}
                                                     </button>
                                                 </td>
                                                 <td>
