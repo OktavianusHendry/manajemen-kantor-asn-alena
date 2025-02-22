@@ -30,6 +30,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\KaryawanNewController;
 use App\Http\Controllers\MentorNewController;
+use App\Http\Controllers\CutiController;
 use Illuminate\Http\Request;
 use Dompdf\Dompdf;
 
@@ -292,6 +293,17 @@ Route::delete('/data-karyawan/{id}', [KaryawanNewController::class, 'destroy'])-
 //Data Mentor
 Route::get('/data-mentor', [MentorNewController::class, 'index'])->name('data.mentor');
 Route::get('/data-mentor', [MentorNewController::class, 'index'])->name('mentor.index');
+
+//Cuti
+Route::resource('data_cuti', CutiController::class)->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+    Route::resource('data_cuti', CutiController::class);
+
+    Route::post('data_cuti/{cuti}/validate', [CutiController::class, 'validateCuti'])
+        ->name('data_cuti.validate')
+        ->middleware('can:validate-cuti');
+});
+
 
 
 Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
