@@ -13,10 +13,10 @@
             <input type="text" name="judul" class="form-control" value="{{ $beritaAcara->judul }}" required>
         </div>
 
-        {{-- Deskripsi dengan CKEditor --}}
+        {{-- Deskripsi (CKEditor) --}}
         <div class="mb-3">
             <label class="form-label">Deskripsi</label>
-            <textarea name="deskripsi" class="form-control ckeditor">{{ $beritaAcara->deskripsi }}</textarea>
+            <textarea id="deskripsi" name="deskripsi" class="form-control">{{ $beritaAcara->deskripsi }}</textarea>
         </div>
 
         {{-- Tanggal --}}
@@ -41,13 +41,12 @@
         </div>
 
         <hr>
-        <h4>Peserta Berita Acara</h4>
 
-        {{-- Peserta Internal --}}
-        <h5>Peserta Internal</h5>
+        {{-- **Peserta Internal** --}}
+        <h4>Peserta Internal</h4>
         <div id="peserta-internal-container">
             @foreach ($beritaAcara->peserta->where('jenis_peserta', 'karyawan') as $peserta)
-                <div class="row">
+                <div class="row peserta-internal-group">
                     <div class="col-md-5">
                         <label>Pilih Peserta Internal</label>
                         <select name="peserta_internal[]" class="form-control">
@@ -65,71 +64,99 @@
                 </div>
             @endforeach
         </div>
-        <button type="button" class="btn btn-primary" id="add-peserta-internal">Tambah Peserta Internal</button>
+        <button type="button" class="btn btn-primary mt-2" id="add-peserta-internal">Tambah Peserta Internal</button>
 
         <hr>
 
-        {{-- Peserta Eksternal --}}
-        <h5>Peserta Eksternal</h5>
+        {{-- **Peserta Eksternal** --}}
+        <h4>Peserta Eksternal</h4>
         <div id="peserta-container">
             @foreach ($beritaAcara->peserta->where('jenis_peserta', 'luar') as $index => $peserta)
-                <div class="peserta-group">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label>Nama Lengkap</label>
-                            <input type="text" name="peserta[{{ $index }}][nama_lengkap]" class="form-control" value="{{ $peserta->nama_lengkap }}" required>
-                        </div>
-                        <div class="col-md-3">
-                            <label>Instansi</label>
-                            <input type="text" name="peserta[{{ $index }}][instansi]" class="form-control" value="{{ $peserta->instansi }}">
-                        </div>
-                        <div class="col-md-3">
-                            <label>Jabatan</label>
-                            <input type="text" name="peserta[{{ $index }}][jabatan]" class="form-control" value="{{ $peserta->jabatan }}">
-                        </div>
-                        <div class="col-md-2 d-flex align-items-end">
-                            <button type="button" class="btn btn-danger remove-peserta">X</button>
-                        </div>
+                <div class="row peserta-group">
+                    <div class="col-md-3">
+                        <label>Nama Lengkap</label>
+                        <input type="text" name="peserta[{{ $index }}][nama_lengkap]" class="form-control" value="{{ $peserta->nama_lengkap }}" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Instansi</label>
+                        <input type="text" name="peserta[{{ $index }}][instansi]" class="form-control" value="{{ $peserta->instansi }}">
+                    </div>
+                    <div class="col-md-3">
+                        <label>Jabatan</label>
+                        <input type="text" name="peserta[{{ $index }}][jabatan]" class="form-control" value="{{ $peserta->jabatan }}">
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="button" class="btn btn-danger remove-peserta">X</button>
                     </div>
                 </div>
             @endforeach
         </div>
-        <button type="button" class="btn btn-primary" id="add-peserta">Tambah Peserta Eksternal</button>
+        <button type="button" class="btn btn-primary mt-2" id="add-peserta">Tambah Peserta Eksternal</button>
 
         <br><br>
         <button type="submit" class="btn btn-success">Simpan Perubahan</button>
     </form>
 </div>
 
-{{-- CKEditor --}}
+{{-- CKEditor 4.25.1 --}}
 <script src="https://cdn.ckeditor.com/4.25.1/standard/ckeditor.js"></script>
 <script>
     CKEDITOR.replace('deskripsi');
 
     let pesertaIndex = {{ $beritaAcara->peserta->where('jenis_peserta', 'luar')->count() }};
-    
+
+    // Tambah Peserta Internal
+    document.getElementById('add-peserta-internal').addEventListener('click', function () {
+        let container = document.getElementById('peserta-internal-container');
+        let newPeserta = document.createElement('div');
+        newPeserta.classList.add('row', 'peserta-internal-group');
+
+        newPeserta.innerHTML = `
+            <div class="col-md-5">
+                <label>Pilih Peserta Internal</label>
+                <select name="peserta_internal[]" class="form-control">
+                    <option value="">-- Pilih Peserta --</option>
+                    @foreach ($karyawan as $k)
+                        <option value="{{ $k->id }}">{{ $k->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+                <button type="button" class="btn btn-danger remove-internal">X</button>
+            </div>
+        `;
+
+        container.appendChild(newPeserta);
+    });
+
+    // Hapus Peserta Internal
+    document.getElementById('peserta-internal-container').addEventListener('click', function (e) {
+        if (e.target.classList.contains('remove-internal')) {
+            e.target.closest('.peserta-internal-group').remove();
+        }
+    });
+
+    // Tambah Peserta Eksternal
     document.getElementById('add-peserta').addEventListener('click', function () {
         let container = document.getElementById('peserta-container');
         let newPeserta = document.createElement('div');
-        newPeserta.classList.add('peserta-group');
+        newPeserta.classList.add('row', 'peserta-group');
 
         newPeserta.innerHTML = `
-            <div class="row">
-                <div class="col-md-3">
-                    <label>Nama Lengkap</label>
-                    <input type="text" name="peserta[${pesertaIndex}][nama_lengkap]" class="form-control" required>
-                </div>
-                <div class="col-md-3">
-                    <label>Instansi</label>
-                    <input type="text" name="peserta[${pesertaIndex}][instansi]" class="form-control">
-                </div>
-                <div class="col-md-3">
-                    <label>Jabatan</label>
-                    <input type="text" name="peserta[${pesertaIndex}][jabatan]" class="form-control">
-                </div>
-                <div class="col-md-2 d-flex align-items-end">
-                    <button type="button" class="btn btn-danger remove-peserta">X</button>
-                </div>
+            <div class="col-md-3">
+                <label>Nama Lengkap</label>
+                <input type="text" name="peserta[${pesertaIndex}][nama_lengkap]" class="form-control" required>
+            </div>
+            <div class="col-md-3">
+                <label>Instansi</label>
+                <input type="text" name="peserta[${pesertaIndex}][instansi]" class="form-control">
+            </div>
+            <div class="col-md-3">
+                <label>Jabatan</label>
+                <input type="text" name="peserta[${pesertaIndex}][jabatan]" class="form-control">
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+                <button type="button" class="btn btn-danger remove-peserta">X</button>
             </div>
         `;
 
@@ -137,6 +164,7 @@
         pesertaIndex++;
     });
 
+    // Hapus Peserta Eksternal
     document.getElementById('peserta-container').addEventListener('click', function (e) {
         if (e.target.classList.contains('remove-peserta')) {
             e.target.closest('.peserta-group').remove();

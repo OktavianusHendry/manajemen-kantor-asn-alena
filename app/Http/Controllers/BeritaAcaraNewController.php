@@ -35,12 +35,26 @@ class BeritaAcaraNewController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'judul' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+            'tanggal' => 'required|date',
+            'berkas' => 'nullable|file|mimes:pdf,doc,docx,jpg,png',
+            'tautan_website' => 'nullable|url',
+        ]);
+
+        // Simpan file ke folder 'public/berita-acara'
+        $berkasPath = null;
+        if ($request->hasFile('berkas')) {
+            $berkasPath = $request->file('berkas')->store('berita-acara', 'public');
+        }
+
         // Simpan Berita Acara
         $beritaAcara = BeritaAcaraNew::create([
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
             'tanggal' => $request->tanggal,
-            'berkas' => $request->berkas,
+            'berkas' => $berkasPath,
             'tautan_website' => $request->tautan_website,
         ]);
 
@@ -85,11 +99,11 @@ class BeritaAcaraNewController extends Controller
     public function edit($id)
     {
         $beritaAcara = BeritaAcaraNew::with('peserta')->findOrFail($id);
-        $karyawan = User::where('role_as', 2)->get(); // Ambil semua karyawan dengan role 2
-
+        $karyawan = User::where('role_as', 2)->get(); // Ambil karyawan dengan role_as = 2
+    
         return view('berita-acara.edit', compact('beritaAcara', 'karyawan'));
     }
-
+    
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -99,48 +113,51 @@ class BeritaAcaraNewController extends Controller
             'berkas' => 'nullable|file|mimes:pdf,doc,docx,jpg,png',
             'tautan_website' => 'nullable|url',
         ]);
-
+    
         $beritaAcara = BeritaAcaraNew::findOrFail($id);
-        
-        // Update data berita acara
-        $beritaAcara->judul = $request->judul;
-        $beritaAcara->deskripsi = $request->deskripsi;
-        $beritaAcara->tanggal = $request->tanggal;
-        $beritaAcara->tautan_website = $request->tautan_website;
-
-        // Jika ada file baru diunggah
+    
+        // Jika ada file baru diunggah, hapus file lama dan simpan yang baru
         if ($request->hasFile('berkas')) {
-            // Hapus file lama jika ada
             if ($beritaAcara->berkas) {
                 Storage::delete('public/' . $beritaAcara->berkas);
             }
-            
-            // Simpan file baru
-            $beritaAcara->berkas = $request->file('berkas')->store('berkas', 'public');
+            $beritaAcara->berkas = $request->file('berkas')->store('berita-acara', 'public');
         }
-
-        $beritaAcara->save();
-
-        // Update peserta internal (karyawan)
+    
+        // Update data berita acara
+        $beritaAcara->update([
+            'judul' => $request->judul,
+            'deskripsi' => $request->deskripsi,
+            'tanggal' => $request->tanggal,
+            'tautan_website' => $request->tautan_website,
+        ]);
+    
+        // Update peserta internal
+        PesertaBeritaAcara::where('id_berita_acara', $id)->where('jenis_peserta', 'karyawan')->delete();
         if ($request->has('peserta_internal')) {
-            $pesertaInternal = array_map(function ($id) {
-                return [
-                    'id_user' => $id,
-                    'jenis_peserta' => 'karyawan'
-                ];
-            }, $request->peserta_internal);
-
-            // Hapus peserta internal lama & tambahkan yang baru
-            PesertaBeritaAcara::where('id_berita_acara', $id)->where('jenis_peserta', 'karyawan')->delete();
-            $beritaAcara->peserta()->createMany($pesertaInternal);
+            foreach ($request->peserta_internal as $id_user) {
+                PesertaBeritaAcara::create([
+                    'id_berita_acara' => $beritaAcara->id,
+                    'id_user' => $id_user,
+                    'jenis_peserta' => 'karyawan',
+                ]);
+            }
         }
-
-        // Update peserta eksternal (bukan karyawan)
+    
+        // Update peserta eksternal
+        PesertaBeritaAcara::where('id_berita_acara', $id)->where('jenis_peserta', 'luar')->delete();
         if ($request->has('peserta')) {
-            PesertaBeritaAcara::where('id_berita_acara', $id)->where('jenis_peserta', 'luar')->delete();
-            $beritaAcara->peserta()->createMany($request->peserta);
+            foreach ($request->peserta as $peserta) {
+                PesertaBeritaAcara::create([
+                    'id_berita_acara' => $beritaAcara->id,
+                    'nama_lengkap' => $peserta['nama_lengkap'],
+                    'instansi' => $peserta['instansi'],
+                    'jabatan' => $peserta['jabatan'],
+                    'jenis_peserta' => 'luar',
+                ]);
+            }
         }
-
+    
         return redirect()->route('berita-acara.index')->with('success', 'Berita Acara berhasil diperbarui.');
     }
 
