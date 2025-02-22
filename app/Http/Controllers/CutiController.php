@@ -56,6 +56,7 @@ class CutiController extends Controller
             'tanggal_mulai' => 'required|date|after_or_equal:today',
             'tanggal_selesai' => 'required|date|after:tanggal_mulai',
             'alasan' => 'required|string|max:255',
+            'catatan' => 'nullable|string|max:100',
         ]);
 
         // Cek apakah sudah lolos validasi
@@ -68,6 +69,7 @@ class CutiController extends Controller
             'tanggal_selesai' => $request->tanggal_selesai,
             'tanggal_pengajuan' => now(),
             'alasan' => $request->alasan,
+            'catatan' => $request->input('catatan'),
             'approved_by_director' => 'pending',
             'approved_by_head_acdemy' => 'pending',
         ]);
