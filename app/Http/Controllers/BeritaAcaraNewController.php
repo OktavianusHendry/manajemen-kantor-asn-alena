@@ -27,48 +27,46 @@ class BeritaAcaraNewController extends Controller
 
     public function create()
     {
+        $karyawan = User::where('role_as', 'karyawan')->get(); // Ambil data user dengan role karyawan
         return view('berita-acara.create');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'judul' => 'required|string|max:255',
-            'deskripsi' => 'nullable|string',
-            'tanggal' => 'required|date',
-            'berkas' => 'nullable|file|mimes:pdf,doc,docx',
-            'tautan_website' => 'nullable|url',
-            'peserta' => 'required|array',
-            'peserta.*.nama_lengkap' => 'required|string|max:255',
-            'peserta.*.instansi' => 'nullable|string|max:255',
-            'peserta.*.jabatan' => 'nullable|string|max:255',
-            'peserta.*.jenis_peserta' => 'required|in:karyawan,luar',
+        // Simpan Berita Acara
+        $beritaAcara = BeritaAcaraNew::create([
+            'judul' => $request->judul,
+            'deskripsi' => $request->deskripsi,
+            'tanggal' => $request->tanggal,
+            'berkas' => $request->berkas,
+            'tautan_website' => $request->tautan_website,
         ]);
 
-        $beritaAcara = new BeritaAcaraNew();
-        $beritaAcara->judul = $request->judul;
-        $beritaAcara->deskripsi = $request->deskripsi;
-        $beritaAcara->tanggal = $request->tanggal;
-        $beritaAcara->tautan_website = $request->tautan_website;
-
-        if ($request->hasFile('berkas')) {
-            $berkasPath = $request->file('berkas')->store('berkas', 'public');
-            $beritaAcara->berkas = $berkasPath;
+        // Simpan Peserta Internal
+        if ($request->has('peserta_internal')) {
+            foreach ($request->peserta_internal as $id_user) {
+                PesertaBeritaAcara::create([
+                    'id_berita_acara' => $beritaAcara->id,
+                    'id_user' => $id_user,
+                    'jenis_peserta' => 'karyawan',
+                ]);
+            }
         }
 
-        $beritaAcara->save();
-
-        foreach ($request->peserta as $peserta) {
-            PesertaBeritaAcara::create([
-                'id_berita_acara' => $beritaAcara->id,
-                'nama_lengkap' => $peserta['nama_lengkap'],
-                'instansi' => $peserta['instansi'],
-                'jabatan' => $peserta['jabatan'],
-                'jenis_peserta' => $peserta['jenis_peserta'],
-            ]);
+        // Simpan Peserta Eksternal
+        if ($request->has('peserta')) {
+            foreach ($request->peserta as $peserta) {
+                PesertaBeritaAcara::create([
+                    'id_berita_acara' => $beritaAcara->id,
+                    'nama_lengkap' => $peserta['nama_lengkap'],
+                    'instansi' => $peserta['instansi'],
+                    'jabatan' => $peserta['jabatan'],
+                    'jenis_peserta' => 'luar',
+                ]);
+            }
         }
 
-        return redirect()->route('berita-acara.index')->with('success', 'Berita Acara berhasil dibuat.');
+        return redirect()->route('berita-acara.index')->with('success', 'Berita Acara berhasil disimpan!');
     }
 
     public function show($id)

@@ -33,6 +33,29 @@
 
         <hr>
         <h4>Peserta Berita Acara</h4>
+
+        {{-- PESERTA INTERNAL --}}
+        <h5>Peserta Internal</h5>
+        <div id="peserta-internal-container">
+            <div class="row">
+                <div class="col-md-5">
+                    <label>Pilih Peserta Internal</label>
+                    <select name="peserta_internal[]" class="form-control">
+                        <option value="">-- Pilih Peserta --</option>
+                        @foreach ($karyawan as $user)
+                            <option value="{{ $user->id }}">{{ $user->name }} - {{ $user->jabatan }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="button" class="btn btn-primary" id="add-peserta-internal">Tambah</button>
+                </div>
+            </div>
+            <hr>
+        </div>
+
+        {{-- PESERTA EKSTERNAL --}}
+        <h5>Peserta Eksternal</h5>
         <div id="peserta-container">
             <div class="peserta-group">
                 <div class="row">
@@ -51,7 +74,6 @@
                     <div class="col-md-2">
                         <label>Jenis Peserta</label>
                         <select name="peserta[0][jenis_peserta]" class="form-control" required>
-                            <option value="karyawan">Karyawan</option>
                             <option value="luar">Luar</option>
                         </select>
                     </div>
@@ -63,57 +85,89 @@
             </div>
         </div>
 
-        <button type="button" class="btn btn-primary" id="add-peserta">Tambah Peserta</button>
+        <button type="button" class="btn btn-primary" id="add-peserta">Tambah Peserta Eksternal</button>
         <br><br>
 
         <button type="submit" class="btn btn-success">Simpan Berita Acara</button>
-    </form>
-</div>
+        </form>
+        </div>
 
-<script>
-    let pesertaIndex = 1;
+        <script>
+            let pesertaIndex = 1;
 
-    document.getElementById('add-peserta').addEventListener('click', function () {
-        let container = document.getElementById('peserta-container');
-        let newPeserta = document.createElement('div');
-        newPeserta.classList.add('peserta-group');
+            // Tambah Peserta Eksternal
+            document.getElementById('add-peserta').addEventListener('click', function () {
+                let container = document.getElementById('peserta-container');
+                let newPeserta = document.createElement('div');
+                newPeserta.classList.add('peserta-group');
 
-        newPeserta.innerHTML = `
-            <div class="row">
-                <div class="col-md-3">
-                    <label>Nama Lengkap</label>
-                    <input type="text" name="peserta[${pesertaIndex}][nama_lengkap]" class="form-control" required>
-                </div>
-                <div class="col-md-3">
-                    <label>Instansi</label>
-                    <input type="text" name="peserta[${pesertaIndex}][instansi]" class="form-control">
-                </div>
-                <div class="col-md-3">
-                    <label>Jabatan</label>
-                    <input type="text" name="peserta[${pesertaIndex}][jabatan]" class="form-control">
-                </div>
-                <div class="col-md-2">
-                    <label>Jenis Peserta</label>
-                    <select name="peserta[${pesertaIndex}][jenis_peserta]" class="form-control" required>
-                        <option value="karyawan">Karyawan</option>
-                        <option value="luar">Luar</option>
-                    </select>
-                </div>
-                <div class="col-md-1 d-flex align-items-end">
-                    <button type="button" class="btn btn-danger remove-peserta">X</button>
-                </div>
-            </div>
-            <hr>
-        `;
-        
-        container.appendChild(newPeserta);
-        pesertaIndex++;
-    });
+                newPeserta.innerHTML = `
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>Nama Lengkap</label>
+                            <input type="text" name="peserta[${pesertaIndex}][nama_lengkap]" class="form-control" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Instansi</label>
+                            <input type="text" name="peserta[${pesertaIndex}][instansi]" class="form-control">
+                        </div>
+                        <div class="col-md-3">
+                            <label>Jabatan</label>
+                            <input type="text" name="peserta[${pesertaIndex}][jabatan]" class="form-control">
+                        </div>
+                        <div class="col-md-2">
+                            <label>Jenis Peserta</label>
+                            <select name="peserta[${pesertaIndex}][jenis_peserta]" class="form-control" required>
+                                <option value="luar">Luar</option>
+                            </select>
+                        </div>
+                        <div class="col-md-1 d-flex align-items-end">
+                            <button type="button" class="btn btn-danger remove-peserta">X</button>
+                        </div>
+                    </div>
+                    <hr>
+                `;
+                
+                container.appendChild(newPeserta);
+                pesertaIndex++;
+            });
 
-    document.getElementById('peserta-container').addEventListener('click', function (e) {
-        if (e.target.classList.contains('remove-peserta')) {
-            e.target.closest('.peserta-group').remove();
-        }
-    });
-</script>
+            // Hapus Peserta Eksternal
+            document.getElementById('peserta-container').addEventListener('click', function (e) {
+                if (e.target.classList.contains('remove-peserta')) {
+                    e.target.closest('.peserta-group').remove();
+                }
+            });
+
+            // Tambah Peserta Internal (duplikat select dropdown)
+            document.getElementById('add-peserta-internal').addEventListener('click', function () {
+                let container = document.getElementById('peserta-internal-container');
+                let newSelect = document.createElement('div');
+                newSelect.classList.add('row');
+
+                newSelect.innerHTML = `
+                    <div class="col-md-5">
+                        <label>Pilih Peserta Internal</label>
+                        <select name="peserta_internal[]" class="form-control">
+                            <option value="">-- Pilih Peserta --</option>
+                            @foreach ($karyawan as $user)
+                                <option value="{{ $user->id }}">{{ $user->name }} - {{ $user->jabatan }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="button" class="btn btn-danger remove-internal">X</button>
+                    </div>
+                `;
+
+                container.appendChild(newSelect);
+            });
+
+            // Hapus Peserta Internal
+            document.getElementById('peserta-internal-container').addEventListener('click', function (e) {
+                if (e.target.classList.contains('remove-internal')) {
+                    e.target.closest('.row').remove();
+                }
+            });
+        </script>
 @endsection
