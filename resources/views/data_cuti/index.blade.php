@@ -52,14 +52,14 @@
                                                 <td>{{ $c->tanggal_mulai }}</td>
                                                 <td>{{ $c->tanggal_selesai }}</td>
                                                 <td>
-                                                    <span class="badge bg-{{ $c->approved_by_director == 'approved' ? 'success' : ($c->approved_by_director == 'rejected' ? 'danger' : 'warning') }}">
+                                                    <button class="btn btn-{{ $c->approved_by_director == 'approved' ? 'success' : ($c->approved_by_director == 'rejected' ? 'danger' : 'warning') }} btn-sm" disabled>
                                                         {{ ucfirst($c->approved_by_director) }}
-                                                    </span>
+                                                    </button>
                                                 </td>
                                                 <td>
-                                                    <span class="badge bg-{{ $c->approved_by_head_acdemy == 'approved' ? 'success' : ($c->approved_by_head_acdemy == 'rejected' ? 'danger' : 'warning') }}">
+                                                    <button class="btn btn-{{ $c->approved_by_head_acdemy == 'approved' ? 'success' : ($c->approved_by_head_acdemy == 'rejected' ? 'danger' : 'warning') }} btn-sm" disabled>
                                                         {{ ucfirst($c->approved_by_head_acdemy) }}
-                                                    </span>
+                                                    </button>
                                                 </td>
                                                 <td>
                                                     <a href="{{ route('data_cuti.show', $c->id) }}" class="btn btn-info btn-sm">
