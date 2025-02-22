@@ -54,10 +54,12 @@
                                     </button>
                                 </td>
                             </tr>
-                            <tr>
-                                <a href="{{ route('data_cuti.index') }}" class="btn btn-secondary">Kembali</a>
-                            </tr>
                         </table>
+
+                        <br>
+                        <div>
+                            <a href="{{ route('data_cuti.index') }}" class="btn btn-secondary">Kembali</a>
+                        </div>
                     </div>
                 </div>
             </main>
