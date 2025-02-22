@@ -11,12 +11,12 @@ class CutiController extends Controller
     public function index()
     {
         $cuti = Cuti::with('user', 'jenis_cuti')->paginate(10);
-        return view('cuti.index', compact('cuti'));
+        return view('data_cuti.index', compact('cuti'));
     }
 
     public function create()
     {
-        return view('cuti.create');
+        return view('data_cuti.create');
     }
 
     public function store(Request $request)
@@ -39,7 +39,7 @@ class CutiController extends Controller
             'approved_by_head_acdemy' => 'pending',
         ]);
 
-        return redirect()->route('cuti.index')->with('success', 'Pengajuan cuti berhasil dikirim.');
+        return redirect()->route('data_cuti.index')->with('success', 'Pengajuan cuti berhasil dikirim.');
     }
 
     public function edit(Cuti $cuti)
@@ -58,19 +58,19 @@ class CutiController extends Controller
 
         $cuti->update($request->all());
 
-        return redirect()->route('cuti.index')->with('success', 'Data cuti berhasil diperbarui.');
+        return redirect()->route('data_cuti.index')->with('success', 'Data cuti berhasil diperbarui.');
     }
 
     public function destroy(Cuti $cuti)
     {
         $cuti->delete();
-        return redirect()->route('cuti.index')->with('success', 'Data cuti berhasil dihapus.');
+        return redirect()->route('data_cuti.index')->with('success', 'Data cuti berhasil dihapus.');
     }
 
     public function validateCuti(Request $request, Cuti $cuti)
     {
         if (!in_array(Auth::user()->id_jabatan, [1, 2])) {
-            return redirect()->route('cuti.index')->with('error', 'Anda tidak memiliki akses untuk validasi.');
+            return redirect()->route('data_cuti.index')->with('error', 'Anda tidak memiliki akses untuk validasi.');
         }
 
         if (Auth::user()->id_jabatan == 1) {
@@ -79,6 +79,6 @@ class CutiController extends Controller
             $cuti->update(['approved_by_head_acdemy' => $request->status]);
         }
 
-        return redirect()->route('cuti.index')->with('success', 'Validasi cuti berhasil.');
+        return redirect()->route('data_cuti.index')->with('success', 'Validasi cuti berhasil.');
     }
 }
