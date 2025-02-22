@@ -41,22 +41,22 @@ class CutiController extends Controller
 
     public function create()
     {
-        return view('data_cuti.create');
+        $jenisCuti = JenisCuti::all();
+        return view('data_cuti.create', compact('jenisCuti'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'id_jenis_cuti' => 'required',
+            'jenis_cuti_id' => 'required',
             'tanggal_mulai' => 'required|date',
             'tanggal_selesai' => 'required|date|after_or_equal:tanggal_mulai',
-            'alasan' => 'required',
+            'alasan' => 'required|min:10',
         ]);
 
         Cuti::create([
             'id_user' => Auth::id(),
-            'id_jenis_cuti' => $request->id_jenis_cuti,
-            'tanggal_pengajuan' => now(),
+            'jenis_cuti_id' => $request->jenis_cuti_id,
             'tanggal_mulai' => $request->tanggal_mulai,
             'tanggal_selesai' => $request->tanggal_selesai,
             'alasan' => $request->alasan,
@@ -67,24 +67,35 @@ class CutiController extends Controller
         return redirect()->route('data_cuti.index')->with('success', 'Pengajuan cuti berhasil dikirim.');
     }
 
-    public function edit(Cuti $cuti)
+    public function edit($id)
     {
-        return view('cuti.edit', compact('cuti'));
+        $cuti = Cuti::where('id', $id)->where('id_user', Auth::id())->firstOrFail();
+        $jenisCuti = JenisCuti::all();
+
+        return view('data_cuti.edit', compact('cuti', 'jenisCuti'));
     }
 
-    public function update(Request $request, Cuti $cuti)
+    public function update(Request $request, $id)
     {
+        $cuti = Cuti::where('id', $id)->where('id_user', Auth::id())->firstOrFail();
+
         $request->validate([
-            'id_jenis_cuti' => 'required',
+            'jenis_cuti_id' => 'required',
             'tanggal_mulai' => 'required|date',
             'tanggal_selesai' => 'required|date|after_or_equal:tanggal_mulai',
-            'alasan' => 'required',
+            'alasan' => 'required|min:10',
         ]);
 
-        $cuti->update($request->all());
+        $cuti->update([
+            'jenis_cuti_id' => $request->jenis_cuti_id,
+            'tanggal_mulai' => $request->tanggal_mulai,
+            'tanggal_selesai' => $request->tanggal_selesai,
+            'alasan' => $request->alasan,
+        ]);
 
-        return redirect()->route('data_cuti.index')->with('success', 'Data cuti berhasil diperbarui.');
+        return redirect()->route('data_cuti.index')->with('success', 'Pengajuan cuti berhasil diperbarui.');
     }
+
 
     public function destroy(Cuti $cuti)
     {

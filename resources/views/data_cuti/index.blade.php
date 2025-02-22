@@ -43,7 +43,7 @@
                         @if ($cuti->count() > 0)
                             <div class="table-responsive">
                                 <table class="table table-hover table-striped align-middle">
-                                    <thead class="table-dark text-center">
+                                    <thead class="table-secondary text-center">
                                         <tr>
                                             <th>No</th>
                                             <th>Nama</th>
@@ -64,14 +64,14 @@
                                                 <td>{{ date('d M Y', strtotime($c->tanggal_mulai)) }}</td>
                                                 <td>{{ date('d M Y', strtotime($c->tanggal_selesai)) }}</td>
                                                 <td>
-                                                    <span class="badge bg-{{ $c->approved_by_director == 'approved' ? 'success' : ($c->approved_by_director == 'rejected' ? 'danger' : 'warning') }}">
-                                                        {{ ucfirst($c->approved_by_director) }}
-                                                    </span>
+                                                    <button class="btn btn-{{ $cuti->approved_by_director == 'approved' ? 'success' : ($cuti->approved_by_director == 'rejected' ? 'danger' : 'warning') }}btn-sm" disabled>
+                                                        {{ ucfirst($cuti->approved_by_director) }}
+                                                    </button>
                                                 </td>
                                                 <td>
-                                                    <span class="badge bg-{{ $c->approved_by_head_acdemy == 'approved' ? 'success' : ($c->approved_by_head_acdemy == 'rejected' ? 'danger' : 'warning') }}">
-                                                        {{ ucfirst($c->approved_by_head_acdemy) }}
-                                                    </span>
+                                                    <button class="btn btn-{{ $cuti->approved_by_head_acdemy == 'approved' ? 'success' : ($cuti->approved_by_head_acdemy == 'rejected' ? 'danger' : 'warning') }}btn-sm" disabled>
+                                                        {{ ucfirst($cuti->approved_by_head_acdemy) }}
+                                                    </button>
                                                 </td>
                                                 <td>
                                                     <div class="d-flex gap-2 justify-content-center">
