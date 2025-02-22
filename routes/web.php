@@ -283,9 +283,11 @@ Route::delete('arsip_pembelajaran/{arsip_pembelajaran}', [ArsipPembelajaranContr
 
 //Data Karyawan 
 Route::get('/data-karyawan', [KaryawanNewController::class, 'index'])->name('data.karyawan');
+Route::get('/data-karyawan', [KaryawanNewController::class, 'index'])->name('karyawan.index');
 
 //Data Mentor
 Route::get('/data-mentor', [MentorNewController::class, 'index'])->name('data.mentor');
+Route::get('/data-mentor', [MentorNewController::class, 'index'])->name('mentor.index');
 
 
 Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
