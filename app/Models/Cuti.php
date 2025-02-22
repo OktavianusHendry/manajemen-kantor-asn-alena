@@ -13,7 +13,7 @@ class Cuti extends Model
 
     protected $fillable = [
         'id_user', 'id_jenis_cuti', 'tanggal_pengajuan', 'tanggal_mulai', 'tanggal_selesai',
-        'alasan', 'catatan', 'approved_by_director', 'approved_by_head_acdemy'
+        'alasan', 'catatan', 'catatan_direktur' ,'catatan_kepala_academy' , 'approved_by_director', 'approved_by_head_acdemy'
     ];
 
     // Relasi ke User
