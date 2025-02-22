@@ -13,39 +13,40 @@
                 <div class="card mb-4">
                     <br>
                     <div class="container">
-                        <form action="{{ route('data_cuti.validasi', $cuti->id) }}" method="POST">
-                            @csrf
-                            @method('PUT')
+                    <form action="{{ route('data_cuti.validasi', $cuti->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
 
-                            <div class="mb-3">
-                                <label class="form-label">Validasi oleh</label>
-                                <select name="approval" class="form-control">
-                                    <option value="approved">Setujui</option>
-                                    <option value="rejected">Tolak</option>
-                                </select>
-                            </div>
+                        <div class="mb-3">
+                            <label class="form-label">Status Validasi</label>
+                            <select name="status" id="status" class="form-control">
+                                <option value="approved">Disetujui</option>
+                                <option value="rejected">Ditolak</option>
+                            </select>
+                        </div>
 
-                            <div class="mb-3" id="catatan-field" style="display: none;">
-                                <label class="form-label">Catatan (Alasan Penolakan)</label>
-                                <textarea name="catatan" class="form-control" rows="3"></textarea>
-                            </div>
+                        <div class="mb-3" id="catatan-field" style="display: none;">
+                            <label class="form-label">Catatan (Alasan Penolakan)</label>
+                            <textarea name="catatan" class="form-control" rows="3">{{ old('catatan') }}</textarea>
+                        </div>
 
-                            <button type="submit" class="btn btn-success">Simpan</button>
-                            <a href="{{ route('data_cuti.index') }}" class="btn btn-secondary">Kembali</a>
-                        </form>
+                        <button type="submit" class="btn btn-success w-100 mt-3">
+                            <i class="bx bx-check-circle"></i> Validasi Cuti
+                        </button>
+                    </form>
+                        <script>
+                            document.getElementById('status').addEventListener('change', function () {
+                                let catatanField = document.getElementById('catatan-field');
+                                if (this.value === 'rejected') {
+                                    catatanField.style.display = 'block';
+                                } else {
+                                    catatanField.style.display = 'none';
+                                }
+                            });
+                        </script>
                     </div>
                 </div>
             </main>
         </div>
     </div>
-    <script>
-        document.getElementById('status').addEventListener('change', function () {
-            let catatanField = document.getElementById('catatan-field');
-            if (this.value === 'rejected') {
-                catatanField.style.display = 'block';
-            } else {
-                catatanField.style.display = 'none';
-            }
-        });
-    </script>
 @endsection

@@ -147,16 +147,25 @@ class CutiController extends Controller
     public function validasi(Request $request, $id)
     {
         $cuti = Cuti::findOrFail($id);
-        
-        if (Auth::user()->id_jabatan == 1) {
+
+        $request->validate([
+            'status' => 'required|in:approved,rejected',
+            'catatan' => 'nullable|string|max:255'
+        ]);
+
+        if (Auth::user()->id_jabatan == 1) { // Direktur
             $cuti->approved_by_director = $request->status;
             if ($request->status == 'rejected') {
                 $cuti->catatan_direktur = $request->catatan;
+            } else {
+                $cuti->catatan_direktur = null; // Reset jika disetujui
             }
-        } elseif (Auth::user()->id_jabatan == 2) {
+        } elseif (Auth::user()->id_jabatan == 2) { // Kepala Academy
             $cuti->approved_by_head_acdemy = $request->status;
             if ($request->status == 'rejected') {
                 $cuti->catatan_kepala_academy = $request->catatan;
+            } else {
+                $cuti->catatan_kepala_academy = null; // Reset jika disetujui
             }
         }
 
