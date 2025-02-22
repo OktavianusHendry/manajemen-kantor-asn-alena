@@ -27,7 +27,7 @@ class BeritaAcaraNewController extends Controller
 
     public function create()
     {
-        return view('berita_acara.create');
+        return view('berita-acara.create');
     }
 
     public function store(Request $request)
