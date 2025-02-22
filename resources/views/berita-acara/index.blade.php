@@ -15,7 +15,7 @@
                 <i class="bx bx-search"></i> Cari
             </button>
         </div>
-        <div>
+        <div class="col-md-2">
             <a href="{{ route('berita-acara.create') }}" class="btn btn-primary">
                 <i class="bx bx-plus"></i> Buat Berita Acara
             </a>
@@ -53,6 +53,26 @@
                                 <a href="{{ route('berita-acara.show', $ba->id) }}" class="btn btn-info btn-sm">
                                     <i class="bx bx-detail"></i> Detail
                                 </a>
+                                @if ($ba->approved_by_director == 'pending')
+                                    <a href="{{ route('berita-acara.edit', $ba->id) }}" class="btn btn-warning btn-sm">
+                                        <i class="bx bx-edit"></i> Edit
+                                    </a>
+
+                                    <form action="{{ route('berita-acara.destroy', $ba->id) }}" method="POST" style="display:inline;" 
+                                        onsubmit="return confirm('Yakin ingin menghapus berita acara ini?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="bx bx-trash"></i> Hapus
+                                        </button>
+                                    </form>
+                                @endif
+
+                                @if (Auth::user()->id_jabatan == 1)
+                                    <a href="{{ route('berita-acara.validate', $ba->id) }}" class="btn btn-success btn-sm">
+                                        <i class="bx bx-check-circle"></i> Validasi
+                                    </a>
+                                @endif
                             </td>
                         </tr>
                     @empty

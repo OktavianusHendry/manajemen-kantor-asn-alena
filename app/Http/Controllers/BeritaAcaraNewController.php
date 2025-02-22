@@ -38,22 +38,37 @@ class BeritaAcaraNewController extends Controller
             'tanggal' => 'required|date',
             'berkas' => 'nullable|file|mimes:pdf,doc,docx',
             'tautan_website' => 'nullable|url',
+            'peserta' => 'required|array',
+            'peserta.*.nama_lengkap' => 'required|string|max:255',
+            'peserta.*.instansi' => 'nullable|string|max:255',
+            'peserta.*.jabatan' => 'nullable|string|max:255',
+            'peserta.*.jenis_peserta' => 'required|in:karyawan,luar',
         ]);
+
+        $beritaAcara = new BeritaAcaraNew();
+        $beritaAcara->judul = $request->judul;
+        $beritaAcara->deskripsi = $request->deskripsi;
+        $beritaAcara->tanggal = $request->tanggal;
+        $beritaAcara->tautan_website = $request->tautan_website;
 
         if ($request->hasFile('berkas')) {
-            $filePath = $request->file('berkas')->store('berkas', 'public');
+            $berkasPath = $request->file('berkas')->store('berkas', 'public');
+            $beritaAcara->berkas = $berkasPath;
         }
 
-        $berita_acara = BeritaAcaraNew::create([
-            'judul' => $request->judul,
-            'deskripsi' => $request->deskripsi,
-            'tanggal' => $request->tanggal,
-            'berkas' => $filePath ?? null,
-            'tautan_website' => $request->tautan_website,
-            'approved_by_director' => 'pending'
-        ]);
+        $beritaAcara->save();
 
-        return redirect()->route('berita_acara.index')->with('success', 'Berita Acara berhasil dibuat!');
+        foreach ($request->peserta as $peserta) {
+            PesertaBeritaAcara::create([
+                'id_berita_acara' => $beritaAcara->id,
+                'nama_lengkap' => $peserta['nama_lengkap'],
+                'instansi' => $peserta['instansi'],
+                'jabatan' => $peserta['jabatan'],
+                'jenis_peserta' => $peserta['jenis_peserta'],
+            ]);
+        }
+
+        return redirect()->route('berita-acara.index')->with('success', 'Berita Acara berhasil dibuat.');
     }
 
     public function show($id)
@@ -103,14 +118,18 @@ class BeritaAcaraNewController extends Controller
         return redirect()->route('berita_acara.index')->with('success', 'Berita Acara berhasil dihapus!');
     }
 
-    public function approve(Request $request, $id)
+    public function updateValidation(Request $request, $id)
     {
-        $berita_acara = BeritaAcaraNew::findOrFail($id);
-        $berita_acara->update([
-            'approved_by_director' => $request->status,
-            'catatan_direktur' => $request->catatan
+        $request->validate([
+            'approved_by_director' => 'required|in:pending,approved,rejected',
+            'catatan_direktur' => 'nullable|string',
         ]);
 
-        return redirect()->route('berita_acara.index')->with('success', 'Status Berita Acara diperbarui!');
+        $ba = BeritaAcaraNew::findOrFail($id);
+        $ba->approved_by_director = $request->approved_by_director;
+        $ba->catatan_direktur = $request->catatan_direktur;
+        $ba->save();
+
+        return redirect()->route('berita-acara.index')->with('success', 'Status validasi diperbarui.');
     }
 }
