@@ -6,6 +6,7 @@ use App\Models\Cuti;
 use Illuminate\Http\Request;
 use App\Models\Jenis_Cuti;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log; // Tambahkan di atas
 
 class CutiController extends Controller
 {
