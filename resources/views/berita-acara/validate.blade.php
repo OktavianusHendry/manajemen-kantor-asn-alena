@@ -14,11 +14,6 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Deskripsi</label>
-            <textarea class="form-control" rows="4" disabled>{!! $beritaAcara->deskripsi !!}</textarea>
-        </div>
-
-        <div class="mb-3">
             <label class="form-label">Tanggal</label>
             <input type="date" class="form-control" value="{{ $beritaAcara->tanggal }}" disabled>
         </div>
