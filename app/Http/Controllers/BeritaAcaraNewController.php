@@ -122,7 +122,7 @@ class BeritaAcaraNewController extends Controller
     
         $beritaAcara = BeritaAcaraNew::findOrFail($id);
     
-        // Jika ada file baru diunggah, hapus file lama dan simpan yang baru
+        // Jika da file baru diunggah, hapus file lama dan simpan yang baru
         if ($request->hasFile('berkas')) {
             // Hapus file lama jika ada
             if ($beritaAcara->berkas) {
