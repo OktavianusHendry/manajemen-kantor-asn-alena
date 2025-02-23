@@ -41,14 +41,18 @@ class BeritaAcaraNewController extends Controller
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'tanggal' => 'required|date',
-            'berkas' => 'nullable|file|mimes:pdf,doc,docx,jpg,png',
+            'berkas' => 'nullable|file|mimes:pdf,doc,docx,jpg,png|max:2048', // Validasi file
             'tautan_website' => 'nullable|url',
         ]);
 
-        // Simpan file ke folder 'public/berita-acara'
+       // Simpan file ke storage/berita-acara di disk public
         $berkasPath = null;
         if ($request->hasFile('berkas')) {
-            $berkasPath = $request->file('berkas')->store('berita-acara', 'public');
+            $berkasPath = $request->file('berkas')->storeAs(
+                'berita-acara', // Folder di dalam storage/app/public/
+                time() . '_' . $request->file('berkas')->getClientOriginalName(), // Nama unik
+                'public' // Disk public
+            );
         }
 
         // Simpan Berita Acara

@@ -11,6 +11,13 @@
             <p><strong>Tanggal:</strong> {{ $beritaAcara->tanggal }}</p>
             <p><strong>Deskripsi:</strong></p>
             <div>{!! $beritaAcara->deskripsi !!}</div> <!-- CKEditor mendukung HTML -->
+            <p><strong>Berkas:</strong></p>
+            <div>
+                @if ($beritaAcara->berkas)
+                    <a href="{{ asset('storage/' . $beritaAcara->berkas) }}" target="_blank">Lihat Berkas</a>
+                @endif
+            </div>
+            <p><strong>Tautan Berkas:</strong> {{ $beritaAcara->tautan_website }}</p> 
 
             <hr>
             <h5>Peserta Berita Acara</h5>
@@ -21,6 +28,8 @@
                         <th>Instansi</th>
                         <th>Jabatan</th>
                         <th>Jenis Peserta</th>
+                        <th>Berkas</th>
+                        <th>Tauta Berkas</th>
                     </tr>
                 </thead>
                 <tbody>
