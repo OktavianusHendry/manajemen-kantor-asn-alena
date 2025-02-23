@@ -296,6 +296,9 @@ Route::get('/data-mentor', [MentorNewController::class, 'index'])->name('data.me
 Route::get('/data-mentor', [MentorNewController::class, 'index'])->name('mentor.index');
 Route::get('/data-mentor/{id}', [MentorNewController::class, 'show'])->name('mentor.show');
 Route::get('/data-mentor', [MentorNewController::class, 'index'])->name('mentor.index');
+Route::get('/data-mentor/{id}/edit', [MentorNewController::class, 'edit'])->name('mentor.edit');
+Route::put('/data-mentor/{id}', [MentorNewController::class, 'update'])->name('mentor.update');
+Route::delete('/data-mentor/{id}', [MentorNewController::class, 'destroy'])->name('mentor.destroy');
 
 
 Route::resource('data_cuti', CutiController::class)->middleware('auth');
