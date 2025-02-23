@@ -46,14 +46,15 @@ class BeritaAcaraNewController extends Controller
         ]);
 
        // Simpan file ke storage/berita-acara di disk public
-        $berkasPath = null;
-        if ($request->hasFile('berkas')) {
-            $berkasPath = $request->file('berkas')->storeAs(
-                'berita-acara', // Folder di dalam storage/app/public/
-                time() . '_' . $request->file('berkas')->getClientOriginalName(), // Nama unik
-                'public' // Disk public
-            );
-        }
+       //$berkasPath = null;
+       // if ($request->hasFile('berkas')) {
+       //     $berkasPath = $request->file('berkas')->storeAs(
+       //         'berita-acara', // Folder di dalam storage/app/public/
+       //         time() . '_' . $request->file('berkas')->getClientOriginalName(), // Nama unik
+       //         'public' // Disk public
+       //     );
+       // }
+        $berkasPath = $request->file('berkas') ? $request->file('berkas')->store('data_file_berita_acara', 'public') : null;
 
         // Simpan Berita Acara
         $beritaAcara = BeritaAcaraNew::create([
