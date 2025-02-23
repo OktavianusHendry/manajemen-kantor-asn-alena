@@ -28,8 +28,6 @@
                         <th>Instansi</th>
                         <th>Jabatan</th>
                         <th>Jenis Peserta</th>
-                        <th>Berkas</th>
-                        <th>Tauta Berkas</th>
                     </tr>
                 </thead>
                 <tbody>
