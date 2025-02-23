@@ -294,6 +294,8 @@ Route::delete('/data-karyawan/{id}', [KaryawanNewController::class, 'destroy'])-
 //Data Mentor
 Route::get('/data-mentor', [MentorNewController::class, 'index'])->name('data.mentor');
 Route::get('/data-mentor', [MentorNewController::class, 'index'])->name('mentor.index');
+Route::get('/data-mentor/{id}', [MentorNewController::class, 'show'])->name('mentor.show');
+Route::get('/data-mentor', [MentorNewController::class, 'index'])->name('mentor.index');
 
 
 Route::resource('data_cuti', CutiController::class)->middleware('auth');
