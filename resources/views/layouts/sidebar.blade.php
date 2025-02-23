@@ -86,13 +86,6 @@
                 <div data-i18n="Boxicons">Data Master Mentor</div>
             </a>
         </li>
-        <li class="menu-item">
-            <a href="{{ route('data_cuti.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-file"></i>
-                <div data-i18n="Boxicons">Data Ajuan Cuti</div>
-            </a>
-        </li>
-
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Arsip</span>
         </li>
@@ -164,7 +157,7 @@
         <!-- Forms & Tables -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Human Resource</span></li>
         <li class="menu-item">
-            <a href="{{ route('laporan_cuti.index') }}" class="menu-link">
+            <a href="{{ route('data_cuti.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Boxicons">Data Pengajuan Cuti</div>
             </a>
