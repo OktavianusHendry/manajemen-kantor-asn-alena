@@ -38,7 +38,7 @@ class CutiController extends Controller
         }
 
         // Urutkan berdasarkan tanggal terbaru
-        $cuti = $query->orderBy('tanggal_pengajuan', 'desc')->paginate(10);
+        $cuti = $query->orderBy('created_at', 'desc')->paginate(10);
 
         return view('data_cuti.index', compact('cuti'));
     }
