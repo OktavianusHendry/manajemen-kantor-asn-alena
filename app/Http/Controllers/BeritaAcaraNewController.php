@@ -45,16 +45,11 @@ class BeritaAcaraNewController extends Controller
             'tautan_website' => 'nullable|url',
         ]);
 
-       // Simpan file ke storage/berita-acara di disk public
-       //$berkasPath = null;
-       // if ($request->hasFile('berkas')) {
-       //     $berkasPath = $request->file('berkas')->storeAs(
-       //         'berita-acara', // Folder di dalam storage/app/public/
-       //         time() . '_' . $request->file('berkas')->getClientOriginalName(), // Nama unik
-       //         'public' // Disk public
-       //     );
-       // }
-        $berkasPath = $request->file('berkas') ? $request->file('berkas')->store('data_file_berita_acara', 'public') : null;
+       // Simpan file ke folder 'data_file_berita_acara'
+        $berkasPath = null;
+        if ($request->hasFile('berkas')) {
+            $berkasPath = $request->file('berkas')->store('data_file_berita_acara', 'public');
+        }
 
         // Simpan Berita Acara
         $beritaAcara = BeritaAcaraNew::create([
@@ -123,22 +118,12 @@ class BeritaAcaraNewController extends Controller
     
         $beritaAcara = BeritaAcaraNew::findOrFail($id);
     
-        // Jika da file baru diunggah, hapus file lama dan simpan yang baru
+        // Jika ada file baru diunggah, hapus file lama dan simpan yang baru
         if ($request->hasFile('berkas')) {
-            // Hapus file lama jika ada
             if ($beritaAcara->berkas) {
-                Storage::disk('public')->delete($beritaAcara->berkas);
+                Storage::delete('public/' . $beritaAcara->berkas);
             }
-
-            // Simpan file baru dengan nama unik
-            $berkasPath = $request->file('berkas')->storeAs(
-                'berita-acara', // Folder dalam storage/app/public/
-                time() . '_' . $request->file('berkas')->getClientOriginalName(), // Nama unik
-                'public' // Disk public
-            );
-
-            // Simpan path file baru ke database
-            $beritaAcara->berkas = $berkasPath;
+            $beritaAcara->berkas = $request->file('berkas')->store('data_file_berita_acara', 'public');
         }
     
         // Update data berita acara

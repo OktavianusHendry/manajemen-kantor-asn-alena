@@ -35,11 +35,7 @@
                                 <td>{{ $cuti->alasan }}</td>
                             </tr>
                             <tr>
-                                <th>Catatan</th>
-                                <td>{{ $cuti->catatan }}</td>
-                            </tr>
-                            <tr>
-                                <th>Status Direktur</th>
+                                <th>Persetujuan Direktur</th>
                                 <td>
                                     <button class="btn btn-{{ $cuti->approved_by_director == 'approved' ? 'success' : ($cuti->approved_by_director == 'rejected' ? 'danger' : 'warning') }}btn-sm" disabled>
                                         {{ ucfirst($cuti->approved_by_director) }}
@@ -47,12 +43,20 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>Status Kepala Academy</th>
+                                <th>Catatan Direktur</th>
+                                <td>{{ $cuti->catatan_Direktur ?? 'Tidak Ada Catatan' }}</td>
+                            </tr>
+                            <tr>
+                                <th>Persetujuan Kepala Academy</th>
                                 <td>
                                     <button class="btn btn-{{ $cuti->approved_by_head_acdemy == 'approved' ? 'success' : ($cuti->approved_by_head_acdemy == 'rejected' ? 'danger' : 'warning') }}btn-sm" disabled>
                                         {{ ucfirst($cuti->approved_by_head_acdemy) }}
                                     </button>
                                 </td>
+                            </tr>
+                            <tr>
+                                <th>Catatan Kepala Academy</th>
+                                <td>{{ $cuti->catatan_kepala_academy ?? 'Tidak Ada Catatan'}}</td>
                             </tr>
                         </table>
                         <br>
