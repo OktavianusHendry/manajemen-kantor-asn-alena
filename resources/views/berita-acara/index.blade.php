@@ -42,9 +42,9 @@
                             <td>{{ $ba->judul }}</td>
                             <td>{{ date('d M Y', strtotime($ba->tanggal)) }}</td>
                             <td>
-                                <span class="badge bg-{{ $ba->approved_by_director == 'approved' ? 'success' : ($ba->approved_by_director == 'rejected' ? 'danger' : 'warning') }}">
+                                <button class="btn btn-{{ $ba->approved_by_director == 'approved' ? 'success' : ($ba->approved_by_director == 'rejected' ? 'danger' : 'warning') }} btn-sm" disabled>
                                     {{ ucfirst($ba->approved_by_director) }}
-                                </span>
+                                </button>
                             </td>
                             <td>
                                 <a href="{{ route('berita-acara.show', $ba->id) }}" class="btn btn-info btn-sm">
