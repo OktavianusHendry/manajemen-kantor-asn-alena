@@ -124,10 +124,20 @@ class BeritaAcaraNewController extends Controller
     
         // Jika ada file baru diunggah, hapus file lama dan simpan yang baru
         if ($request->hasFile('berkas')) {
+            // Hapus file lama jika ada
             if ($beritaAcara->berkas) {
-                Storage::delete('public/' . $beritaAcara->berkas);
+                Storage::disk('public')->delete($beritaAcara->berkas);
             }
-            $beritaAcara->berkas = $request->file('berkas')->store('berita-acara', 'public');
+
+            // Simpan file baru dengan nama unik
+            $berkasPath = $request->file('berkas')->storeAs(
+                'berita-acara', // Folder dalam storage/app/public/
+                time() . '_' . $request->file('berkas')->getClientOriginalName(), // Nama unik
+                'public' // Disk public
+            );
+
+            // Simpan path file baru ke database
+            $beritaAcara->berkas = $berkasPath;
         }
     
         // Update data berita acara
