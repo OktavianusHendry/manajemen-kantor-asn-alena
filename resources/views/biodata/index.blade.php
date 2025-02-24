@@ -157,7 +157,6 @@
                 </div>
             </div>
 
-
             <!-- Tab Berita Acara -->
             <div class="tab-pane fade" id="berita" role="tabpanel" aria-labelledby="berita-tab">
                 <div class="card p-3 border-0 shadow-sm">
