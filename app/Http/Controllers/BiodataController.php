@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Biodata;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class BiodataController extends Controller
 {
@@ -17,47 +19,71 @@ class BiodataController extends Controller
         return view('biodata.index', compact('user', 'biodata'));
     }
 
-    public function update(Request $request)
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        $biodata = Biodata::where('id_user', $user->id)->first();
+
+        return view('biodata.edit', compact('user', 'biodata'));
+    }
+
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_lengkap' => 'nullable|string|max:255',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $id,
+            'no_telepon' => 'nullable|string|max:14',
             'alamat' => 'nullable|string',
-            'no_hp' => 'nullable|string|max:15',
+            'nip' => 'nullable|string|max:20|unique:biodata,nip,' . $id . ',id_user',
+            'nik' => 'nullable|string|max:20|unique:biodata,nik,' . $id . ',id_user',
+            'tempat_lahir' => 'nullable|string|max:100',
             'tanggal_lahir' => 'nullable|date',
-            // Validasi lainnya sesuai kebutuhan
+            'no_hp' => 'nullable|string|max:15',
+            'foto_ktp' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
+            'data_ttd' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
         ]);
 
-        // Mengambil data user yang sedang login
-        $user = auth()->user();
+        $user = User::findOrFail($id);
+        $biodata = Biodata::where('id_user', $user->id)->firstOrFail();
 
-        // Update data user
+        // Update data Users
         $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'no_telepon' => $request->no_telepon,
             'alamat' => $request->alamat,
-            'no_telepon' => $request->no_hp,
-            'tanggal_lahir' => $request->tanggal_lahir,
-            // update data lainnya jika diperlukan
         ]);
 
-        // Jika ada biodata, update biodata juga
-        if ($user->biodata) {
-            $user->biodata->update([
-                'nama_lengkap' => $request->nama_lengkap,
-                'alamat' => $request->alamat,
-                'no_hp' => $request->no_hp,
-                'tanggal_lahir' => $request->tanggal_lahir,
-                // update biodata lainnya
-            ]);
-        } else {
-            // Jika biodata belum ada, buat baru
-            $user->biodata()->create([
-                'nama_lengkap' => $request->nama_lengkap,
-                'alamat' => $request->alamat,
-                'no_hp' => $request->no_hp,
-                'tanggal_lahir' => $request->tanggal_lahir,
-                // create biodata lainnya
-            ]);
+        // Update data Biodata
+        $biodata->update([
+            'nama_lengkap' => $request->name, // Nama lengkap ikut diubah jika name diubah
+            'nip' => $request->nip,
+            'nik' => $request->nik,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'no_hp' => $request->no_hp,
+            'alamat' => $request->alamat,
+        ]);
+
+        // Upload Foto KTP jika ada file baru
+        if ($request->hasFile('foto_ktp')) {
+            if ($biodata->data_ktp) {
+                Storage::delete('public/' . $biodata->data_ktp);
+            }
+            $biodata->data_ktp = $request->file('foto_ktp')->store('biodata', 'public');
         }
 
-        return redirect()->route('biodata.index')->with('success', 'Data biodata berhasil diperbarui.');
+        // Upload Tanda Tangan jika ada file baru
+        if ($request->hasFile('data_ttd')) {
+            if ($biodata->data_ttd) {
+                Storage::delete('public/' . $biodata->data_ttd);
+            }
+            $biodata->data_ttd = $request->file('data_ttd')->store('biodata', 'public');
+        }
+
+        $biodata->save();
+
+        return redirect()->route('biodata.index')->with('success', 'Biodata berhasil diperbarui.');
     }
+
 }

@@ -42,7 +42,7 @@
                 <button class="nav-link" id="berita-tab" data-bs-toggle="tab" data-bs-target="#berita" type="button" role="tab" aria-controls="berita" aria-selected="false">📰 Berita Acara</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pengaturan-tab" data-bs-toggle="tab" data-bs-target="#pengaturan" type="button" role="tab" aria-controls="pengaturan" aria-selected="false">⚙️ Pengaturan</button>
+                <button class="nav-link" id="pengaturan-tab" data-bs-toggle="tab" data-bs-target="#pengaturan" type="button" role="tab" aria-controls="pengaturan" aria-selected="false">⚙️ Setting</button>
             </li>
         </ul>
 
