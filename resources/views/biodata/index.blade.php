@@ -109,41 +109,54 @@
             </div>
 
             <!-- Tab Riwayat Cuti -->
-            <div class="tab-pane fade" id="cuti">
+            <div class="tab-pane fade" id="cuti" role="tabpanel">
                 <div class="card p-3 border-0 shadow-sm">
                     <h5 class="fw-bold text-primary">📅 Riwayat Cuti</h5>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Jenis Cuti</th>
-                                <th>Tanggal</th>
-                                <th>Alasan</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($cuti as $index => $c)
-                            <tr>
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ $c->jenis_cuti }}</td>
-                                <td>{{ date('d M Y', strtotime($c->tanggal)) }}</td>
-                                <td>{{ $c->alasan }}</td>
-                                <td>
-                                    @if($c->status == 'approved')
-                                        <span class="badge bg-success">Disetujui</span>
-                                    @elseif($c->status == 'pending')
-                                        <span class="badge bg-warning text-dark">Menunggu</span>
-                                    @else
-                                        <span class="badge bg-danger">Ditolak</span>
-                                    @endif
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    @if ($cuti->isEmpty())
+                        <p class="text-muted">Tidak ada riwayat cuti.</p>
+                    @else
+                        <table class="table table-bordered">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th>Jenis Cuti</th>
+                                    <th>Tanggal Mulai</th>
+                                    <th>Tanggal Selesai</th>
+                                    <th>Direktur</th>
+                                    <th>Kepala Academy</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($cuti as $item)
+                                    <tr>
+                                        <td>{{ $item->jenisCuti->nama_cuti ?? 'Tidak Diketahui' }}</td>
+                                        <td>{{ date('d M Y', strtotime($item->tanggal_mulai)) }}</td>
+                                        <td>{{ date('d M Y', strtotime($item->tanggal_selesai)) }}</td>
+                                        <td>
+                                            @if ($item->approved_by_director == 1)
+                                                ✅ Disetujui
+                                            @elseif ($item->approved_by_director === 0)
+                                                ❌ Ditolak
+                                            @else
+                                                ⏳ Menunggu
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($item->approved_by_head_acdemy == 1)
+                                                ✅ Disetujui
+                                            @elseif ($item->approved_by_head_acdemy === 0)
+                                                ❌ Ditolak
+                                            @else
+                                                ⏳ Menunggu
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @endif
                 </div>
             </div>
+
 
             <!-- Tab Berita Acara -->
             <div class="tab-pane fade" id="berita" role="tabpanel" aria-labelledby="berita-tab">
