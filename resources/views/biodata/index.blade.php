@@ -109,11 +109,34 @@
             </div>
 
             <!-- Tab Riwayat Cuti -->
-            <div class="tab-pane fade" id="cuti" role="tabpanel" aria-labelledby="cuti-tab">
+            <div class="tab-pane fade" id="cuti" role="tabpanel">
                 <div class="card p-3 border-0 shadow-sm">
                     <h5 class="fw-bold text-primary">📅 Riwayat Cuti</h5>
-                    <p>Riwayat cuti akan ditampilkan di sini.</p>
+                    <div id="cuti-content">
+                        <p class="text-muted">Memuat data cuti...</p>
+                    </div>
                 </div>
+                @push('scripts')
+                <script>
+                    $(document).ready(function () {
+                        $('#cuti-tab').on('click', function () {
+                            if (!$('#cuti-content').hasClass('loaded')) {
+                                $.ajax({
+                                    url: "{{ route('data_cuti.index') }}",
+                                    type: "GET",
+                                    success: function (response) {
+                                        $('#cuti-content').html(response);
+                                        $('#cuti-content').addClass('loaded'); // Mencegah pemuatan ulang saat berpindah tab
+                                    },
+                                    error: function () {
+                                        $('#cuti-content').html('<p class="text-danger">Gagal memuat data cuti.</p>');
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                @endpush
             </div>
 
             <!-- Tab Berita Acara -->

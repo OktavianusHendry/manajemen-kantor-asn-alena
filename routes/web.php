@@ -336,6 +336,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/biodata', [BiodataController::class, 'index'])->name('biodata.index');
     Route::get('/biodata/{id}/edit', [BiodataController::class, 'edit'])->name('biodata.edit');
     Route::put('/biodata/{id}', [BiodataController::class, 'update'])->name('biodata.update');
+    Route::get('/data-cuti', [CutiController::class, 'index'])->name('data_cuti.index');
 });
 
 // Notification routes
