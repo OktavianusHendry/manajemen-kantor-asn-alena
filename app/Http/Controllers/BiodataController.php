@@ -17,8 +17,9 @@ class BiodataController extends Controller
         // Mengambil data user dan biodata berdasarkan user yang login
         $user = auth()->user(); // Mendapatkan user yang sedang login
         $biodata = $user->biodata; // Mengambil biodata yang berelasi dengan user
+        $cuti = Cuti::where('user_id', $user->id)->get(); // Pastikan ini sesuai dengan struktur database
 
-        return view('biodata.index', compact('user', 'biodata'));
+        return view('biodata.index', compact('user', 'biodata', 'cuti'));
     }
 
     public function edit($id)
