@@ -10,11 +10,16 @@
             <table class="table">
                 <tr><th>Nama</th><td>: {{ $user->name }}</td></tr>
                 <tr><th>Email</th><td>: {{ $user->email }}</td></tr>
-                <tr><th>Alamat</th><td>: {{ $user->alamat ?? '-' }}</td></tr>
                 <tr><th>No Telepon</th><td>: {{ $user->no_telepon ?? '-' }}</td></tr>
                 <tr><th>Jabatan</th><td>: {{ $user->jabatan->nama_jabatan ?? '-' }}</td></tr>
                 <tr><th>Divisi</th><td>: {{ $user->divisi->nama_divisi ?? '-' }}</td></tr>
-                <tr><th>Tanggal Bergabung</th><td>: {{ date('d M Y', strtotime($user->tanggal_bergabung)) }}</td></tr>
+                <tr><th>Status</th>
+                    <td>
+                        : <span class="badge bg-{{ $biodata->status == 'aktif' ? 'success' : ($biodata->status == 'cuti' ? 'warning' : 'danger') }}">
+                            {{ ucfirst($biodata->status) }}
+                        </span>
+                    </td>
+                </tr>
             </table>
         </div>
 
@@ -43,7 +48,6 @@
             <div class="tab-pane fade show active" id="biodata" role="tabpanel" aria-labelledby="biodata-tab">
                 <div class="row">
                     <!-- Kolom Biodata -->
-                    <div class="col-md-6">
                         <div class="card p-3 border-0 shadow-sm">
                             <h5 class="fw-bold text-primary">Informasi Biodata</h5>
                             <table class="table">
@@ -52,16 +56,9 @@
                                 <tr><th>NIK</th><td>: {{ $biodata->nik ?? '-' }}</td></tr>
                                 <tr><th>Tempat, Tanggal Lahir</th><td>: {{ $biodata->tempat_lahir ?? '-' }}, {{ $biodata->tanggal_lahir ? date('d M Y', strtotime($biodata->tanggal_lahir)) : '-' }}</td></tr>
                                 <tr><th>No HP</th><td>: {{ $biodata->no_hp ?? '-' }}</td></tr>
-                                <tr><th>Status</th>
-                                    <td>
-                                        : <span class="badge bg-{{ $biodata->status == 'aktif' ? 'success' : ($biodata->status == 'cuti' ? 'warning' : 'danger') }}">
-                                            {{ ucfirst($biodata->status) }}
-                                        </span>
-                                    </td>
-                                </tr>
+                                <tr><th>Tanggal Bergabung</th><td>: {{ date('d M Y', strtotime($user->tanggal_bergabung)) }}</td></tr>
                             </table>
                         </div>
-                    </div>
                 </div>
 
                 <!-- Tombol Edit -->
