@@ -132,9 +132,9 @@
                                         <td>{{ date('d M Y', strtotime($item->tanggal_mulai)) }}</td>
                                         <td>{{ date('d M Y', strtotime($item->tanggal_selesai)) }}</td>
                                         <td>
-                                            @if ($item->approved_by_director == approve)
+                                            @if ($item->approved_by_director == 'approve')
                                                 ✅ Disetujui
-                                            @elseif ($item->approved_by_director === riject)
+                                            @elseif ($item->approved_by_director === 'riject')
                                                 ❌ Ditolak
                                             @else
                                                 ⏳ Menunggu
