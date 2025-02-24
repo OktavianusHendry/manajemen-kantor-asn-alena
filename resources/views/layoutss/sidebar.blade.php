@@ -23,7 +23,7 @@
             </a>
         </li>
         <li class="menu-item">
-            <a href="{{ route('biodata.index) }}" class="menu-link">
+            <a href="{{ route('biodata.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-user-account"></i>
                 <div data-i18n="Analytics">Biodata</div>
             </a>
