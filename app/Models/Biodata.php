@@ -18,7 +18,7 @@ class Biodata extends Model
     ];
 
     // Relasi ke User
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class, 'id_user', 'id');
     }

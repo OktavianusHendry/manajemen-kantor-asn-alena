@@ -63,7 +63,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     // Relasi ke biodata
-    public function biodata(): HasOne
+    public function biodata()
     {
         return $this->hasOne(Biodata::class, 'id_user', 'id');
     }

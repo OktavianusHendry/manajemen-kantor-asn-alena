@@ -29,6 +29,7 @@ use App\Http\Controllers\ArsipPembelajaranController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\KaryawanNewController;
+use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\MentorNewController;
 use App\Http\Controllers\CutiController;
 use App\Http\Controllers\BeritaAcaraNewController;
@@ -329,7 +330,12 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/berita-acara/{id}/update', [BeritaAcaraNewController::class, 'update'])->name('berita-acara.update');
     Route::delete('/berita-acara/{id}/destroy', [BeritaAcaraNewController::class, 'destroy'])->name('berita-acara.destroy');
     Route::get('/berita-acara/{id}/validate', [BeritaAcaraNewController::class, 'showValidate'])->name('berita-acara.showValidate');
-    Route::put('/berita-acara/{id}/validate', [BeritaAcaraNewController::class, 'validateBeritaAcara'])->name('berita-acara.validate');    
+    Route::put('/berita-acara/{id}/validate', [BeritaAcaraNewController::class, 'validateBeritaAcara'])->name('berita-acara.validate');
+    
+    //Biodata 
+    Route::get('/biodata', [BiodataController::class, 'index'])->name('biodata.index');
+    Route::get('/biodata/{id}/edit', [BiodataController::class, 'edit'])->name('biodata.edit');
+    Route::put('/biodata/{id}', [BiodataController::class, 'update'])->name('biodata.update');
 });
 
 // Notification routes
