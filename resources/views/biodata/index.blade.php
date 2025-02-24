@@ -128,13 +128,13 @@
                             <tbody>
                                 @foreach ($cuti as $item)
                                     <tr>
-                                        <td>{{ $item->jenisCuti->nama_jenis_cuti ?? 'Tidak Diketahui' }}</td>
+                                        <td>{{ $item->jenis_cuti->nama_jenis_cuti ?? 'Tidak Diketahui' }}</td>
                                         <td>{{ date('d M Y', strtotime($item->tanggal_mulai)) }}</td>
                                         <td>{{ date('d M Y', strtotime($item->tanggal_selesai)) }}</td>
                                         <td>
-                                            @if ($item->approved_by_director == 1)
+                                            @if ($item->approved_by_director == approve)
                                                 ✅ Disetujui
-                                            @elseif ($item->approved_by_director === 0)
+                                            @elseif ($item->approved_by_director === riject)
                                                 ❌ Ditolak
                                             @else
                                                 ⏳ Menunggu
