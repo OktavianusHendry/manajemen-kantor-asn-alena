@@ -22,6 +22,7 @@
                 </tr>
             </table>
         </div>
+        <br/>
 
         <!-- Tab Navigation -->
         <ul class="nav nav-tabs" id="biodataTab" role="tablist">
@@ -33,6 +34,9 @@
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="cuti-tab" data-bs-toggle="tab" data-bs-target="#cuti" type="button" role="tab" aria-controls="cuti" aria-selected="false">📅 Riwayat Cuti</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="manajemen_berkas-tab" data-bs-toggle="tab" data-bs-target="#manajemen_berkas" type="button" role="tab" aria-controls="manajemen_berkas" aria-selected="false">📰 Manajemen Berkas</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="berita-tab" data-bs-toggle="tab" data-bs-target="#berita" type="button" role="tab" aria-controls="berita" aria-selected="false">📰 Berita Acara</button>
@@ -56,7 +60,34 @@
                                 <tr><th>NIK</th><td>: {{ $biodata->nik ?? '-' }}</td></tr>
                                 <tr><th>Tempat, Tanggal Lahir</th><td>: {{ $biodata->tempat_lahir ?? '-' }}, {{ $biodata->tanggal_lahir ? date('d M Y', strtotime($biodata->tanggal_lahir)) : '-' }}</td></tr>
                                 <tr><th>No HP</th><td>: {{ $biodata->no_hp ?? '-' }}</td></tr>
+                                <tr><th>Alamat</th><td>: {{ $biodata->alamat ?? '-' }}</td></tr>
+                                <tr><th>Jabatan</th><td>: {{ $user->jabatan->nama_jabatan ?? '-' }}</td></tr>
+                                <tr><th>Divisi</th><td>: {{ $user->divisi->nama_divisi ?? '-' }}</td></tr>
                                 <tr><th>Tanggal Bergabung</th><td>: {{ date('d M Y', strtotime($user->tanggal_bergabung)) }}</td></tr>
+
+                                <!-- Foto KTP -->
+                                <tr>
+                                    <th>Foto KTP</th>
+                                    <td>
+                                        @if ($biodata->data_ktp)
+                                            <img src="{{ asset('storage/' . $biodata->data_ktp) }}" alt="Foto KTP" width="100">
+                                        @else
+                                            <button class="btn btn-danger btn-sm">Belum diupload</button>
+                                        @endif
+                                    </td>
+                                </tr>
+
+                                <!-- Tanda Tangan -->
+                                <tr>
+                                    <th>Tanda Tangan</th>
+                                    <td>
+                                        @if ($biodata->data_ttd)
+                                            <img src="{{ asset('storage/' . $biodata->data_ttd) }}" alt="Tanda Tangan" width="100">
+                                        @else
+                                            <button class="btn btn-danger btn-sm">Belum diupload</button>
+                                        @endif
+                                    </td>
+                                </tr>
                             </table>
                         </div>
                 </div>
@@ -90,6 +121,14 @@
                 <div class="card p-3 border-0 shadow-sm">
                     <h5 class="fw-bold text-primary">📰 Berita Acara</h5>
                     <p>Berita acara akan ditampilkan di sini.</p>
+                </div>
+            </div>
+
+             <!-- Tab Manajemen Berkas -->
+             <div class="tab-pane fade" id="manajemen_berkas" role="tabpanel" aria-labelledby="manajemen_berkas-tab">
+                <div class="card p-3 border-0 shadow-sm">
+                    <h5 class="fw-bold text-primary">📰 Manajemen Berkas</h5>
+                    <p>Berkas yang pernah di unggah oleh karyawan akan ditampilkan di sini.</p>
                 </div>
             </div>
 
