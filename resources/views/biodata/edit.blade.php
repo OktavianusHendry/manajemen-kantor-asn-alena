@@ -10,30 +10,29 @@
 
             <div class="row">
                 <!-- Kolom User -->
-                <div class="col-md-6">
-                    <div class="card p-3 border-0 shadow-sm">
-                        <h5 class="fw-bold text-primary">Informasi User</h5>
-                        <div class="mb-3">
-                            <label class="form-label">Nama</label>
-                            <input type="text" name="name" class="form-control" value="{{ $user->name }}" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control" value="{{ $user->email }}" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">No Telepon</label>
-                            <input type="text" name="no_telepon" class="form-control" value="{{ $user->no_telepon }}">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Alamat</label>
-                            <textarea name="alamat" class="form-control">{{ $user->alamat }}</textarea>
-                        </div>
+                <div class="card p-3 border-0 shadow-sm">
+                    <h5 class="fw-bold text-primary">Informasi User</h5>
+                    <div class="mb-3">
+                        <label class="form-label">Nama</label>
+                        <input type="text" name="name" class="form-control" value="{{ $user->name }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" value="{{ $user->email }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">No Telepon</label>
+                        <input type="text" name="no_telepon" class="form-control" value="{{ $user->no_telepon }}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Alamat</label>
+                        <textarea name="alamat" class="form-control">{{ $user->alamat }}</textarea>
                     </div>
                 </div>
+            </div>
 
-                <!-- Kolom Biodata -->
-                <div class="col-md-6">
+            <!-- Kolom Biodata -->
+            <div class="row">
                     <div class="card p-3 border-0 shadow-sm">
                         <h5 class="fw-bold text-primary">Informasi Biodata</h5>
                         <div class="mb-3">
@@ -56,7 +55,6 @@
                             <input type="text" name="no_hp" class="form-control" value="{{ $biodata->no_hp }}">
                         </div>
                     </div>
-                </div>
             </div>
 
             <!-- Upload Berkas -->
