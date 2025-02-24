@@ -24,7 +24,7 @@
         </li>
         <li class="menu-item">
             <a href="{{ route('crew.dashboard') }}" class="menu-link">
-                <i class="bx bxs-user-account"></i>
+                <i class="menu-icon tf-icons bx bxs-user-account"></i>
                 <div data-i18n="Analytics">Biodata</div>
             </a>
         </li>
