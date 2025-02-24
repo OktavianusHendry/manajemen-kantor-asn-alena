@@ -128,7 +128,7 @@
                             <tbody>
                                 @foreach ($cuti as $item)
                                     <tr>
-                                        <td>{{ $item->jenisCuti->nama_cuti ?? 'Tidak Diketahui' }}</td>
+                                        <td>{{ $item->jenisCuti->nama_jenis_cuti ?? 'Tidak Diketahui' }}</td>
                                         <td>{{ date('d M Y', strtotime($item->tanggal_mulai)) }}</td>
                                         <td>{{ date('d M Y', strtotime($item->tanggal_selesai)) }}</td>
                                         <td>
