@@ -22,6 +22,12 @@
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="{{ route(##) }}" class="menu-link">
+                <i class="bx bxs-user-account"></i>
+                <div data-i18n="Analytics">Biodata</div>
+            </a>
+        </li>
 
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Arsip</span>
