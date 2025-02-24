@@ -7,6 +7,8 @@ use App\Models\Biodata;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Cuti;
+use App\Models\Jenis_Cuti;
 
 class BiodataController extends Controller
 {
