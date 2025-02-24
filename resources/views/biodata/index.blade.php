@@ -109,34 +109,40 @@
             </div>
 
             <!-- Tab Riwayat Cuti -->
-            <div class="tab-pane fade" id="cuti" role="tabpanel">
+            <div class="tab-pane fade" id="cuti">
                 <div class="card p-3 border-0 shadow-sm">
                     <h5 class="fw-bold text-primary">📅 Riwayat Cuti</h5>
-                    <div id="cuti-content">
-                        <p class="text-muted">Memuat data cuti...</p>
-                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Jenis Cuti</th>
+                                <th>Tanggal</th>
+                                <th>Alasan</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($cuti as $index => $c)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $c->jenis_cuti }}</td>
+                                <td>{{ date('d M Y', strtotime($c->tanggal)) }}</td>
+                                <td>{{ $c->alasan }}</td>
+                                <td>
+                                    @if($c->status == 'approved')
+                                        <span class="badge bg-success">Disetujui</span>
+                                    @elseif($c->status == 'pending')
+                                        <span class="badge bg-warning text-dark">Menunggu</span>
+                                    @else
+                                        <span class="badge bg-danger">Ditolak</span>
+                                    @endif
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-                @push('scripts')
-                <script>
-                    $(document).ready(function () {
-                        $('#cuti-tab').on('click', function () {
-                            if (!$('#cuti-content').hasClass('loaded')) {
-                                $.ajax({
-                                    url: "{{ route('data_cuti.index') }}",
-                                    type: "GET",
-                                    success: function (response) {
-                                        $('#cuti-content').html(response);
-                                        $('#cuti-content').addClass('loaded'); // Mencegah pemuatan ulang saat berpindah tab
-                                    },
-                                    error: function () {
-                                        $('#cuti-content').html('<p class="text-danger">Gagal memuat data cuti.</p>');
-                                    }
-                                });
-                            }
-                        });
-                    });
-                </script>
-                @endpush
             </div>
 
             <!-- Tab Berita Acara -->
