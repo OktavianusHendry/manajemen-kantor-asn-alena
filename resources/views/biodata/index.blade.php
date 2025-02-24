@@ -89,7 +89,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><a href="{{ route('data_cuti.index') }}" class="text-decoration-none">📅 Riwayat Cuti</a></li>
                     <li class="list-group-item"><a href="{{ route('berita_acara.index') }}" class="text-decoration-none">📰 Berita Acara</a></li>
-                    <li class="list-group-item"><a href="{{ route('pengaturan.index') }}" class="text-decoration-none">⚙️ Pengaturan</a></li>
+                    <li class="list-group-item"><a href="##" class="text-decoration-none">⚙️ Pengaturan</a></li>
                 </ul>
             </div>
         </div>
