@@ -92,7 +92,7 @@ class BiodataController extends Controller
             if ($biodata->foto) {
                 Storage::delete('public/' . $biodata->foto);
             }
-            $biodata->data_ttd = $request->file('foto')->store('data_file_foto_profil', 'public');
+            $biodata->foto = $request->file('foto')->store('data_file_foto_profil', 'public');
         }
 
         $biodata->save();
