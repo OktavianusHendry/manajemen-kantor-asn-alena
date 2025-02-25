@@ -70,7 +70,7 @@
                                     <th>Foto KTP</th>
                                     <td>
                                         @if ($biodata->data_ktp)
-                                            <img src="{{ asset('storage/' . $biodata->data_ktp) }}" alt="Foto KTP" width="100">
+                                            <img src="{{ asset('storage/app/public/' . $biodata->data_ktp) }}" alt="Foto KTP" width="100">
                                         @else
                                             <button class="btn btn-danger btn-sm">Belum diupload</button>
                                         @endif
