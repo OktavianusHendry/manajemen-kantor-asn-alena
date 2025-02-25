@@ -73,7 +73,7 @@ class BiodataController extends Controller
             if ($biodata->data_ktp) {
                 Storage::delete('public/' . $biodata->data_ktp);
             }
-            $biodata->data_ktp = $request->file('foto_ktp')->store('biodata', 'public');
+            $biodata->data_ktp = $request->file('foto_ktp')->store('data_file_ktp', 'public');
         }
 
         // Upload Tanda Tangan jika ada file baru
@@ -81,7 +81,7 @@ class BiodataController extends Controller
             if ($biodata->data_ttd) {
                 Storage::delete('public/' . $biodata->data_ttd);
             }
-            $biodata->data_ttd = $request->file('data_ttd')->store('biodata', 'public');
+            $biodata->data_ttd = $request->file('data_ttd')->store('data_file_ttd', 'public');
         }
 
         $biodata->save();
