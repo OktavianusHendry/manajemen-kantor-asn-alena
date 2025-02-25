@@ -76,7 +76,7 @@
                                             </button>
                                             <script>
                                                 function printKtp(data_ktp) {
-                                                    window.open("{{ route('storage/app/public/', '') }}/" + data_ktp, '_blank');
+                                                    window.open("{{ asset('storage/app/public/', '') }}/" + data_ktp, '_blank');
                                                 }
                                             </script>
                                         @else
