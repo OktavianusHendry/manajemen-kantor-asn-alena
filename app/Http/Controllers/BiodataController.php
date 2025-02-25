@@ -89,7 +89,7 @@ class BiodataController extends Controller
 
         // Upload foto jika ada file baru
         if ($request->hasFile('foto')) {
-            if ($biodata->data_ttd) {
+            if ($biodata->foto) {
                 Storage::delete('public/' . $biodata->foto);
             }
             $biodata->data_ttd = $request->file('foto')->store('data_file_foto_profil', 'public');
