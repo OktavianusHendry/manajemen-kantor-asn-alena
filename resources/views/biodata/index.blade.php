@@ -5,22 +5,37 @@
     <div class="card shadow-sm p-4">
         <h3 class="fw-bold text-center mb-4">Biodata Karyawan</h3>
         <!-- Kolom User -->
-        <div class="card p-3 border-0 shadow-sm">
-            <h5 class="fw-bold text-primary">Informasi User</h5>
-            <table class="table">
-                <tr><th>Nama</th><td>: {{ $user->name }}</td></tr>
-                <tr><th>Email</th><td>: {{ $user->email }}</td></tr>
-                <tr><th>No Telepon</th><td>: {{ $user->no_telepon ?? '-' }}</td></tr>
-                <tr><th>Jabatan</th><td>: {{ $user->jabatan->nama_jabatan ?? '-' }}</td></tr>
-                <tr><th>Divisi</th><td>: {{ $user->divisi->nama_divisi ?? '-' }}</td></tr>
-                <tr><th>Status</th>
-                    <td>
-                        : <span class="badge bg-{{ $biodata->status == 'aktif' ? 'success' : ($biodata->status == 'cuti' ? 'warning' : 'danger') }}">
-                            {{ ucfirst($biodata->status) }}
-                        </span>
-                    </td>
-                </tr>
-            </table>
+        <div class="row">
+            <!-- Kolom Kiri: Informasi User -->
+            <div class="col-md-8">
+                <div class="card p-3 border-0 shadow-sm">
+                    <h5 class="fw-bold text-primary">Informasi User</h5>
+                    <table class="table">
+                        <tr><th>Nama</th><td>: {{ $user->name }}</td></tr>
+                        <tr><th>Email</th><td>: {{ $user->email }}</td></tr>
+                        <tr><th>No Telepon</th><td>: {{ $user->no_telepon ?? '-' }}</td></tr>
+                        <tr><th>Jabatan</th><td>: {{ $user->jabatan->nama_jabatan ?? '-' }}</td></tr>
+                        <tr><th>Divisi</th><td>: {{ $user->divisi->nama_divisi ?? '-' }}</td></tr>
+                        <tr>
+                            <th>Status</th>
+                            <td>
+                                : <span class="badge bg-{{ $biodata->status == 'aktif' ? 'success' : ($biodata->status == 'cuti' ? 'warning' : 'danger') }}">
+                                    {{ ucfirst($biodata->status) }}
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Kolom Kanan: Foto User -->
+            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                <div class="card p-3 border-0 shadow-sm text-center">
+                    <h5 class="fw-bold text-primary">Foto User</h5>
+                    <img src="{{ $biodata->foto ? asset('storage/app/public/' . $biodata->foto) : asset('storage/app/public/') }}" 
+                        alt="Foto User" class="img-fluid rounded-circle border shadow" style="width: 150px; height: 150px; object-fit: cover;">
+                </div>
+            </div>
         </div>
         <br/>
 
