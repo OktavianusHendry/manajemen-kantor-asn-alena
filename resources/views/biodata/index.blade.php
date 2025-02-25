@@ -132,18 +132,18 @@
                                         <td>{{ date('d M Y', strtotime($item->tanggal_mulai)) }}</td>
                                         <td>{{ date('d M Y', strtotime($item->tanggal_selesai)) }}</td>
                                         <td>
-                                            @if ($c->approved_by_director == 'approved')
+                                            @if ($item->approved_by_director == 'approved')
                                                 ✅ Disetujui
-                                            @elseif ($c->approved_by_director == 'rejected')
+                                            @elseif ($item->approved_by_director == 'rejected')
                                                 ❌ Ditolak
                                             @else
                                                 ⏳ Menunggu
                                             @endif
                                         </td>
                                         <td>
-                                            @if ($c->approved_by_head_acdemy == 'approved')
+                                            @if ($item->approved_by_head_acdemy == 'approved')
                                                 ✅ Disetujui
-                                            @elseif ($c->approved_by_head_acdemy == 'rejected')
+                                            @elseif ($item->approved_by_head_acdemy == 'rejected')
                                                 ❌ Ditolak
                                             @else
                                                 ⏳ Menunggu
