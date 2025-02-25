@@ -71,6 +71,14 @@
                                     <td>
                                         @if ($biodata->data_ktp)
                                             <img src="{{ asset('storage/app/public/' . $biodata->data_ktp) }}" alt="Foto KTP" width="100">
+                                            <button class="btn btn-primary btn-sm" onclick="printKtp('{{ $biodata->data_ktp }}')">
+                                                <i class="menu-icon tf-icons bx bx-printer"></i>
+                                            </button>
+                                            <script>
+                                                function printKtp(data_ktp) {
+                                                    window.open("{{ route('storage/app/public/', '') }}/" + data_ktp, '_blank');
+                                                }
+                                            </script>
                                         @else
                                             <button class="btn btn-danger btn-sm">Belum diupload</button>
                                         @endif
