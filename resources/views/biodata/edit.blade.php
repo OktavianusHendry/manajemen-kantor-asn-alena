@@ -77,7 +77,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Foto Profil</label>
-                        <input type="file" name="data_ttd" class="form-control">
+                        <input type="file" name="foto" class="form-control">
                         @if (!$biodata->foto)
                             <span class="text-danger">Belum diupload</span>
                         @endif
