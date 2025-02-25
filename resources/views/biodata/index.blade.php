@@ -82,7 +82,7 @@
                                     <th>Tanda Tangan</th>
                                     <td>
                                         @if ($biodata->data_ttd)
-                                            <img src="{{ asset('storage/' . $biodata->data_ttd) }}" alt="Tanda Tangan" width="100">
+                                            <img src="{{ asset('storage/app/public/' . $biodata->data_ttd) }}" alt="Tanda Tangan" width="100">
                                         @else
                                             <button class="btn btn-danger btn-sm">Belum diupload</button>
                                         @endif
