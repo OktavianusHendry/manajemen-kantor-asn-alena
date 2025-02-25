@@ -42,6 +42,7 @@ class BiodataController extends Controller
             'tempat_lahir' => 'nullable|string|max:100',
             'tanggal_lahir' => 'nullable|date',
             'no_hp' => 'nullable|string|max:15',
+            'foto' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
             'foto_ktp' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
             'data_ttd' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
         ]);
@@ -55,6 +56,7 @@ class BiodataController extends Controller
             'email' => $request->email,
             'no_telepon' => $request->no_telepon,
             'alamat' => $request->alamat,
+            'foto_diri' => $request->foto_diri
         ]);
 
         // Update data Biodata
@@ -66,6 +68,7 @@ class BiodataController extends Controller
             'tanggal_lahir' => $request->tanggal_lahir,
             'no_hp' => $request->no_hp,
             'alamat' => $request->alamat,
+            'foto' => $request->foto,
         ]);
 
         // Upload Foto KTP jika ada file baru
@@ -82,6 +85,14 @@ class BiodataController extends Controller
                 Storage::delete('public/' . $biodata->data_ttd);
             }
             $biodata->data_ttd = $request->file('data_ttd')->store('data_file_ttd', 'public');
+        }
+
+        // Upload foto jika ada file baru
+        if ($request->hasFile('foto')) {
+            if ($biodata->data_ttd) {
+                Storage::delete('public/' . $biodata->foto);
+            }
+            $biodata->data_ttd = $request->file('foto')->store('data_file_foto_profil', 'public');
         }
 
         $biodata->save();
