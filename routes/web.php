@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\CrewDashboardController;
+use App\Http\Controllers\PesertaDashboardController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\DivisiController;
 use App\Http\Controllers\instansiController;
@@ -91,6 +92,12 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
 Route::group(['middleware' => ['auth', 'isCrew']], function () {
 
     Route::get('/crew-dashboard', [CrewDashboardController::class, 'index'])->name('crew.dashboard');
+
+});
+
+Route::group(['middleware' => ['auth', 'isPeserta']], function () {
+
+    Route::get('/peserta-dashboard', [PesertaDashboardController::class, 'index'])->name('peserta.dashboard');
 
 });
 
