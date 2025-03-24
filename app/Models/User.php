@@ -41,7 +41,8 @@ class User extends Authenticatable implements MustVerifyEmail
         $roles = [
             '0' => 'User',
             '1' => 'Admin',
-            '2' => 'Crew'
+            '2' => 'Crew', 
+            '3' => 'Peserta'
         ];
 
         return $roles[$this->role_as];
